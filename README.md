@@ -15,20 +15,10 @@ Peasy.net is a simple middle tier framework that offers/addresses the following:
 - [Transactional support and fault tolerance](https://github.com/ahanusa/Peasy.NET/wiki/ITransactionContext)
 - [Easy testability](https://github.com/ahanusa/Peasy.NET/wiki/Testing)
 
-#Where can I get it?
+### A sample application
 
-First, install NuGet. Then, install Peasy from the package manager console:
+A full implementation of a middle tier built with peasy and sample consumer clients (WPF, Web API, etc.) can be found here.  You can clone the repo or download the entire project as a [zip](https://github.com/peasy/samples/archive/master.zip).
 
-``` PM> Install-Package Peasy ```
+Once downloaded, open Orders.com.sln with Visual Studio, set the WPF project and Web Api projects as the startup projects and run.
 
-You can also download and add the Peasy and/or Peasy.Core projects to your solution
-
-#Getting started
-
-You can get started by reviewing the [getting started example](https://github.com/ahanusa/Peasy.NET/wiki#the-simplest-possible-example) on the Peasy wiki.  The wiki also covers in-depth how-to's, general framework design, and usage scenarios.
-
-You can also download the entire repo that contains a full sample implementation of a middle tier built with peasy, as well as a sample WPF consumer client.  You can clone the repo or download the entire project as a [zip](https://github.com/ahanusa/Peasy.NET/archive/master.zip).  Once downloaded, open Peasy.sln with Visual Studio, set the WPF project as the startup project and run.
-
-#Contributing
-
-All contributions are welcome, from general framework improvements to sample client consumers, proxy implementations, and documentation updates.  Want to get involved?  Please hit me up with your ideas.  Alternatively, you can make a pull request and I'll get to it ASAP.
+More documentation on its way!
