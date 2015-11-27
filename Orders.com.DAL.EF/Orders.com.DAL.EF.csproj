@@ -53,7 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <Compile Include="Orders.com.Context.cs" />
+    <Compile Include="OrdersDotComContext.cs" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
