@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orders.com.DAL.Http", "Orde
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orders.com.Web.MVC", "Orders.com.Web.MVC\Orders.com.Web.MVC.csproj", "{342F9B93-789F-4BC0-A11E-9BA6CCEE0382}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orders.com.DAL.EF", "Orders.com.DAL.EF\Orders.com.DAL.EF.csproj", "{5C72C89F-28A0-4852-A5A4-A2EEF6021A9F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{342F9B93-789F-4BC0-A11E-9BA6CCEE0382}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{342F9B93-789F-4BC0-A11E-9BA6CCEE0382}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{342F9B93-789F-4BC0-A11E-9BA6CCEE0382}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C72C89F-28A0-4852-A5A4-A2EEF6021A9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C72C89F-28A0-4852-A5A4-A2EEF6021A9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C72C89F-28A0-4852-A5A4-A2EEF6021A9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C72C89F-28A0-4852-A5A4-A2EEF6021A9F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
