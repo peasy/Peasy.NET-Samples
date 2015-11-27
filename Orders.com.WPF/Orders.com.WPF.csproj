@@ -58,6 +58,10 @@
       <HintPath>..\packages\Peasy.Core.1.0.0.4\lib\portable-net451+win81\Peasy.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Peasy.DataProxy.Http, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Peasy.DataProxy.Http.1.0.0.0\lib\portable-net451+win81\Peasy.DataProxy.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Peasy.DataProxy.InMemory, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Peasy.DataProxy.InMemory.1.0.0.2\lib\portable-net451+win81\Peasy.DataProxy.InMemory.dll</HintPath>
       <Private>True</Private>
@@ -193,10 +197,6 @@
     <Resource Include="Images\next.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Peasy.DataProxy.Http\Peasy.DataProxy.Http\Peasy.DataProxy.Http.csproj">
-      <Project>{bbccb26f-18f0-43e5-9046-c0fd2e894c85}</Project>
-      <Name>Peasy.DataProxy.Http</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Orders.com.BLL\Orders.com.BLL.csproj">
       <Project>{ce4be061-889b-4169-8403-82269e4ec7b9}</Project>
       <Name>Orders.com.BLL</Name>
