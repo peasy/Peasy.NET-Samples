@@ -14,11 +14,12 @@ namespace Orders.com.Web.MVC.Controllers
     public class CustomersController : Controller
     {
         private OrdersDotComContext db = new OrdersDotComContext();
+        private CustomersRepository _customers = new CustomersRepository();
 
         // GET: Customers
         public ActionResult Index()
         {
-            return View(db.Customers.ToList());
+            return View(_customers.GetAll());
         }
 
         // GET: Customers/Details/5
@@ -79,14 +80,26 @@ namespace Orders.com.Web.MVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,CustomerID,Name,Self,CreatedBy,CreatedDatetime,LastModifiedBy,LastModifiedDatetime")] Customer customer)
+        public ActionResult Edit(Customer customer, string Test)
+        //public ActionResult Edit([Bind(Include = "ID,CustomerID,Name,Self,CreatedBy,CreatedDatetime,LastModifiedBy,LastModifiedDatetime")] Customer customer)
         {
-            if (ModelState.IsValid)
+            var original = Newtonsoft.Json.JsonConvert.DeserializeObject<Customer>(Test);
+            var properties = customer.GetType().GetProperties();
+            foreach (var property in properties)
             {
-                db.Entry(customer).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (property.GetValue(original)?.ToString() != property.GetValue(customer)?.ToString())
+                {
+                    System.Diagnostics.Debug.WriteLine($"{property.Name} has changed");
+                }
             }
+            customer = _customers.Update(customer);
+            return RedirectToAction("Index");
+            //if (ModelState.IsValid)
+            //{
+            //    db.Entry(customer).State = EntityState.Modified;
+            //    db.SaveChanges();
+            //    return RedirectToAction("Index");
+            //}
             return View(customer);
         }
 
