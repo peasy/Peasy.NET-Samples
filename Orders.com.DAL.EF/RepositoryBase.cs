@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Orders.com.DAL.EF
 {
-    public abstract class RepositoryBase<T, TKey> : IDataProxy<T, TKey> where T : class, IDomainObject<TKey>
+    public abstract class RepositoryBase<T, TKey> : IDataProxy<T, TKey> where T : class, IDomainObject<TKey>, new() 
     {
         protected abstract DbContext GetDbContext();
 
@@ -60,7 +60,7 @@ namespace Orders.com.DAL.EF
         {
             using (var context = GetDbContext())
             {
-                var entity = default(T);
+                var entity = new T();
                 entity.ID = id;
                 context.Set<T>().Attach(entity);
                 context.Set<T>().Remove(entity);
@@ -115,7 +115,7 @@ namespace Orders.com.DAL.EF
         {
             using (var context = GetDbContext())
             {
-                var entity = default(T);
+                var entity = new T();
                 entity.ID = id; 
                 context.Set<T>().Attach(entity);
                 context.Set<T>().Remove(entity);

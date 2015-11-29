@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Orders.com.DAL.EF
 {
-    public abstract class OrdersDotComRepositoryBase<T> : RepositoryBase<T, long> where T : DomainBase
+    public abstract class OrdersDotComRepositoryBase<T> : RepositoryBase<T, long> where T : DomainBase, new()
     {
         public override T Insert(T entity)
         {
