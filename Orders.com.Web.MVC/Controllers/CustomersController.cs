@@ -13,7 +13,6 @@ namespace Orders.com.Web.MVC.Controllers
 {
     public class CustomersController : Controller
     {
-        private OrdersDotComContext db = new OrdersDotComContext();
         private CustomersRepository _customers = new CustomersRepository();
 
         // GET: Customers
@@ -29,7 +28,7 @@ namespace Orders.com.Web.MVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customer customer = db.Customers.Find(id);
+            Customer customer = _customers.GetByID(id.Value);
             if (customer == null)
             {
                 return HttpNotFound();
@@ -52,8 +51,6 @@ namespace Orders.com.Web.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                //db.Customers.Add(customer);
-                //db.SaveChanges();
                 _customers.Insert(customer);
                 return RedirectToAction("Index");
             }
@@ -68,7 +65,7 @@ namespace Orders.com.Web.MVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customer customer = db.Customers.Find(id);
+            Customer customer = _customers.GetByID(id.Value);
             if (customer == null)
             {
                 return HttpNotFound();
@@ -93,14 +90,11 @@ namespace Orders.com.Web.MVC.Controllers
                     System.Diagnostics.Debug.WriteLine($"{property.Name} has changed");
                 }
             }
-            customer = _customers.Update(customer);
-            return RedirectToAction("Index");
-            //if (ModelState.IsValid)
-            //{
-            //    db.Entry(customer).State = EntityState.Modified;
-            //    db.SaveChanges();
-            //    return RedirectToAction("Index");
-            //}
+            if (ModelState.IsValid)
+            {
+                customer = _customers.Update(customer);
+                return RedirectToAction("Index");
+            }
             return View(customer);
         }
 
@@ -111,7 +105,7 @@ namespace Orders.com.Web.MVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customer customer = db.Customers.Find(id);
+            Customer customer = _customers.GetByID(id.Value);
             if (customer == null)
             {
                 return HttpNotFound();
@@ -124,19 +118,8 @@ namespace Orders.com.Web.MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(long id)
         {
-            Customer customer = db.Customers.Find(id);
-            db.Customers.Remove(customer);
-            db.SaveChanges();
+            _customers.Delete(id);
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }
