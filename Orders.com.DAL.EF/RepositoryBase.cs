@@ -13,7 +13,7 @@ namespace Orders.com.DAL.EF
     {
         protected abstract DbContext GetDbContext();
 
-        public IEnumerable<T> GetAll()
+        public virtual IEnumerable<T> GetAll()
         {
             using (var context = GetDbContext())
             {
@@ -22,7 +22,7 @@ namespace Orders.com.DAL.EF
             }
         }
 
-        public T GetByID(TKey id)
+        public virtual T GetByID(TKey id)
         {
             using (var context = GetDbContext())
             {
@@ -31,7 +31,7 @@ namespace Orders.com.DAL.EF
             }
         }
 
-        public T Insert(T entity)
+        public virtual T Insert(T entity)
         {
             using (var context = GetDbContext())
             {
@@ -43,7 +43,7 @@ namespace Orders.com.DAL.EF
             }
         }
 
-        public T Update(T entity)
+        public virtual T Update(T entity)
         {
             using (var context = GetDbContext())
             {
@@ -56,7 +56,7 @@ namespace Orders.com.DAL.EF
             }
         }
 
-        public void Delete(TKey id)
+        public virtual void Delete(TKey id)
         {
             using (var context = GetDbContext())
             {
@@ -68,7 +68,7 @@ namespace Orders.com.DAL.EF
             }
         }
 
-        public async Task<IEnumerable<T>> GetAllAsync()
+        public virtual async Task<IEnumerable<T>> GetAllAsync()
         {
             using (var context = GetDbContext())
             {
@@ -77,7 +77,7 @@ namespace Orders.com.DAL.EF
             }
         }
 
-        public async Task<T> GetByIDAsync(TKey id)
+        public virtual async Task<T> GetByIDAsync(TKey id)
         {
             using (var context = GetDbContext())
             {
@@ -86,7 +86,7 @@ namespace Orders.com.DAL.EF
             }
         }
 
-        public async Task<T> InsertAsync(T entity)
+        public virtual async Task<T> InsertAsync(T entity)
         {
             using (var context = GetDbContext())
             {
@@ -98,7 +98,7 @@ namespace Orders.com.DAL.EF
             }
         }
 
-        public async Task<T> UpdateAsync(T entity)
+        public virtual async Task<T> UpdateAsync(T entity)
         {
             using (var context = GetDbContext())
             {
@@ -111,7 +111,7 @@ namespace Orders.com.DAL.EF
             }
         }
 
-        public async Task DeleteAsync(TKey id)
+        public virtual async Task DeleteAsync(TKey id)
         {
             using (var context = GetDbContext())
             {

@@ -5,7 +5,7 @@ using Peasy.Core;
 
 namespace Orders.com.DAL.EF
 {
-    public class CustomersRepository : RepositoryBase<Customer, long>, IDataProxy<Customer, long>
+    public class CustomersRepository : OrdersDotComRepositoryBase<Customer> 
     {
         protected override DbContext GetDbContext()
         {

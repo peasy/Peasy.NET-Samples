@@ -52,8 +52,9 @@ namespace Orders.com.Web.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Customers.Add(customer);
-                db.SaveChanges();
+                //db.Customers.Add(customer);
+                //db.SaveChanges();
+                _customers.Insert(customer);
                 return RedirectToAction("Index");
             }
 

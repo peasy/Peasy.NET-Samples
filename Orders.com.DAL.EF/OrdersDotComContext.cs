@@ -1,15 +1,18 @@
 ﻿using Orders.com.Domain;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Orders.com.DAL.EF
 {
-	public class OrdersDotComContext : DbContext
+    public class OrdersDotComContext : DbContext
     {
 		public DbSet<Customer> Customers { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Customer>().Ignore<long>(c => c.CustomerID);
+            modelBuilder.Entity<Customer>().Ignore<string>(c => c.Self);
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
