@@ -7,12 +7,11 @@ namespace Orders.com.DAL.EF.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Orders.com.DAL.EF.OrdersDotComContext>
+    public sealed class Configuration : DbMigrationsConfiguration<Orders.com.DAL.EF.OrdersDotComContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "Orders.com.DAL.EF.OrdersDotComContext";
         }
 
         protected override void Seed(Orders.com.DAL.EF.OrdersDotComContext context)

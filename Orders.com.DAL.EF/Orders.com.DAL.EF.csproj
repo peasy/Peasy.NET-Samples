@@ -64,9 +64,9 @@
     <Compile Include="CategoryRepository.cs" />
     <Compile Include="CustomerRepository.cs" />
     <Compile Include="InventoryItemRepository.cs" />
-    <Compile Include="Migrations\201511292233479_InitialCreate.cs" />
-    <Compile Include="Migrations\201511292233479_InitialCreate.Designer.cs">
-      <DependentUpon>201511292233479_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201511301846134_Initial.cs" />
+    <Compile Include="Migrations\201511301846134_Initial.Designer.cs">
+      <DependentUpon>201511301846134_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="OrderItemRepository.cs" />
@@ -89,8 +89,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201511292233479_InitialCreate.resx">
-      <DependentUpon>201511292233479_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201511301846134_Initial.resx">
+      <DependentUpon>201511301846134_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
