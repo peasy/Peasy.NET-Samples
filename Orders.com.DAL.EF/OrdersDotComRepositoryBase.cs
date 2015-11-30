@@ -1,13 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Peasy;
+using System;
+using System.Data.Entity;
 using System.Threading.Tasks;
 
 namespace Orders.com.DAL.EF
 {
-    public abstract class OrdersDotComRepositoryBase<T> : RepositoryBase<T, long> where T : DomainBase, new()
+    public abstract class OrdersDotComRepositoryBase<T> : RepositoryBase<T, long>, IServiceDataProxy<T, long> where T : DomainBase, new()
     {
+        protected override DbContext GetDbContext()
+        {
+            return new OrdersDotComContext();
+        }
+
         public override T Insert(T entity)
         {
             entity.CreatedDatetime = DateTime.Now;
@@ -30,6 +34,16 @@ namespace Orders.com.DAL.EF
         {
             entity.LastModifiedDatetime = DateTime.Now;
             return base.UpdateAsync(entity);
+        }
+
+        public bool SupportsTransactions
+        {
+            get { return true; }
+        }
+
+        public bool IsLatencyProne
+        {
+            get { return false; }
         }
     }
 }

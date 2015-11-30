@@ -13,7 +13,7 @@ namespace Orders.com.Web.MVC.Controllers
 {
     public class CustomersController : Controller
     {
-        private CustomersRepository _customers = new CustomersRepository();
+        private CustomerRepository _customers = new CustomerRepository();
 
         // GET: Customers
         public ActionResult Index()
