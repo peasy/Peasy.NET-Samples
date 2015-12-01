@@ -9,22 +9,24 @@ using System.Web.Mvc;
 using Orders.com.DAL.EF;
 using Orders.com.Domain;
 using Orders.com.DataProxy;
+using Orders.com.BLL;
+using Orders.com.Web.MVC.ViewModels;
 
 namespace Orders.com.Web.MVC.Controllers
 {
     public class CustomersController : Controller
     {
-        private ICustomerDataProxy _customers;
+        private ICustomerService _customerService;
 
-        public CustomersController(ICustomerDataProxy customerDataProxy)
+        public CustomersController(ICustomerService customerDataProxy)
         {
-            _customers = customerDataProxy;
+            _customerService = customerDataProxy;
         }
 
         // GET: Customers
-        public ActionResult Index()
+        public ActionResult Index(string search)
         {
-            return View(_customers.GetAll());
+            return View(_customerService.GetAllCommand().Execute().Value);
         }
 
         // GET: Customers/Details/5
@@ -34,7 +36,7 @@ namespace Orders.com.Web.MVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customer customer = _customers.GetByID(id.Value);
+            Customer customer = _customerService.GetByIDCommand(id.Value).Execute().Value;
             if (customer == null)
             {
                 return HttpNotFound();
@@ -45,7 +47,7 @@ namespace Orders.com.Web.MVC.Controllers
         // GET: Customers/Create
         public ActionResult Create()
         {
-            return View();
+            return View(new CustomerViewModel { Customer = new Customer() });
         }
 
         // POST: Customers/Create
@@ -53,15 +55,20 @@ namespace Orders.com.Web.MVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,CustomerID,Name,Self,CreatedBy,CreatedDatetime,LastModifiedBy,LastModifiedDatetime")] Customer customer)
+        public ActionResult Create([Bind(Include = "Name")] Customer customer)
         {
             if (ModelState.IsValid)
             {
-                _customers.Insert(customer);
-                return RedirectToAction("Index");
+                var result = _customerService.InsertCommand(customer).Execute();
+                if (result.Success)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                    return View(new CustomerViewModel { Customer = customer, Errors = result.Errors });
             }
 
-            return View(customer);
+            return View(new CustomerViewModel { Customer = customer });
         }
 
         // GET: Customers/Edit/5
@@ -71,7 +78,7 @@ namespace Orders.com.Web.MVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customer customer = _customers.GetByID(id.Value);
+            Customer customer = _customerService.GetByIDCommand(id.Value).Execute().Value;
             if (customer == null)
             {
                 return HttpNotFound();
@@ -84,8 +91,7 @@ namespace Orders.com.Web.MVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Customer customer, string Test)
-        //public ActionResult Edit([Bind(Include = "ID,CustomerID,Name,Self,CreatedBy,CreatedDatetime,LastModifiedBy,LastModifiedDatetime")] Customer customer)
+        public ActionResult Edit([Bind(Include="Name")] Customer customer, string Test)
         {
             var original = Newtonsoft.Json.JsonConvert.DeserializeObject<Customer>(Test);
             var properties = customer.GetType().GetProperties();
@@ -96,11 +102,10 @@ namespace Orders.com.Web.MVC.Controllers
                     System.Diagnostics.Debug.WriteLine($"{property.Name} has changed");
                 }
             }
-            if (ModelState.IsValid)
-            {
-                customer = _customers.Update(customer);
+            var result = _customerService.UpdateCommand(customer).Execute();
+            if (result.Success)
                 return RedirectToAction("Index");
-            }
+
             return View(customer);
         }
 
@@ -111,7 +116,7 @@ namespace Orders.com.Web.MVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customer customer = _customers.GetByID(id.Value);
+            Customer customer = _customerService.GetByIDCommand(id.Value).Execute().Value;
             if (customer == null)
             {
                 return HttpNotFound();
@@ -124,7 +129,7 @@ namespace Orders.com.Web.MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(long id)
         {
-            _customers.Delete(id);
+            _customerService.DeleteCommand(id).Execute();
             return RedirectToAction("Index");
         }
     }
