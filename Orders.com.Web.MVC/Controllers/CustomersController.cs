@@ -8,12 +8,18 @@ using System.Web;
 using System.Web.Mvc;
 using Orders.com.DAL.EF;
 using Orders.com.Domain;
+using Orders.com.DataProxy;
 
 namespace Orders.com.Web.MVC.Controllers
 {
     public class CustomersController : Controller
     {
-        private CustomerRepository _customers = new CustomerRepository();
+        private ICustomerDataProxy _customers;
+
+        public CustomersController(ICustomerDataProxy customerDataProxy)
+        {
+            _customers = customerDataProxy;
+        }
 
         // GET: Customers
         public ActionResult Index()
