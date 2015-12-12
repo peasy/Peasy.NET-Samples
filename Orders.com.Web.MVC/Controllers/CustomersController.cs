@@ -14,11 +14,11 @@ using Orders.com.Web.MVC.ViewModels;
 
 namespace Orders.com.Web.MVC.Controllers
 {
-    public class CustomersController : Controller
+    public class CustomersIIController : Controller
     {
         private ICustomerService _customerService;
 
-        public CustomersController(ICustomerService customerDataProxy)
+        public CustomersIIController(ICustomerService customerDataProxy)
         {
             _customerService = customerDataProxy;
         }
@@ -26,7 +26,10 @@ namespace Orders.com.Web.MVC.Controllers
         // GET: Customers
         public ActionResult Index(string search)
         {
-            return View(_customerService.GetAllCommand().Execute().Value);
+            var customers = _customerService.GetAllCommand().Execute().Value;
+            if (!string.IsNullOrEmpty(search))
+                customers = customers.Where(c => c.Name.Contains(search));
+            return View(customers);
         }
 
         // GET: Customers/Details/5
@@ -91,7 +94,7 @@ namespace Orders.com.Web.MVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="Name")] Customer customer, string Test)
+        public ActionResult Edit([Bind(Include="ID, Name")] Customer customer, string Test)
         {
             var original = Newtonsoft.Json.JsonConvert.DeserializeObject<Customer>(Test);
             var properties = customer.GetType().GetProperties();

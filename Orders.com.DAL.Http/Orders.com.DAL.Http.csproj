@@ -36,7 +36,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Peasy, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Peasy.1.0.0.7\lib\portable-net451+win81\Peasy.dll</HintPath>
+      <HintPath>..\packages\Peasy.1.0.0.8\lib\portable-net451+win81\Peasy.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Peasy.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -44,11 +44,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Peasy.DataProxy.Http, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Peasy.DataProxy.Http.1.0.0.0\lib\portable-net451+win81\Peasy.DataProxy.Http.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Peasy.DataProxy.InMemory, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Peasy.DataProxy.InMemory.1.0.0.2\lib\portable-net451+win81\Peasy.DataProxy.InMemory.dll</HintPath>
+      <HintPath>..\packages\Peasy.DataProxy.Http.1.0.0.1\lib\portable-net451+win81\Peasy.DataProxy.Http.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
