@@ -80,21 +80,24 @@ namespace Orders.com.DAL.EF
             using (var context = GetDbContext())
             {
                 context.Database.Log = Console.Write;
-                var results = await context.Set<Order>()
-                                    .Join(context.Set<Customer>(),
-                                          o => o.CustomerID,
-                                          c => c.ID,
-                                        (o, c) => new { Order = o, Customer = c })
-                                    .OrderBy(o => o.Order.ID)
+                var foo = GetDbContext() as OrdersDotComContext;
+                foo.Orders.Join(foo.OrderItems, o => o.OrderID, c => c.OrderID, (o, c) => new { cust = c, order = o });
+                foo.Orders.GroupJoin(foo.OrderItems, o => o.OrderID, oi => oi.OrderID, (o, oi) => new { order = o, items = oi });
+
+
+                var results = await context.Set<OrderEntity>()
+                                    .Include(o => o.Customer)
+                                    .Include(o => o.OrderItems)
+                                    .OrderBy(o => o.ID)
                                     .Skip(start)
                                     .Take(pageSize)
                                     .Select(o => new
                                     {
-                                        OrderID = o.Order.ID,
-                                        OrderDate = o.Order.OrderDate,
+                                        OrderID = o.ID,
+                                        OrderDate = o.OrderDate,
                                         CustomerName = o.Customer.Name,
                                         CustomerID = o.Customer.ID,
-                                        OrderItems = context.Set<OrderItem>().Where(i => i.OrderID == o.Order.ID)
+                                        OrderItems = o.OrderItems
                                     }).ToListAsync();
 
                 return results.Select(o => new OrderInfo()
