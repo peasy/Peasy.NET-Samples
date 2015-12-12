@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Orders.com.DAL.EF</RootNamespace>
     <AssemblyName>Orders.com.DAL.EF</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -63,10 +64,16 @@
   <ItemGroup>
     <Compile Include="CategoryRepository.cs" />
     <Compile Include="CustomerRepository.cs" />
+    <Compile Include="Entities\CategoryEntity.cs" />
+    <Compile Include="Entities\CustomerEntity.cs" />
+    <Compile Include="Entities\InventoryItemEntity.cs" />
+    <Compile Include="Entities\OrderEntity.cs" />
+    <Compile Include="Entities\OrderItemEntity.cs" />
+    <Compile Include="Entities\ProductEntity.cs" />
     <Compile Include="InventoryItemRepository.cs" />
-    <Compile Include="Migrations\201511301846134_Initial.cs" />
-    <Compile Include="Migrations\201511301846134_Initial.Designer.cs">
-      <DependentUpon>201511301846134_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201512121823064_Initial.cs" />
+    <Compile Include="Migrations\201512121823064_Initial.Designer.cs">
+      <DependentUpon>201512121823064_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="OrderItemRepository.cs" />
@@ -89,8 +96,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201511301846134_Initial.resx">
-      <DependentUpon>201511301846134_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201512121823064_Initial.resx">
+      <DependentUpon>201512121823064_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,4 +1,5 @@
-﻿using Orders.com.DataProxy;
+﻿using Orders.com.DAL.EF.Entities;
+using Orders.com.DataProxy;
 using Orders.com.Domain;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Orders.com.DAL.EF
 {
-    public class OrderItemRepository : OrdersDotComRepositoryBase<OrderItem>, IOrderItemDataProxy
+    public class OrderItemRepository : OrdersDotComRepositoryBase<OrderItem, OrderItemEntity>, IOrderItemDataProxy
     {
         public IEnumerable<OrderItem> GetByOrder(long orderID)
         {

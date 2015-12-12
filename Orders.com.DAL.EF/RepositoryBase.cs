@@ -9,47 +9,48 @@ using System.Threading.Tasks;
 
 namespace Orders.com.DAL.EF
 {
-    public abstract class RepositoryBase<T, TKey> : IDataProxy<T, TKey> where T : class, IDomainObject<TKey>, new() 
+    public abstract class RepositoryBase<DTO, TEnt, TKey> : IDataProxy<DTO, TKey> where DTO : class, IDomainObject<TKey>, new()
+                                                                                  where TEnt : class, IDomainObject<TKey>, new() 
     {
         protected abstract DbContext GetDbContext();
 
-        public virtual IEnumerable<T> GetAll()
+        public virtual IEnumerable<DTO> GetAll()
         {
             using (var context = GetDbContext())
             {
-                var data = context.Set<T>().Select(Mapper.Map<T, T>).ToArray();
+                var data = context.Set<TEnt>().AsNoTracking().Select(Mapper.Map<TEnt, DTO>).ToArray();
                 return data;
             }
         }
 
-        public virtual T GetByID(TKey id)
+        public virtual DTO GetByID(TKey id)
         {
             using (var context = GetDbContext())
             {
-                var data = context.Set<T>().Find(id);
-                return Mapper.Map<T>(data);
+                var data = context.Set<TEnt>().Find(id);
+                return Mapper.Map<TEnt, DTO>(data);
             }
         }
 
-        public virtual T Insert(T entity)
+        public virtual DTO Insert(DTO entity)
         {
             using (var context = GetDbContext())
             {
-                var data = Mapper.Map(entity, default(T));
-                context.Set<T>().Add(data);
+                var data = Mapper.Map(entity, default(TEnt));
+                context.Set<TEnt>().Add(data);
                 context.SaveChanges();
                 entity.ID = data.ID;
                 return entity;
             }
         }
 
-        public virtual T Update(T entity)
+        public virtual DTO Update(DTO entity)
         {
             using (var context = GetDbContext())
             {
-                var data = Mapper.Map(entity, default(T));
-                context.Set<T>().Attach(data);
-                context.Entry<T>(data).State = EntityState.Modified;
+                var data = Mapper.Map(entity, default(TEnt));
+                context.Set<TEnt>().Attach(data);
+                context.Entry<TEnt>(data).State = EntityState.Modified;
                 context.SaveChanges();
                 entity = Mapper.Map(data, entity);
                 return entity;
@@ -60,51 +61,51 @@ namespace Orders.com.DAL.EF
         {
             using (var context = GetDbContext())
             {
-                var entity = new T();
+                var entity = new TEnt();
                 entity.ID = id;
-                context.Set<T>().Attach(entity);
-                context.Set<T>().Remove(entity);
+                context.Set<TEnt>().Attach(entity);
+                context.Set<TEnt>().Remove(entity);
                 context.SaveChanges();
             }
         }
 
-        public virtual async Task<IEnumerable<T>> GetAllAsync()
+        public virtual async Task<IEnumerable<DTO>> GetAllAsync()
         {
             using (var context = GetDbContext())
             {
-                var data = await context.Set<T>().ToListAsync();
-                return data.Select(Mapper.Map<T, T>).ToArray();
+                var data = await context.Set<TEnt>().AsNoTracking().ToListAsync();
+                return data.Select(Mapper.Map<TEnt, DTO>).ToArray();
             }
         }
 
-        public virtual async Task<T> GetByIDAsync(TKey id)
+        public virtual async Task<DTO> GetByIDAsync(TKey id)
         {
             using (var context = GetDbContext())
             {
-                var data = await context.Set<T>().FindAsync(id);
-                return Mapper.Map<T>(data);
+                var data = await context.Set<TEnt>().FindAsync(id);
+                return Mapper.Map<TEnt, DTO>(data);
             }
         }
 
-        public virtual async Task<T> InsertAsync(T entity)
+        public virtual async Task<DTO> InsertAsync(DTO entity)
         {
             using (var context = GetDbContext())
             {
-                var data = Mapper.Map(entity, default(T));
-                context.Set<T>().Add(data);
+                var data = Mapper.Map(entity, default(TEnt));
+                context.Set<TEnt>().Add(data);
                 await context.SaveChangesAsync();
                 entity.ID = data.ID;
                 return entity;
             }
         }
 
-        public virtual async Task<T> UpdateAsync(T entity)
+        public virtual async Task<DTO> UpdateAsync(DTO entity)
         {
             using (var context = GetDbContext())
             {
-                var data = Mapper.Map(entity, default(T));
-                context.Set<T>().Attach(data);
-                context.Entry<T>(data).State = EntityState.Modified;
+                var data = Mapper.Map(entity, default(TEnt));
+                context.Set<TEnt>().Attach(data);
+                context.Entry<TEnt>(data).State = EntityState.Modified;
                 await context.SaveChangesAsync();
                 entity = Mapper.Map(data, entity);
                 return entity;
@@ -115,10 +116,10 @@ namespace Orders.com.DAL.EF
         {
             using (var context = GetDbContext())
             {
-                var entity = new T();
+                var entity = new TEnt();
                 entity.ID = id; 
-                context.Set<T>().Attach(entity);
-                context.Set<T>().Remove(entity);
+                context.Set<TEnt>().Attach(entity);
+                context.Set<TEnt>().Remove(entity);
                 await context.SaveChangesAsync();
             }
         }

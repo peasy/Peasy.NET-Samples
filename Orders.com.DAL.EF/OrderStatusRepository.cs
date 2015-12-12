@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Orders.com.DAL.EF
 {
-    public class OrderStatusRepository : OrdersDotComRepositoryBase<OrderStatus>, IOrderStatusDataProxy
-    {
-    }
+    //public class OrderStatusRepository : OrdersDotComRepositoryBase<OrderStatus>, IOrderStatusDataProxy
+    //{
+    //}
 }

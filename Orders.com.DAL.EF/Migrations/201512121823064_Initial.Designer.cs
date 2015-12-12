@@ -13,7 +13,7 @@ namespace Orders.com.DAL.EF.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201511301846134_Initial"; }
+            get { return "201512121823064_Initial"; }
         }
         
         string IMigrationMetadata.Source
