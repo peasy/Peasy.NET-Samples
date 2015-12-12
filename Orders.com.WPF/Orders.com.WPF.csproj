@@ -201,6 +201,10 @@
       <Project>{ce4be061-889b-4169-8403-82269e4ec7b9}</Project>
       <Name>Orders.com.BLL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Orders.com.DAL.EF\Orders.com.DAL.EF.csproj">
+      <Project>{5c72c89f-28a0-4852-a5a4-a2eef6021a9f}</Project>
+      <Name>Orders.com.DAL.EF</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Orders.com.DAL.Http\Orders.com.DAL.Http.csproj">
       <Project>{3edd8d84-2f35-49e6-8853-146f25af4007}</Project>
       <Name>Orders.com.DAL.Http</Name>
