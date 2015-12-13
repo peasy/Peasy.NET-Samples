@@ -48,27 +48,6 @@ namespace Orders.com.DAL.EF
                                     });
 
                 return results;
-                //return context.Set<Order>()
-                //              .Join(context.Set<OrderItem>(), 
-                //                    o => o.OrderID, 
-                //                    i => i.OrderID, 
-                //                    (o, i) => new { Order = o, Item = i })
-                //              .Join(context.Set<Customer>(), 
-                //                    o => o.Order.CustomerID, 
-                //                    c => c.CustomerID,
-                //                    (o, c) => new { Order = o.Order, Item = o.Item, Customer = c })
-                //              .Skip(start)
-                //              .Take(pageSize)
-                //              .Select(set => new OrderInfo
-                //              {
-                //                  CustomerID = set.Customer.ID,
-                //                  CustomerName = set.Customer.Name,
-                //                  HasShippedItems = set.Item.,
-                //                  OrderDate = o.OrderDate,
-                //                  OrderID = o.OrderID,
-                //                  Status = 1,
-                //                  Total = 45
-                //              });
             }
         }
 
@@ -120,22 +99,48 @@ namespace Orders.com.DAL.EF
 
         public IEnumerable<Order> GetByCustomer(long customerID)
         {
-            throw new NotImplementedException();
+            using (var context = GetDbContext())
+            {
+                return context.Set<Order>().Where(o => o.CustomerID == customerID).ToList();
+            }
         }
 
-        public Task<IEnumerable<Order>> GetByCustomerAsync(long customerID)
+        public async Task<IEnumerable<Order>> GetByCustomerAsync(long customerID)
         {
-            throw new NotImplementedException();
+            using (var context = GetDbContext())
+            {
+                return await context.Set<Order>().Where(o => o.CustomerID == customerID).ToListAsync();
+            }
         }
 
         public IEnumerable<Order> GetByProduct(long productID)
         {
-            throw new NotImplementedException();
+            using (var context = GetDbContext())
+            {
+                return context.Set<Order>()
+                              .GroupJoin(context.Set<OrderItem>(),
+                                         o => o.ID,
+                                         oi => oi.OrderID,
+                                         (o, oi) => new { Order = o, Items = oi })
+                              .Where(o => o.Items.Any(i => i.ProductID == productID))
+                              .Select(o => o.Order)
+                              .ToArray();
+            }
         }
 
-        public Task<IEnumerable<Order>> GetByProductAsync(long productID)
+        public async Task<IEnumerable<Order>> GetByProductAsync(long productID)
         {
-            throw new NotImplementedException();
+            using (var context = GetDbContext())
+            {
+                return await context.Set<Order>()
+                              .GroupJoin(context.Set<OrderItem>(),
+                                         o => o.ID,
+                                         oi => oi.OrderID,
+                                         (o, oi) => new { Order = o, Items = oi })
+                              .Where(o => o.Items.Any(i => i.ProductID == productID))
+                              .Select(o => o.Order)
+                              .ToListAsync();
+            }
         }
     }
 }
