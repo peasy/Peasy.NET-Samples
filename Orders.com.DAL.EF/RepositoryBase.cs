@@ -65,7 +65,6 @@ namespace Orders.com.DAL.EF
             {
                 OnBeforeUpdateExecuted(context);
                 var data = Mapper.Map(entity, default(T));
-                context.Set<T>().Attach(data);
                 context.Entry<T>(data).State = EntityState.Modified;
                 context.SaveChanges();
                 entity = Mapper.Map(data, entity);
@@ -84,8 +83,7 @@ namespace Orders.com.DAL.EF
                 OnBeforeDeleteExecuted(context);
                 var entity = new T();
                 entity.ID = id;
-                context.Set<T>().Attach(entity);
-                context.Set<T>().Remove(entity);
+                context.Entry<T>(entity).State = EntityState.Deleted;
                 context.SaveChanges();
                 OnAfterDeleteExecuted(context);
             }
@@ -147,7 +145,6 @@ namespace Orders.com.DAL.EF
             {
                 await OnBeforeUpdateExecutedAsync(context);
                 var data = Mapper.Map(entity, default(T));
-                context.Set<T>().Attach(data);
                 context.Entry<T>(data).State = EntityState.Modified;
                 await context.SaveChangesAsync();
                 entity = Mapper.Map(data, entity);
@@ -165,9 +162,8 @@ namespace Orders.com.DAL.EF
             {
                 await OnBeforeDeleteExecutedAsync(context);
                 var entity = new T();
-                entity.ID = id; 
-                context.Set<T>().Attach(entity);
-                context.Set<T>().Remove(entity);
+                entity.ID = id;
+                context.Entry<T>(entity).State = EntityState.Deleted;
                 await context.SaveChangesAsync();
                 await OnAfterDeleteExecutedAsync(context);
             }
