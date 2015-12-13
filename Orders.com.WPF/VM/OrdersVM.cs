@@ -54,7 +54,7 @@ namespace Orders.com.WPF.VM
 
         private async Task LoadOrdersAsync()
         {
-            var result = await _ordersService.GetAllCommand(0, 10).ExecuteAsync();
+            var result = await _ordersService.GetAllCommand(0, 100).ExecuteAsync();
             var vms = result.Value.Select(c => new OrderVM(c, _ordersService));
             Orders = vms.ToArray();
         }

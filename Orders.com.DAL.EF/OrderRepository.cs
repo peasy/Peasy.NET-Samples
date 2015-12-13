@@ -61,7 +61,6 @@ namespace Orders.com.DAL.EF
         {
             using (var context = GetDbContext() as OrdersDotComContext)
             {
-                context.Database.Log = Console.WriteLine;
                 var results = await context.Set<Order>()
                                     .Join(context.Set<Customer>(),
                                           o => o.CustomerID,
