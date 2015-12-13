@@ -80,8 +80,9 @@ namespace Orders.com.DAL.EF
 
         public async Task<IEnumerable<OrderInfo>> GetAllAsync(int start, int pageSize)
         {
-            using (var context = GetDbContext())
+            using (var context = GetDbContext() as OrdersDotComContext)
             {
+                context.Database.Log = Console.WriteLine;
                 var results = await context.Set<Order>()
                                     .Join(context.Set<Customer>(),
                                           o => o.CustomerID,
@@ -91,14 +92,15 @@ namespace Orders.com.DAL.EF
                                           o => o.Order.ID,
                                           oi => oi.OrderID,
                                         (o, oi) => new { Order = o.Order, Customer = o.Customer, OrderItems = oi })
+                                    .OrderBy(o => o.Order.ID)
                                     .Skip(start)
                                     .Take(pageSize)
                                     .Select(o => new
                                     {
-                                        OrderID = o.Order.OrderID,
+                                        OrderID = o.Order.ID,
                                         OrderDate = o.Order.OrderDate,
                                         CustomerName = o.Customer.Name,
-                                        CustomerID = o.Customer.CustomerID,
+                                        CustomerID = o.Customer.ID,
                                         OrderItems = o.OrderItems
                                     }).ToListAsync();
 
