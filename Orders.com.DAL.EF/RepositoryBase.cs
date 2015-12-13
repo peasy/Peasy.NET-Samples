@@ -24,8 +24,8 @@ namespace Orders.com.DAL.EF
             }
         }
 
-        protected void OnBeforeGetAllExecuted(DbContext context) { }
-        protected void OnAfterGetAllExecuted(DbContext context, IEnumerable<T> result) { }
+        protected virtual void OnBeforeGetAllExecuted(DbContext context) { }
+        protected virtual void OnAfterGetAllExecuted(DbContext context, IEnumerable<T> result) { }
 
         public virtual T GetByID(TKey id)
         {
@@ -39,8 +39,8 @@ namespace Orders.com.DAL.EF
             }
         }
 
-        protected void OnBeforeGetByIDExecuted(DbContext context) { }
-        protected void OnAfterGetByIDExecuted(DbContext context, T result) { }
+        protected virtual void OnBeforeGetByIDExecuted(DbContext context) { }
+        protected virtual void OnAfterGetByIDExecuted(DbContext context, T result) { }
 
         public virtual T Insert(T entity)
         {
@@ -56,8 +56,8 @@ namespace Orders.com.DAL.EF
             }
         }
 
-        protected void OnBeforeInsertExecuted(DbContext context) { }
-        protected void OnAfterInsertExecuted(DbContext context, T result) { }
+        protected virtual void OnBeforeInsertExecuted(DbContext context) { }
+        protected virtual void OnAfterInsertExecuted(DbContext context, T result) { }
 
         public virtual T Update(T entity)
         {
@@ -73,8 +73,8 @@ namespace Orders.com.DAL.EF
             }
         }
 
-        protected void OnBeforeUpdateExecuted(DbContext context) { }
-        protected void OnAfterUpdateExecuted(DbContext context, T result) { }
+        protected virtual void OnBeforeUpdateExecuted(DbContext context) { }
+        protected virtual void OnAfterUpdateExecuted(DbContext context, T result) { }
 
         public virtual void Delete(TKey id)
         {
@@ -89,8 +89,8 @@ namespace Orders.com.DAL.EF
             }
         }
 
-        protected void OnBeforeDeleteExecuted(DbContext context) { }
-        protected void OnAfterDeleteExecuted(DbContext context) { }
+        protected virtual void OnBeforeDeleteExecuted(DbContext context) { }
+        protected virtual void OnAfterDeleteExecuted(DbContext context) { }
 
         public virtual async Task<IEnumerable<T>> GetAllAsync()
         {
@@ -104,8 +104,8 @@ namespace Orders.com.DAL.EF
             }
         }
 
-        protected async Task OnBeforeGetAllAsyncExecuted(DbContext context) { }
-        protected async Task OnAfterGetAllAsyncExecuted(DbContext context, IEnumerable<T> result) { }
+        protected virtual async Task OnBeforeGetAllAsyncExecuted(DbContext context) { }
+        protected virtual async Task OnAfterGetAllAsyncExecuted(DbContext context, IEnumerable<T> result) { }
 
         public virtual async Task<T> GetByIDAsync(TKey id)
         {
@@ -119,8 +119,8 @@ namespace Orders.com.DAL.EF
             }
         }
 
-        protected async Task OnBeforeGetByIDExecutedAsync(DbContext context) { }
-        protected async Task OnAfterGetByIDExecutedAsync(DbContext context, T result) { }
+        protected virtual async Task OnBeforeGetByIDExecutedAsync(DbContext context) { }
+        protected virtual async Task OnAfterGetByIDExecutedAsync(DbContext context, T result) { }
 
         public virtual async Task<T> InsertAsync(T entity)
         {
@@ -136,8 +136,8 @@ namespace Orders.com.DAL.EF
             }
         }
 
-        protected async Task OnBeforeInsertExecutedAsync(DbContext context) { }
-        protected async Task OnAfterInsertExecutedAsync(DbContext context, T result) { }
+        protected virtual async Task OnBeforeInsertExecutedAsync(DbContext context) { }
+        protected virtual async Task OnAfterInsertExecutedAsync(DbContext context, T result) { }
 
         public virtual async Task<T> UpdateAsync(T entity)
         {
@@ -153,8 +153,8 @@ namespace Orders.com.DAL.EF
             }
         }
 
-        protected async Task OnBeforeUpdateExecutedAsync(DbContext context) { }
-        protected async Task OnAfterUpdateExecutedAsync(DbContext context, T result) { }
+        protected virtual async Task OnBeforeUpdateExecutedAsync(DbContext context) { }
+        protected virtual async Task OnAfterUpdateExecutedAsync(DbContext context, T result) { }
 
         public virtual async Task DeleteAsync(TKey id)
         {
@@ -169,7 +169,7 @@ namespace Orders.com.DAL.EF
             }
         }
 
-        protected async Task OnBeforeDeleteExecutedAsync(DbContext context) { }
-        protected async Task OnAfterDeleteExecutedAsync(DbContext context) { }
+        protected virtual async Task OnBeforeDeleteExecutedAsync(DbContext context) { }
+        protected virtual async Task OnAfterDeleteExecutedAsync(DbContext context) { }
     }
 }
