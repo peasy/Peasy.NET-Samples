@@ -17,6 +17,7 @@ namespace Orders.com.DAL.EF
         {
             using (var context = GetDbContext())
             {
+                context.Database.Log = Console.WriteLine;
                 var data = context.Set<T>().Select(Mapper.Map<T, T>).ToArray();
                 return data;
             }
@@ -26,6 +27,7 @@ namespace Orders.com.DAL.EF
         {
             using (var context = GetDbContext())
             {
+                context.Database.Log = Console.WriteLine;
                 var data = context.Set<T>().Find(id);
                 return Mapper.Map<T>(data);
             }
@@ -35,6 +37,7 @@ namespace Orders.com.DAL.EF
         {
             using (var context = GetDbContext())
             {
+                context.Database.Log = Console.WriteLine;
                 var data = Mapper.Map(entity, default(T));
                 context.Set<T>().Add(data);
                 context.SaveChanges();
@@ -47,6 +50,7 @@ namespace Orders.com.DAL.EF
         {
             using (var context = GetDbContext())
             {
+                context.Database.Log = Console.WriteLine;
                 var data = Mapper.Map(entity, default(T));
                 context.Set<T>().Attach(data);
                 context.Entry<T>(data).State = EntityState.Modified;
@@ -60,6 +64,7 @@ namespace Orders.com.DAL.EF
         {
             using (var context = GetDbContext())
             {
+                context.Database.Log = Console.WriteLine;
                 var entity = new T();
                 entity.ID = id;
                 context.Set<T>().Attach(entity);
@@ -72,6 +77,7 @@ namespace Orders.com.DAL.EF
         {
             using (var context = GetDbContext())
             {
+                context.Database.Log = Console.WriteLine;
                 var data = await context.Set<T>().ToListAsync();
                 return data.Select(Mapper.Map<T, T>).ToArray();
             }
@@ -81,6 +87,7 @@ namespace Orders.com.DAL.EF
         {
             using (var context = GetDbContext())
             {
+                context.Database.Log = Console.WriteLine;
                 var data = await context.Set<T>().FindAsync(id);
                 return Mapper.Map<T>(data);
             }
@@ -90,6 +97,7 @@ namespace Orders.com.DAL.EF
         {
             using (var context = GetDbContext())
             {
+                context.Database.Log = Console.WriteLine;
                 var data = Mapper.Map(entity, default(T));
                 context.Set<T>().Add(data);
                 await context.SaveChangesAsync();
@@ -102,6 +110,7 @@ namespace Orders.com.DAL.EF
         {
             using (var context = GetDbContext())
             {
+                context.Database.Log = Console.WriteLine;
                 var data = Mapper.Map(entity, default(T));
                 context.Set<T>().Attach(data);
                 context.Entry<T>(data).State = EntityState.Modified;
@@ -115,6 +124,7 @@ namespace Orders.com.DAL.EF
         {
             using (var context = GetDbContext())
             {
+                context.Database.Log = Console.WriteLine;
                 var entity = new T();
                 entity.ID = id; 
                 context.Set<T>().Attach(entity);
