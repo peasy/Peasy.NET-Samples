@@ -7,17 +7,16 @@ using System.Text;
 using System.Threading.Tasks;
 using Orders.com.QueryData;
 using Orders.com.Extensions;
-using System.Data.Entity;
-using Orders.com.DAL.EF.Entities;
 
 namespace Orders.com.DAL.EF
 {
-    public class OrderRepository : OrdersDotComRepositoryBase<Order, OrderEntity>, IOrderDataProxy
+    public class OrderRepository : OrdersDotComRepositoryBase<Order>, IOrderDataProxy
     {
         public IEnumerable<OrderInfo> GetAll(int start, int pageSize)
         {
             using (var context = GetDbContext())
             {
+
                 var results = context.Set<Order>()
                                     .Join(context.Set<Customer>(),
                                           o => o.CustomerID,
@@ -75,39 +74,9 @@ namespace Orders.com.DAL.EF
             return orderItems.OrderStatus().Name;
         }
 
-        public async Task<IEnumerable<OrderInfo>> GetAllAsync(int start, int pageSize)
+        public Task<IEnumerable<OrderInfo>> GetAllAsync(int start, int pageSize)
         {
-            using (var context = GetDbContext())
-            {
-                context.Database.Log = Console.Write;
-                var results = await context.Set<Order>()
-                                    .Join(context.Set<Customer>(),
-                                          o => o.CustomerID,
-                                          c => c.ID,
-                                        (o, c) => new { Order = o, Customer = c })
-                                    .OrderBy(o => o.Order.ID)
-                                    .Skip(start)
-                                    .Take(pageSize)
-                                    .Select(o => new
-                                    {
-                                        OrderID = o.Order.ID,
-                                        OrderDate = o.Order.OrderDate,
-                                        CustomerName = o.Customer.Name,
-                                        CustomerID = o.Customer.ID,
-                                        OrderItems = context.Set<OrderItem>().Where(i => i.OrderID == o.Order.ID)
-                                    }).ToListAsync();
-
-                return results.Select(o => new OrderInfo()
-                {
-                    OrderID = o.OrderID,
-                    OrderDate = o.OrderDate,
-                    CustomerName = o.CustomerName,
-                    CustomerID = o.CustomerID,
-                    Total = o.OrderItems.Sum(i => i.Amount),
-                    Status = BuildStatusName(o.OrderItems),
-                    HasShippedItems = o.OrderItems.Any(i => i.OrderStatus() is ShippedState),
-                }).ToArray();
-            }
+            throw new NotImplementedException();
         }
 
         public IEnumerable<Order> GetByCustomer(long customerID)

@@ -27,17 +27,17 @@ namespace Orders.com.WPF
 
         void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            var productsDataProxy = new Orders.com.DAL.EF.ProductRepository();
-            var inventoryDataProxy = new Orders.com.DAL.EF.InventoryItemRepository();
-            var customerDataProxy = new Orders.com.DAL.EF.CustomerRepository();
-            var orderItemDataProxy = new Orders.com.DAL.EF.OrderItemRepository();
-            var orderRepository = new Orders.com.DAL.EF.OrderRepository();
-            var categoriesDataProxy = new Orders.com.DAL.EF.CategoryRepository();
+            var productsDataProxy = new ProductsHttpServiceProxy();
+            var inventoryDataProxy = new InventoryItemsHttpServiceProxy();
+            var customerDataProxy = new CustomersHttpServiceProxy();
+            var orderItemDataProxy = new OrderItemsHttpServiceProxy();
+            var orderRepository = new OrdersHttpServiceProxy();
+            var categoriesDataProxy = new CategoriesHttpServiceProxy();
             _inventoryService = new InventoryItemService(inventoryDataProxy);
-            _orderItemsService = new OrderItemService(orderItemDataProxy, productsDataProxy, inventoryDataProxy, new DTCTransactionContext());
+            _orderItemsService = new OrderItemClientService(orderItemDataProxy, productsDataProxy, inventoryDataProxy, new DTCTransactionContext());
             _ordersService = new OrderService(orderRepository, _orderItemsService, new DTCTransactionContext());
             _customersService = new CustomerService(customerDataProxy, _ordersService);
-            _productsService = new ProductService(productsDataProxy, orderRepository, _inventoryService, new DTCTransactionContext());
+            _productsService = new ProductClientService(productsDataProxy, orderRepository, _inventoryService, new DTCTransactionContext());
             _categoriesService = new CategoryService(categoriesDataProxy, productsDataProxy);
             this.DataContext = new MainWindowVM(_eventAggregator, _customersService, _productsService, _categoriesService, _ordersService, _inventoryService);
         }

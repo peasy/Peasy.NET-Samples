@@ -1,7 +1,6 @@
 namespace Orders.com.DAL.EF.Migrations
 {
     using Domain;
-    using Entities;
     using System;
     using System.Collections.Generic;
     using System.Data.Entity;
@@ -17,11 +16,11 @@ namespace Orders.com.DAL.EF.Migrations
 
         protected override void Seed(Orders.com.DAL.EF.OrdersDotComContext context)
         {
-            var customers = new List<CustomerEntity>
+            var customers = new List<Customer>
             {
-                new CustomerEntity { Name = "Jimi Hendrix", CreatedDatetime = DateTime.Now },
-                new CustomerEntity { Name = "David Gilmour", CreatedDatetime = DateTime.Now },
-                new CustomerEntity { Name = "James Page", CreatedDatetime = DateTime.Now }
+                new Customer { Name = "Jimi Hendrix", CreatedDatetime = DateTime.Now },
+                new Customer { Name = "David Gilmour", CreatedDatetime = DateTime.Now },
+                new Customer { Name = "James Page", CreatedDatetime = DateTime.Now }
             };
 
             customers.ForEach(s => context.Customers.Add(s));

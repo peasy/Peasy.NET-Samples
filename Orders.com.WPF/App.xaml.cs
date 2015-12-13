@@ -1,7 +1,4 @@
-﻿using AutoMapper;
-using Orders.com.DAL.EF.Entities;
-using Orders.com.Domain;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -19,12 +16,6 @@ namespace Orders.com.WPF
         public App() : base()
         {
             this.Dispatcher.UnhandledException += Dispatcher_UnhandledException;
-            Mapper.CreateMap<Category, CategoryEntity>().ReverseMap();
-            Mapper.CreateMap<Customer, CustomerEntity>().ReverseMap();
-            Mapper.CreateMap<InventoryItem, InventoryItemEntity>().ReverseMap();
-            Mapper.CreateMap<Order, OrderEntity>().ReverseMap();
-            Mapper.CreateMap<OrderItem, OrderItemEntity>().ReverseMap();
-            Mapper.CreateMap<Product, ProductEntity>().ReverseMap();
         }
 
         void Dispatcher_UnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)

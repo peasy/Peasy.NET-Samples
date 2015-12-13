@@ -4,11 +4,10 @@ using System.Threading.Tasks;
 using Orders.com.DataProxy;
 using Orders.com.Domain;
 using System.Data.Entity;
-using Orders.com.DAL.EF.Entities;
 
 namespace Orders.com.DAL.EF
 {
-    public class InventoryItemRepository : OrdersDotComRepositoryBase<InventoryItem, InventoryItemEntity>, IInventoryItemDataProxy
+    public class InventoryItemRepository : OrdersDotComRepositoryBase<InventoryItem>, IInventoryItemDataProxy
     {
         public InventoryItem GetByProduct(long productID)
         {
