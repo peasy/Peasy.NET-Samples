@@ -27,7 +27,7 @@ namespace Orders.com.WPF
 
         void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            ConfigureHttpClientUsage();
+            ConfigureEFUsage();
         }
 
         private void ConfigureHttpClientUsage()
