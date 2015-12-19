@@ -4,6 +4,9 @@ using System.Threading.Tasks;
 using Orders.com.DataProxy;
 using Orders.com.Domain;
 using System.Data.Entity;
+using Peasy;
+using Peasy.Exception;
+using Orders.com.Extensions;
 
 namespace Orders.com.DAL.EF
 {
@@ -24,6 +27,26 @@ namespace Orders.com.DAL.EF
                 var items = await context.Set<InventoryItem>().Where(i => i.ProductID == productID).ToListAsync();
                 return items.First();
             }
+        }
+
+        protected override void OnBeforeUpdateExecuted(DbContext context, InventoryItem entity)
+        {
+            var existing = context.Set<InventoryItem>()
+                                  .FirstOrDefault(e => e.ID.Equals(entity.ID) && e.Version == entity.Version);
+            if (existing == null)
+                throw new ConcurrencyException($"{entity.GetType().Name} with id {entity.ID.ToString()} was already changed");
+
+            entity.IncrementVersionByOne();
+        }
+
+        protected override async Task OnBeforeUpdateExecutedAsync(DbContext context, InventoryItem entity)
+        {
+            var existing = await context.Set<InventoryItem>()
+                                        .FirstOrDefaultAsync(e => e.ID.Equals(entity.ID) && e.Version == entity.Version);
+            if (existing == null)
+                throw new ConcurrencyException($"{entity.GetType().Name} with id {entity.ID.ToString()} was already changed");
+
+            entity.IncrementVersionByOne();
         }
     }
 }
