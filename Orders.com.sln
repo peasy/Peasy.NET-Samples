@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orders.com.BLL", "Orders.com.BLL\Orders.com.BLL.csproj", "{CE4BE061-889B-4169-8403-82269E4EC7B9}"
 EndProject
@@ -18,6 +18,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orders.com.DAL.EF", "Orders.com.DAL.EF\Orders.com.DAL.EF.csproj", "{5C72C89F-28A0-4852-A5A4-A2EEF6021A9F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Peasy.DataProxy.EF6", "..\Peasy.DataProxy.EF6\Peasy.DataProxy.EF6\Peasy.DataProxy.EF6.csproj", "{F3BB649F-B2B7-46E7-91F8-37A5F2689330}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orders.com.Web.MVC", "Orders.com.Web.MVC\Orders.com.Web.MVC.csproj", "{342F9B93-789F-4BC0-A11E-9BA6CCEE0382}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{F3BB649F-B2B7-46E7-91F8-37A5F2689330}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3BB649F-B2B7-46E7-91F8-37A5F2689330}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F3BB649F-B2B7-46E7-91F8-37A5F2689330}.Release|Any CPU.Build.0 = Release|Any CPU
+		{342F9B93-789F-4BC0-A11E-9BA6CCEE0382}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{342F9B93-789F-4BC0-A11E-9BA6CCEE0382}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{342F9B93-789F-4BC0-A11E-9BA6CCEE0382}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{342F9B93-789F-4BC0-A11E-9BA6CCEE0382}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
