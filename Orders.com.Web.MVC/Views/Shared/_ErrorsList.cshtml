@@ -1,0 +1,11 @@
+﻿@model IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult>
+
+@if (Model.Any())
+{
+    <ul>
+    @foreach (var error in Model)
+    {
+        <li class="text-danger">@error.ErrorMessage</li>
+    }
+    </ul>
+}
