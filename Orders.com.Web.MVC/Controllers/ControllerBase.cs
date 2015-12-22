@@ -27,8 +27,8 @@ namespace Orders.com.Web.MVC.Controllers
             _service = service;
         }
 
-        //// GET: Customers
-        public ActionResult Index(string search)
+        //// GET: Entities
+        public virtual ActionResult Index(string search)
         {
             var entities = _service.GetAllCommand().Execute().Value;
             //if (!string.IsNullOrEmpty(search))
@@ -36,8 +36,8 @@ namespace Orders.com.Web.MVC.Controllers
             return View(entities);
         }
 
-        //// GET: Customers/Details/5
-        public ActionResult Details(long? id)
+        //// GET: Entities/Details/5
+        public virtual ActionResult Details(long? id)
         {
             if (id == null)
             {
@@ -52,17 +52,17 @@ namespace Orders.com.Web.MVC.Controllers
         }
 
         //// GET: Customers/Create
-        public ActionResult Create()
+        public virtual ActionResult Create()
         {
             return View(new ViewModel<T> { Entity = default(T) });
         }
 
-        //// POST: Customers/Create
+        //// POST: Entities/Create
         //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         //// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Name")] T entity)
+        public virtual ActionResult Create(T entity)
         {
             if (ModelState.IsValid)
             {
@@ -78,8 +78,8 @@ namespace Orders.com.Web.MVC.Controllers
             return View(new ViewModel<T> { Entity = entity });
         }
 
-        //// GET: Customers/Edit/5
-        public ActionResult Edit(long? id)
+        //// GET: Entities/Edit/5
+        public virtual ActionResult Edit(long? id)
         {
             if (id == null)
             {
@@ -93,12 +93,12 @@ namespace Orders.com.Web.MVC.Controllers
             return View(new ViewModel<T> { Entity = entity });
         }
 
-        //// POST: Customers/Edit/5
+        //// POST: Entities/Edit/5
         //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         //// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(T entity, string Test)
+        public virtual ActionResult Edit(T entity, string Test)
         {
             if (ModelState.IsValid)
             {
@@ -114,8 +114,8 @@ namespace Orders.com.Web.MVC.Controllers
             return View(new ViewModel<T> { Entity = entity });
         }
 
-        //// GET: Customers/Delete/5
-        public ActionResult Delete(long? id)
+        //// GET: Entities/Delete/5
+        public virtual ActionResult Delete(long? id)
         {
             if (id == null)
             {
@@ -129,13 +129,16 @@ namespace Orders.com.Web.MVC.Controllers
             return View(new ViewModel<T> { Entity = entity });
         }
 
-        //// POST: Customers/Delete/5
+        //// POST: Entities/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(long id)
+        public virtual ActionResult DeleteConfirmed(long id)
         {
-            _service.DeleteCommand(id).Execute();
-            return RedirectToAction("Index");
+            var result = _service.DeleteCommand(id).Execute();
+            if (result.Success)
+                return RedirectToAction("Index");
+            else
+                return View(new ViewModel<T> { Errors = result.Errors });
         }
     }
 }

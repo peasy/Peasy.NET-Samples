@@ -1,0 +1,57 @@
+﻿@model Orders.com.Web.MVC.ViewModels.ViewModel<Orders.com.Domain.Product>
+
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Product</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Entity.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Entity.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Entity.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Entity.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Entity.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Entity.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Entity.CategoryID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Entity.CategoryID)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
