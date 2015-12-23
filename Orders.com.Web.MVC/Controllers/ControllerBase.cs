@@ -51,7 +51,7 @@ namespace Orders.com.Web.MVC.Controllers
             return View(entity);
         }
 
-        //// GET: Customers/Create
+        //// GET: Entities/Create
         public virtual ActionResult Create()
         {
             return View(new ViewModel<T> { Entity = default(T) });
