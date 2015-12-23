@@ -7,9 +7,18 @@ using System.Web;
 
 namespace Orders.com.Web.MVC.ViewModels
 {
-    public class CustomerViewModel
+    public class CustomerViewModel : ViewModel<Customer>
     {
-        public Customer Customer { get; set; }
-        public IEnumerable<ValidationResult> Errors { get; set; } = Enumerable.Empty<ValidationResult>();
+        public long ID
+        {
+            get { return Entity.ID; }
+            set { Entity.ID = value; }
+        }
+
+        public string Name
+        {
+            get { return Entity.Name; }
+            set { Entity.Name = value; }
+        }
     }
 }

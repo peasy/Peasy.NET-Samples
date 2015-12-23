@@ -1,4 +1,4 @@
-﻿@model Orders.com.Web.MVC.ViewModels.ViewModel<Orders.com.Domain.Customer>
+﻿@model Orders.com.Web.MVC.ViewModels.CustomerViewModel
 
 @{
     ViewBag.Title = "Delete";
@@ -13,11 +13,11 @@
     <dl class="dl-horizontal">
 
         <dt>
-            @Html.DisplayNameFor(model => model.Entity.Name)
+            @Html.DisplayNameFor(model => model.Name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Entity.Name)
+            @Html.DisplayFor(model => model.Name)
         </dd>
 
     </dl>

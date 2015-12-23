@@ -1,4 +1,4 @@
-﻿@model Orders.com.Web.MVC.ViewModels.ViewModel<Orders.com.Domain.Customer>
+﻿@model Orders.com.Web.MVC.ViewModels.CustomerViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -16,10 +16,10 @@
 
         <div class="form-group">
             @Html.Partial("_ErrorsList", Model.Errors)
-            @Html.LabelFor(model => model.Entity.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Entity.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Entity.Name, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
             </div>
         </div>
 
