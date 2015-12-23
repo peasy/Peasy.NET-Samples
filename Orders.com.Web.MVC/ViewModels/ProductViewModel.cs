@@ -9,20 +9,9 @@ namespace Orders.com.Web.MVC.ViewModels
 {
     public class ProductViewModel : ViewModel<Product>
     {
-        private IProductService _service;
-        private ICategoryService _categoryService;
-        private IEnumerable<Category> _categories;
-
         public ProductViewModel()
         {
             Entity = new Product();
-        }
-
-        public ProductViewModel(Product product, IProductService service, ICategoryService categoryService)
-        {
-            Entity = product;
-            _service = service;
-            _categoryService = categoryService;
         }
 
         public long ID
@@ -57,20 +46,7 @@ namespace Orders.com.Web.MVC.ViewModels
 
         public IEnumerable<Category> Categories
         {
-            get
-            {
-                if (_categories == null)
-                {
-                    _categories = _categoryService.GetAllCommand().Execute().Value;
-                }
-                return _categories;
-            }
-        }
-
-        public ProductViewModel Use(ICategoryService categoryService)
-        {
-            _categoryService = categoryService;
-            return this;
+            get; set;
         }
 
         public Category AssociatedCategory
@@ -81,19 +57,19 @@ namespace Orders.com.Web.MVC.ViewModels
             }
         }
 
-        public bool Save()
-        {
-            var result = _service.InsertCommand(Entity).Execute();
-            if (result.Success)
-            {
-                Entity = result.Value;
-                return true;
-            }
-            else
-            {
-                Errors = result.Errors;
-                return false;
-            }
-        }
+        //public bool Save()
+        //{
+        //    var result = _service.InsertCommand(Entity).Execute();
+        //    if (result.Success)
+        //    {
+        //        Entity = result.Value;
+        //        return true;
+        //    }
+        //    else
+        //    {
+        //        Errors = result.Errors;
+        //        return false;
+        //    }
+        //}
     }
 }

@@ -12,10 +12,10 @@ using Orders.com.BLL;
 
 namespace Orders.com.Web.MVC.Controllers
 {
-    public class CategoriesController : ControllerBase<Category>
-    {
-        public CategoriesController(ICategoryService service) : base(service)
-        {
-        }
-    }
+    //public class CategoriesController : ControllerBase<Category>
+    //{
+    //    public CategoriesController(ICategoryService service) : base(service)
+    //    {
+    //    }
+    //}
 }
