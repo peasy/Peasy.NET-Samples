@@ -1,10 +1,10 @@
-﻿@model IEnumerable<Orders.com.Domain.Category>
+﻿@model IEnumerable<Orders.com.Web.MVC.ViewModels.CategoryViewModel>
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Categories</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -24,7 +24,6 @@
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.ID })
         </td>
     </tr>
