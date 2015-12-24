@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using Orders.com.Domain;
-using Orders.com.QueryData;
 using Peasy.Core;
+using Orders.com.BLL.Domain;
+using Orders.com.BLL.QueryData;
 
-namespace Orders.com.BLL
+namespace Orders.com.BLL.Services
 {
     public interface IOrderService : IService<Order, long>
     {

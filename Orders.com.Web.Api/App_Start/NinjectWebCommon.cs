@@ -12,7 +12,7 @@ namespace Orders.com.Web.Api
     using Configuration;
     using BLL;
     using DAL.InMemory;
-    using DataProxy;
+    using BLL.DataProxy;
     using Peasy;
 
     public static class NinjectWebCommon 

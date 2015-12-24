@@ -1,4 +1,4 @@
-﻿using Orders.com.Domain;
+﻿using Orders.com.BLL.Domain;
 using System.Collections.Generic;
 using System.Linq;
 

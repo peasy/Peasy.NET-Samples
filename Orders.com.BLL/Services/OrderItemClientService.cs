@@ -1,17 +1,9 @@
 ﻿using Peasy;
 using Peasy.Core;
-using Peasy.Rules;
-using Orders.com.BLL.Commands;
-using Orders.com.BLL.Rules;
-using Orders.com.DataProxy;
-using Orders.com.Domain;
-using Orders.com.Extensions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Orders.com.BLL.DataProxy;
+using Orders.com.BLL.Domain;
 
-namespace Orders.com.BLL
+namespace Orders.com.BLL.Services
 {
     public class OrderItemClientService : OrderItemService
     {

@@ -1,9 +1,8 @@
-﻿using System;
-using System.Linq;
-using Orders.com.Domain;
+﻿using System.Linq;
 using System.Collections.Generic;
+using Orders.com.BLL.Domain;
 
-namespace Orders.com.Extensions
+namespace Orders.com.BLL.Extensions
 {
     public class OrderStatusConstants
     {

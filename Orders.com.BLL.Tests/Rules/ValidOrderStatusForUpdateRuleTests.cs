@@ -1,11 +1,11 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using Orders.com.BLL.DataProxy;
+using Orders.com.BLL.Domain;
+using Orders.com.BLL.Extensions;
 using Orders.com.BLL.Rules;
-using Orders.com.DataProxy;
-using Orders.com.Domain;
-using Orders.com.Extensions;
+using Orders.com.BLL.Services;
 using Peasy;
-using Peasy.Rules;
 using Shouldly;
 using System.Linq;
 using System.Threading.Tasks;

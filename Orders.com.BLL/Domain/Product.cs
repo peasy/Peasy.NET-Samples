@@ -2,7 +2,7 @@
 using Peasy.Attributes;
 using System.ComponentModel.DataAnnotations;
 
-namespace Orders.com.Domain
+namespace Orders.com.BLL.Domain
 {
     public class Product : DomainBase
     {

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 //using Newtonsoft.Json;
 
-namespace Orders.com
+namespace Orders.com.BLL.Domain
 {
     public abstract class DomainBase : IDomainObject<long>
     {

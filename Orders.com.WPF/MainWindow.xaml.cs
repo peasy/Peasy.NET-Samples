@@ -1,4 +1,4 @@
-﻿using Orders.com.BLL;
+﻿using Orders.com.BLL.Services;
 using Orders.com.DAL.Http;
 using Orders.com.DAL.InMemory;
 using Orders.com.WPF.VM;

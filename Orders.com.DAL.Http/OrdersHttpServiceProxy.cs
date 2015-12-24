@@ -1,8 +1,8 @@
-﻿using Orders.com.DataProxy;
-using Orders.com.Domain;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Orders.com.QueryData;
+using Orders.com.BLL.Domain;
+using Orders.com.BLL.DataProxy;
+using Orders.com.BLL.QueryData;
 
 namespace Orders.com.DAL.Http
 {

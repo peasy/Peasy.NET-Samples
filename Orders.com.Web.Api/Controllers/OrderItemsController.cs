@@ -1,5 +1,5 @@
-﻿using Orders.com.BLL;
-using Orders.com.Domain;
+﻿using Orders.com.BLL.Domain;
+using Orders.com.BLL.Services;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;

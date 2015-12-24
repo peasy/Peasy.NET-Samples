@@ -1,5 +1,5 @@
-﻿using Orders.com.Domain;
-using Orders.com.DataProxy;
+﻿using Orders.com.BLL.Domain;
+using Orders.com.BLL.DataProxy;
 
 namespace Orders.com.DAL.EF
 {

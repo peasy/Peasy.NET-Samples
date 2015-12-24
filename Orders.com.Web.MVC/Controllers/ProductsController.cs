@@ -1,7 +1,7 @@
-﻿using Orders.com.Domain;
-using Orders.com.BLL;
-using Orders.com.Web.MVC.ViewModels;
+﻿using Orders.com.Web.MVC.ViewModels;
 using System.Collections.Generic;
+using Orders.com.BLL.Domain;
+using Orders.com.BLL.Services;
 
 namespace Orders.com.Web.MVC.Controllers
 {

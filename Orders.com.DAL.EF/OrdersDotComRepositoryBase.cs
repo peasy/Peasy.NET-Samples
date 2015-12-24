@@ -1,4 +1,4 @@
-﻿using Orders.com.Domain;
+﻿using Orders.com.BLL.Domain;
 using Peasy;
 using Peasy.DataProxy.EF6;
 using System;

@@ -1,7 +1,8 @@
 ﻿using Peasy.Core;
-using Orders.com.Extensions;
 using System.Linq;
 using System.Threading.Tasks;
+using Orders.com.BLL.Services;
+using Orders.com.BLL.Extensions;
 
 namespace Orders.com.BLL.Rules
 {

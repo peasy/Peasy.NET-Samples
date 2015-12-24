@@ -1,11 +1,11 @@
 ﻿using Peasy.Core;
 using Peasy.Extensions;
-using Orders.com;
 using System;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Threading.Tasks;
+using Orders.com.BLL.Domain;
 
 namespace Orders.com.BLL.Rules
 {

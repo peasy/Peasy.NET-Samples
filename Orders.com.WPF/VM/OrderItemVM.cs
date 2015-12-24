@@ -1,7 +1,6 @@
-﻿using MahApps.Metro.Controls.Dialogs;
-using Orders.com.BLL;
-using Orders.com.Domain;
-using Orders.com.Extensions;
+﻿using Orders.com.BLL.Domain;
+using Orders.com.BLL.Extensions;
+using Orders.com.BLL.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;

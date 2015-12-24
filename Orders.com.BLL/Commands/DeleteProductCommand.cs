@@ -2,12 +2,12 @@
 using Peasy.Core;
 using Peasy.Core.Extensions;
 using Peasy.Extensions;
-using Orders.com.BLL;
 using Orders.com.BLL.Rules;
-using Orders.com.DataProxy;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
+using Orders.com.BLL.DataProxy;
+using Orders.com.BLL.Services;
 
 namespace Orders.com.BLL.Commands
 {

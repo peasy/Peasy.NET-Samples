@@ -1,4 +1,4 @@
-﻿using Orders.com.Domain;
+﻿using Orders.com.BLL.Domain;
 
 namespace Orders.com.Web.MVC.ViewModels
 {

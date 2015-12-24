@@ -1,10 +1,4 @@
-﻿using Orders.com.Domain;
-using Orders.com.WPF.VM;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Orders.com.WPF.VM;
 
 namespace Orders.com.WPF
 {

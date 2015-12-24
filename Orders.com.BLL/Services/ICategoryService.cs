@@ -1,12 +1,7 @@
-﻿using Orders.com.Domain;
+﻿using Orders.com.BLL.Domain;
 using Peasy.Core;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Orders.com.BLL
+namespace Orders.com.BLL.Services
 {
     public interface ICategoryService : IService<Category, long>
     {

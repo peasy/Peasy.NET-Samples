@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using Orders.com.Domain;
 using Peasy.Core;
+using Orders.com.BLL.Domain;
 
-namespace Orders.com.BLL
+namespace Orders.com.BLL.Services
 {
     public interface IOrderItemService : IService<OrderItem, long>
     {

@@ -1,13 +1,11 @@
-﻿using Orders.com.DataProxy;
-using Orders.com.Domain;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Orders.com.QueryData;
-using Orders.com.Extensions;
+using Orders.com.BLL.Extensions;
 using System.Data.Entity;
+using Orders.com.BLL.Domain;
+using Orders.com.BLL.QueryData;
+using Orders.com.BLL.DataProxy;
 
 namespace Orders.com.DAL.EF
 {

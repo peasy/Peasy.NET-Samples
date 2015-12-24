@@ -1,4 +1,4 @@
-﻿using Orders.com.BLL;
+﻿using Orders.com.BLL.Services;
 
 namespace Orders.com.WPF.VM
 {

@@ -1,12 +1,10 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
-using Orders.com.DataProxy;
-using Orders.com.Domain;
 using System.Data.Entity;
-using Peasy;
 using Peasy.Exception;
-using Orders.com.Extensions;
+using Orders.com.BLL.Domain;
+using Orders.com.BLL.DataProxy;
+using Orders.com.BLL.Extensions;
 
 namespace Orders.com.DAL.EF
 {

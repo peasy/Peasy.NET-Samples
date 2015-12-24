@@ -1,12 +1,12 @@
 ﻿using Peasy.Core.Extensions;
-using Orders.com.BLL;
-using Orders.com.Domain;
-using Orders.com.Extensions;
+using Orders.com.BLL.Extensions;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Orders.com.BLL.Domain;
+using Orders.com.BLL.Services;
 
 namespace Orders.com.WPF.VM
 {

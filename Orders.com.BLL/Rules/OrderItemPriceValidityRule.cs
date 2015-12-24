@@ -1,8 +1,7 @@
 ﻿using Peasy.Core;
-using Orders.com.Domain;
-using System.Threading.Tasks;
+using Orders.com.BLL.Domain;
 
-namespace Peasy.Rules
+namespace Orders.com.BLL.Rules
 {
     public class OrderItemPriceValidityRule : RuleBase
     {

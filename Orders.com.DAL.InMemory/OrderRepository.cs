@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
-using Orders.com.DataProxy;
-using Orders.com.Domain;
-using Orders.com.Extensions;
-using Orders.com.QueryData;
+using Orders.com.BLL.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Orders.com.BLL.Domain;
+using Orders.com.BLL.DataProxy;
+using Orders.com.BLL.QueryData;
 
 namespace Orders.com.DAL.InMemory
 {
@@ -16,9 +16,22 @@ namespace Orders.com.DAL.InMemory
         private ICustomerDataProxy _customerDataProxy;
         private IOrderItemDataProxy _orderItemDataProxy;
 
+        public ICustomerDataProxy CustomerDataProxy
+        {
+            get
+            {
+                return _customerDataProxy;
+            }
+
+            set
+            {
+                _customerDataProxy = value;
+            }
+        }
+
         public OrderRepository(ICustomerDataProxy customerDataProxy, IOrderItemDataProxy orderItemDataProxy) : base()
         {
-            _customerDataProxy = customerDataProxy;
+            CustomerDataProxy = customerDataProxy;
             _orderItemDataProxy = orderItemDataProxy;
         }
 
@@ -30,7 +43,7 @@ namespace Orders.com.DAL.InMemory
         public IEnumerable<OrderInfo> GetAll(int start, int pageSize)
         {
             var orders = GetAll();
-            var customers = _customerDataProxy.GetAll().ToDictionary(c => c.CustomerID);
+            var customers = CustomerDataProxy.GetAll().ToDictionary(c => c.CustomerID);
             var orderItems = _orderItemDataProxy.GetAll().ToArray();
             var results = orders.Skip(start)
                                 .Take(pageSize)

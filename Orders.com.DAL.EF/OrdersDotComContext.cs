@@ -1,4 +1,4 @@
-﻿using Orders.com.Domain;
+﻿using Orders.com.BLL.Domain;
 using System.Data.Entity;
 
 namespace Orders.com.DAL.EF

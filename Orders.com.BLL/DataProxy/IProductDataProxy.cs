@@ -1,8 +1,8 @@
-﻿using Orders.com.Domain;
+﻿using Orders.com.BLL.Domain;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Orders.com.DataProxy
+namespace Orders.com.BLL.DataProxy
 {
     public interface IProductDataProxy : IOrdersDotComDataProxy<Product>
     {

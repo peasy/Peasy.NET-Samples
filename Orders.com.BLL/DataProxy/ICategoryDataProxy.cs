@@ -1,6 +1,6 @@
-﻿using Orders.com.Domain;
+﻿using Orders.com.BLL.Domain;
 
-namespace Orders.com.DataProxy
+namespace Orders.com.BLL.DataProxy
 {
     public interface ICategoryDataProxy : IOrdersDotComDataProxy<Category>
     {

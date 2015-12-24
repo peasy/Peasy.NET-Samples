@@ -1,10 +1,10 @@
 ﻿using Peasy.Core.Extensions;
-using Orders.com.BLL;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Orders.com.BLL.Services;
 
 namespace Orders.com.WPF.VM
 {

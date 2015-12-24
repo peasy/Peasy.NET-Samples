@@ -1,5 +1,5 @@
-﻿using Orders.com.DataProxy;
-using Orders.com.Domain;
+﻿using Orders.com.BLL.DataProxy;
+using Orders.com.BLL.Domain;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

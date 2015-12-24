@@ -1,8 +1,6 @@
-﻿using Peasy;
-using System.ComponentModel.DataAnnotations;
-using System;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace Orders.com.Domain
+namespace Orders.com.BLL.Domain
 {
     public class Customer : DomainBase
     {

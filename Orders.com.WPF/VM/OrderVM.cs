@@ -1,6 +1,6 @@
-﻿using Orders.com.BLL;
-using Orders.com.Extensions;
-using Orders.com.QueryData;
+﻿using Orders.com.BLL.Extensions;
+using Orders.com.BLL.QueryData;
+using Orders.com.BLL.Services;
 using System;
 using System.Linq;
 

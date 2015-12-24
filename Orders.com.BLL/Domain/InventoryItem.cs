@@ -1,9 +1,7 @@
 ﻿using Peasy;
-using Peasy.Attributes;
 using System.ComponentModel.DataAnnotations;
-using System;
 
-namespace Orders.com.Domain
+namespace Orders.com.BLL.Domain
 {
     public class InventoryItem : DomainBase, IVersionContainer
     {

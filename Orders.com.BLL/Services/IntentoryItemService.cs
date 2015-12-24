@@ -1,10 +1,8 @@
 ﻿using Peasy.Core;
-using Peasy.Core.Extensions;
-using Peasy.Extensions;
-using Orders.com.DataProxy;
-using Orders.com.Domain;
+using Orders.com.BLL.Domain;
+using Orders.com.BLL.DataProxy;
 
-namespace Orders.com.BLL
+namespace Orders.com.BLL.Services
 {
     public class InventoryItemService : OrdersDotComServiceBase<InventoryItem>, IInventoryItemService
     {

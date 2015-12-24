@@ -1,11 +1,10 @@
 ﻿using AutoMapper;
-using Orders.com.DataProxy;
-using Orders.com.Domain;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using System;
+using Orders.com.BLL.Domain;
+using Orders.com.BLL.DataProxy;
 
 namespace Orders.com.DAL.InMemory
 {

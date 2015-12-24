@@ -1,5 +1,7 @@
 ﻿using Orders.com.BLL;
 using Orders.com;
+using Orders.com.BLL.Services;
+using Orders.com.BLL.Domain;
 
 namespace Orders.com.WPF.VM
 {

@@ -1,5 +1,5 @@
 ﻿
-namespace Orders.com.Domain
+namespace Orders.com.BLL.Domain
 {
     public class OrderStatus : DomainBase
     {

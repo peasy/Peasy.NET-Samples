@@ -1,11 +1,11 @@
 ﻿using Peasy.Core;
 using Orders.com.BLL.Rules;
-using Orders.com.DataProxy;
-using Orders.com.Domain;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Orders.com.BLL.Domain;
+using Orders.com.BLL.DataProxy;
 
-namespace Orders.com.BLL
+namespace Orders.com.BLL.Services
 {
     public class CustomerService : OrdersDotComServiceBase<Customer>, ICustomerService
     {

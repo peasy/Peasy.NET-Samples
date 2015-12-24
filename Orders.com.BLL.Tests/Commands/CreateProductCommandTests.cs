@@ -1,18 +1,13 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Orders.com.BLL.Commands;
-using Orders.com.BLL.Rules;
-using Orders.com.DataProxy;
-using Orders.com.Domain;
-using Orders.com.Extensions;
 using Orders.com.DAL.InMemory;
-using Peasy;
 using Peasy.Core;
-using Peasy.Rules;
 using Shouldly;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using Orders.com.BLL.Domain;
+using Orders.com.BLL.Services;
+using Orders.com.BLL.DataProxy;
 
 namespace Orders.com.BLL.Tests.Commands
 {

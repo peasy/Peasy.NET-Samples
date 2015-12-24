@@ -2,14 +2,14 @@
 using Peasy.Core;
 using Orders.com.BLL.Commands;
 using Orders.com.BLL.Rules;
-using Orders.com.DataProxy;
-using Orders.com.Domain;
-using Orders.com.QueryData;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Orders.com.BLL.Domain;
+using Orders.com.BLL.DataProxy;
+using Orders.com.BLL.QueryData;
 
-namespace Orders.com.BLL
+namespace Orders.com.BLL.Services
 {
     public class OrderService : OrdersDotComServiceBase<Order>, IOrderService
     {

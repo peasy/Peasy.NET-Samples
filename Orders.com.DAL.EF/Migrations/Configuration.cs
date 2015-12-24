@@ -1,11 +1,9 @@
 namespace Orders.com.DAL.EF.Migrations
 {
-    using Domain;
+    using BLL.Domain;
     using System;
     using System.Collections.Generic;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
-    using System.Linq;
 
     public sealed class Configuration : DbMigrationsConfiguration<Orders.com.DAL.EF.OrdersDotComContext>
     {

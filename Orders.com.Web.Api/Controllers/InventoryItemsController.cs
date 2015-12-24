@@ -1,6 +1,5 @@
-﻿using Orders.com.BLL;
-using Orders.com.Domain;
-using System.Collections.Generic;
+﻿using Orders.com.BLL.Domain;
+using Orders.com.BLL.Services;
 using System.Web.Http;
 
 namespace Orders.com.Web.Api.Controllers

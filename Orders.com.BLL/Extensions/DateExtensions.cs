@@ -1,6 +1,6 @@
 using System;
 
-namespace Orders.com.Extensions
+namespace Orders.com.BLL.Extensions
 {
     public static class DateExtensions
     {

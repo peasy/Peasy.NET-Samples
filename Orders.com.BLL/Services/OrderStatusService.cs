@@ -1,7 +1,7 @@
-﻿using Orders.com.DataProxy;
-using Orders.com.Domain;
+﻿using Orders.com.BLL.DataProxy;
+using Orders.com.BLL.Domain;
 
-namespace Orders.com.BLL
+namespace Orders.com.BLL.Services
 {
     public class OrderStatusService : OrdersDotComServiceBase<OrderStatus>, IOrderStatusService
     {

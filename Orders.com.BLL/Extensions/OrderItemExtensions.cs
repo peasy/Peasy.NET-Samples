@@ -1,7 +1,7 @@
-﻿using Orders.com.Domain;
+﻿using Orders.com.BLL.Domain;
 using System;
 
-namespace Orders.com.Extensions
+namespace Orders.com.BLL.Extensions
 {
     public static class OrderItemExtensions
     {
