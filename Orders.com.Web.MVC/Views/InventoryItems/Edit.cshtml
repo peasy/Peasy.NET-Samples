@@ -17,7 +17,6 @@
         @Html.HiddenFor(model => model.Version)
 
         <div class="form-group">
-            @Html.Partial("_ErrorsList", Model.Errors)
             @Html.LabelFor(model => model.ProductName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DisplayFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control" } })

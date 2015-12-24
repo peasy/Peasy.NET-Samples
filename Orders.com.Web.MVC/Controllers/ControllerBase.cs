@@ -110,10 +110,8 @@ namespace Orders.com.Web.MVC.Controllers
         {
             result.Errors.ForEach(error =>
             {
-                if (error.MemberNames.First() != null)
-                    ModelState.AddModelError(error.MemberNames.First(), error.ErrorMessage);
-                else
-                    vm.Errors.Add(error);
+                string member = error.MemberNames.First() ?? string.Empty;
+                ModelState.AddModelError(member, error.ErrorMessage);
             });
 
             return View(ConfigureVM(vm));

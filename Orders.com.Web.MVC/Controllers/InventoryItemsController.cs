@@ -33,8 +33,8 @@ namespace Orders.com.Web.MVC.Controllers
             }
             catch (ConcurrencyException ex)
             {
-                vm.Errors.Add(new ValidationResult(ex.Message));
-                return View(vm);
+                ModelState.AddModelError("", ex.Message);
+                return View(ConfigureVM(vm));
             }
         }
 
