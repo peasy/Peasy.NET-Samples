@@ -2,7 +2,7 @@
 
 namespace Orders.com.Web.MVC.ViewModels
 {
-    public class CustomerViewModel : ViewModel<Customer>
+    public class CategoryViewModel : ViewModel<Category>
     {
         public long ID
         {

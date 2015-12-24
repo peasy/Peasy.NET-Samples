@@ -1,26 +1,14 @@
-﻿using Orders.com.BLL;
-using Orders.com.Domain;
-using Orders.com.Web.MVC.ViewModels;
+﻿using Orders.com.Web.MVC.ViewModels;
 using Peasy.Core;
 using Peasy.Core.Extensions;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Orders.com.Web.MVC.Controllers
 {
-    //public class CustomersController : ControllerBase<Customer>
-    //{
-    //    public CustomersController(ICustomerService service) : base(service)
-    //    {
-    //    }
-    //}
-
-    public class ControllerBase<T, VM> : Controller where T : DomainBase, new()
-                                                    where VM : ViewModel<T>, new()
+    public class ControllerBase<T, TViewModel> : Controller where T : DomainBase, new()
+                                                            where TViewModel : ViewModel<T>, new()
     {
         protected IService<T, long> _service;
 
@@ -33,21 +21,16 @@ namespace Orders.com.Web.MVC.Controllers
         public virtual ActionResult Index(string search)
         {
             var entities = _service.GetAllCommand().Execute().Value;
-            var viewModels = entities.Select(e => new VM() { Entity = e }).ToArray();
-            viewModels.ForEach(vm => ConfigureVM(vm));
+            var viewModels = entities.Select(e => new TViewModel() { Entity = e }).ToArray();
+            viewModels.ForEach(TViewModel => ConfigureVM(TViewModel));
             return View(viewModels);
-        }
-
-        protected virtual void ConfigureVM(VM vm)
-        {
         }
 
         //// GET: Entities/Create
         public virtual ActionResult Create()
         {
-            var vm = new VM() { Entity = new T() };
-            ConfigureVM(vm);
-            return View(vm);
+            var vm = new TViewModel() { Entity = new T() };
+            return View(ConfigureVM(vm));
         }
 
         //// POST: Entities/Create
@@ -55,20 +38,13 @@ namespace Orders.com.Web.MVC.Controllers
         //// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public virtual ActionResult Create(VM vm)
+        public virtual ActionResult Create(TViewModel vm)
         {
             var result = _service.InsertCommand(vm.Entity).Execute();
             if (result.Success)
-            {
                 return RedirectToAction("Index");
-            }
             else
-            {
-                vm.Errors = result.Errors;
-                vm.Errors.ForEach(e => ModelState.AddModelError(e.MemberNames.First(), e.ErrorMessage));
-                ConfigureVM(vm);
-                return View(vm);
-            }
+                return HandleFailedResult(vm, result);
         }
 
         //// GET: Entities/Edit/5
@@ -83,9 +59,8 @@ namespace Orders.com.Web.MVC.Controllers
             {
                 return HttpNotFound();
             }
-            var vm = new VM() { Entity = entity };
-            ConfigureVM(vm);
-            return View(vm);
+            var vm = new TViewModel() { Entity = entity };
+            return View(ConfigureVM(vm));
         }
 
         //// POST: Entities/Edit/5
@@ -93,20 +68,13 @@ namespace Orders.com.Web.MVC.Controllers
         //// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public virtual ActionResult Edit(VM vm)
+        public virtual ActionResult Edit(TViewModel vm)
         {
             var result = _service.UpdateCommand(vm.Entity).Execute();
             if (result.Success)
-            {
                 return RedirectToAction("Index");
-            }
             else
-            {
-                vm.Errors = result.Errors;
-                vm.Errors.ForEach(e => ModelState.AddModelError(e.MemberNames.First(), e.ErrorMessage));
-                ConfigureVM(vm);
-                return View(vm);
-            }
+                return HandleFailedResult(vm, result);
         }
 
         //// GET: Entities/Delete/5
@@ -121,9 +89,8 @@ namespace Orders.com.Web.MVC.Controllers
             {
                 return HttpNotFound();
             }
-            var vm = new VM() { Entity = entity };
-            ConfigureVM(vm);
-            return View(vm);
+            var vm = new TViewModel() { Entity = entity };
+            return View(ConfigureVM(vm));
         }
 
         //// POST: Entities/Delete/5
@@ -135,13 +102,25 @@ namespace Orders.com.Web.MVC.Controllers
             if (result.Success)
                 return RedirectToAction("Index");
             else
+                return HandleFailedResult(new TViewModel(), result);
+        }
+
+        private ActionResult HandleFailedResult(TViewModel vm, ExecutionResult result)
+        {
+            result.Errors.ForEach(error =>
             {
-                var vm = new VM();
-                vm.Errors = result.Errors;
-                vm.Errors.ForEach(e => ModelState.AddModelError(e.MemberNames.First(), e.ErrorMessage));
-                ConfigureVM(vm);
-                return View(vm);
-            }
+                if (error.MemberNames.First() != null)
+                    ModelState.AddModelError(error.MemberNames.First(), error.ErrorMessage);
+                else
+                    vm.Errors.Add(error);
+            });
+
+            return View(ConfigureVM(vm));
+        }
+
+        protected virtual TViewModel ConfigureVM(TViewModel vm)
+        {
+            return vm;
         }
     }
 }

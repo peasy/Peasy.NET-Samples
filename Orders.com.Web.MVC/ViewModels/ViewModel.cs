@@ -14,6 +14,6 @@ namespace Orders.com.Web.MVC.ViewModels
         }
 
         public T Entity { get; set; }
-        public IEnumerable<ValidationResult> Errors { get; set; } = Enumerable.Empty<ValidationResult>();
+        public List<ValidationResult> Errors { get; set; } = new List<ValidationResult>();
     }
 }

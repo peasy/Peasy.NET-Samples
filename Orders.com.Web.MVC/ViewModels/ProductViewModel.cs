@@ -1,19 +1,11 @@
-﻿using Orders.com.BLL;
-using Orders.com.Domain;
-using System;
+﻿using Orders.com.Domain;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace Orders.com.Web.MVC.ViewModels
 {
     public class ProductViewModel : ViewModel<Product>
     {
-        public ProductViewModel()
-        {
-            Entity = new Product();
-        }
-
         public long ID
         {
             get { return Entity.ID; }

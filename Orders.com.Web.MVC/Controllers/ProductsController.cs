@@ -15,9 +15,10 @@ namespace Orders.com.Web.MVC.Controllers
             _categoryService = categoryService;
         }
 
-        protected override void ConfigureVM(ProductViewModel vm)
+        protected override ProductViewModel ConfigureVM(ProductViewModel vm)
         {
             vm.Categories = Categories;
+            return vm;
         }
 
         protected IEnumerable<Category> Categories
