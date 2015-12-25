@@ -1,11 +1,14 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Orders.com.BLL.QueryData
 {
     public class OrderInfo
     {
         public long OrderID { get; set; }
+        [Display(Name ="Order Date")]
         public DateTime OrderDate { get; set; }
+        [Display(Name ="Customer")]
         public string CustomerName { get; set; }
         public long CustomerID { get; set; }
         public decimal Total { get; set; }

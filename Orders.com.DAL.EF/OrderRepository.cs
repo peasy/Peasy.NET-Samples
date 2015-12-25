@@ -24,16 +24,18 @@ namespace Orders.com.DAL.EF
                                           o => o.Order.ID,
                                           oi => oi.OrderID,
                                         (o, oi) => new { Order = o.Order, Customer = o.Customer, OrderItems = oi })
+                                    .OrderBy(o => o.Order.ID)
                                     .Skip(start)
                                     .Take(pageSize)
                                     .Select(o => new
                                     {
-                                        OrderID = o.Order.OrderID,
+                                        OrderID = o.Order.ID,
                                         OrderDate = o.Order.OrderDate,
                                         CustomerName = o.Customer.Name,
-                                        CustomerID = o.Customer.CustomerID,
+                                        CustomerID = o.Customer.ID,
                                         OrderItems = o.OrderItems
                                     })
+                                    .ToArray()
                                     .Select(o => new OrderInfo()
                                     {
                                         OrderID = o.OrderID,
