@@ -232,6 +232,7 @@
     <Compile Include="ViewModels\CategoryViewModel.cs" />
     <Compile Include="ViewModels\CustomerViewModel.cs" />
     <Compile Include="ViewModels\InventoryItemViewModel.cs" />
+    <Compile Include="ViewModels\OrderItemViewModel.cs" />
     <Compile Include="ViewModels\OrderViewModel.cs" />
     <Compile Include="ViewModels\ProductViewModel.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
@@ -306,6 +307,7 @@
     <Content Include="Views\InventoryItems\Edit.cshtml" />
     <Content Include="Views\InventoryItems\Index.cshtml" />
     <Content Include="Views\Orders\Index.cshtml" />
+    <Content Include="Views\Orders\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
