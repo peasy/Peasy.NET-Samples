@@ -1,0 +1,82 @@
+﻿@model Orders.com.Web.MVC.ViewModels.OrderItemViewModel
+
+@{
+    ViewBag.Title = "Edit Order Item";
+}
+
+<h2>Edit Order Item</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Amount)
+        @Html.HiddenFor(model => model.ID)
+        @Html.HiddenFor(model => model.OrderID)
+        @Html.HiddenFor(model => model.Price)
+
+        @*<div class="form-group">
+            <label class="control-label col-md-2" for="CategoryID">Category</label>
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.CategoryID, new SelectList(Model.Categories, "CategoryID", "Name", Model.AssociatedCategory), "-- select one --", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CategoryID, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            <label class="control-label col-md-1" for="ProductID">Product</label>
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.ProductID, new SelectList(Model.Products, "ProductID", "Name", Model.AssociatedProduct), "-- select one --", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ProductID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.InStock, htmlAttributes: new { @class = "control-label col-md-1" })
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.InStock, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-1" })
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-md-1" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Amount, htmlAttributes: new { @class = "control-label col-md-1" })
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-1" })
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.Status, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-1">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Edit", "Orders", new { id = Model.OrderID }, null)
+</div>

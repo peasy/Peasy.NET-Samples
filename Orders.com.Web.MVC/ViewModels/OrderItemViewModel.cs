@@ -1,6 +1,7 @@
 ﻿using Orders.com.BLL.Domain;
 using Orders.com.BLL.Extensions;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Orders.com.Web.MVC.ViewModels
@@ -25,22 +26,29 @@ namespace Orders.com.Web.MVC.ViewModels
             set { Entity.ProductID = value; }
         }
 
+        [DisplayFormat(DataFormatString = "{0:d}")]
         public decimal Quantity
         {
             get { return Entity.Quantity; }
             set { Entity.Quantity = value; }
         }
 
+        [DisplayFormat(DataFormatString = "{0:c}")]
         public decimal Amount
         {
             get { return Entity.Amount; }
             set { Entity.Amount = value; }
         }
 
+        [DisplayFormat(DataFormatString = "{0:c}")]
         public decimal Price
         {
             get { return Entity.Price; }
-            set { Entity.Price = value; }
+            set
+            {
+                Entity.Price = value;
+                Amount = value * Quantity;
+            }
         }
 
         public string Status
@@ -55,7 +63,7 @@ namespace Orders.com.Web.MVC.ViewModels
         }
 
         [Display(Name = "Shipped On")]
-        public DateTime? ShippedOn 
+        public DateTime? ShippedOn
         {
             get { return Entity.ShippedDate; }
         }
@@ -65,5 +73,13 @@ namespace Orders.com.Web.MVC.ViewModels
             get { return Entity.ID; }
             set { Entity.ID = value; }
         }
+
+        public IEnumerable<Category> Categories { get; set; }
+
+        public IEnumerable<Product> Products { get; set; }
+
+        public Category AssociatedCategory { get; set; }
+
+        public Product AssociatedProduct { get; set; }
     }
 }

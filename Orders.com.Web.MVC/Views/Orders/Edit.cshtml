@@ -23,10 +23,24 @@
             </div>*@
 
         <div class="form-group">
+            <label class="control-label col-md-1">Order ID</label>
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.ID)
+            </div>
+        </div>
+
+        <div class="form-group">
             <label class="control-label col-md-1" for="CustomerID">Customer</label>
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.CustomerID, new SelectList(Model.Customers, "CustomerID", "Name", Model.AssociatedCustomer), "-- select one --", new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.CustomerID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-1">Total</label>
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.Total)
             </div>
         </div>
 
@@ -62,7 +76,7 @@
                     <td>@Html.DisplayFor(modelItem => item.SubmittedOn)</td>
                     <td>@Html.DisplayFor(modelItem => item.ShippedOn)</td>
                     <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.OrderID })
+                        @Html.ActionLink( "Edit", "Edit", "OrderItems", new { id = item.ID }, null)
                     </td>
                 </tr>
             }

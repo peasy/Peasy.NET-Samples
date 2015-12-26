@@ -2,6 +2,7 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Orders.com.Web.MVC.ViewModels
 {
@@ -19,6 +20,12 @@ namespace Orders.com.Web.MVC.ViewModels
         {
             get { return Entity.OrderDate; }
             set { Entity.OrderDate = value; }
+        }
+
+        [DisplayFormat(DataFormatString = "{0:c}")]
+        public decimal? Total
+        {
+            get { return OrderItems?.Sum(i => i.Amount); }
         }
 
         public long ID

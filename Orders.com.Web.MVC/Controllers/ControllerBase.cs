@@ -106,7 +106,7 @@ namespace Orders.com.Web.MVC.Controllers
                 return HandleFailedResult(new TViewModel(), result);
         }
 
-        private ActionResult HandleFailedResult(TViewModel vm, ExecutionResult result)
+        protected ActionResult HandleFailedResult(TViewModel vm, ExecutionResult result)
         {
             result.Errors.ForEach(error =>
             {
