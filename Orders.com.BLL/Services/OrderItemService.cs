@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Orders.com.BLL.Domain;
 using Orders.com.BLL.DataProxy;
 using Orders.com.BLL.Extensions;
+using Peasy.Extensions;
 
 namespace Orders.com.BLL.Services
 {
@@ -57,7 +58,11 @@ namespace Orders.com.BLL.Services
 
         protected override IEnumerable<IRule> GetBusinessRulesForUpdate(OrderItem entity, ExecutionContext<OrderItem> context)
         {
+            var currentEntity = _dataProxy.GetByID(entity.ID);
+            context.CurrentEntity = currentEntity;
+            entity.RevertNonEditableValues(currentEntity);
             var currentProduct = _productDataProxy.GetByID(entity.ProductID);
+
             yield return new ValidOrderItemStatusForUpdateRule(entity)
                                 .IfValidThenValidate
                                 (
@@ -68,7 +73,11 @@ namespace Orders.com.BLL.Services
 
         protected override async Task<IEnumerable<IRule>> GetBusinessRulesForUpdateAsync(OrderItem entity, ExecutionContext<OrderItem> context)
         {
+            var currentEntity = await _dataProxy.GetByIDAsync(entity.ID);
+            context.CurrentEntity = currentEntity;
+            entity.RevertNonEditableValues(currentEntity);
             var currentProduct = await _productDataProxy.GetByIDAsync(entity.ProductID);
+
             return new ValidOrderItemStatusForUpdateRule(entity)
                                 .IfValidThenValidate
                                 (
