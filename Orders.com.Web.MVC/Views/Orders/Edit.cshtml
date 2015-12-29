@@ -14,14 +14,6 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.ID)
 
-        @*<div class="form-group">
-                @Html.LabelFor(model => model.ID, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.ID, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.ID, "", new { @class = "text-danger" })
-                </div>
-            </div>*@
-
         <div class="form-group">
             <label class="control-label col-md-1">Order ID</label>
             <div class="col-md-10">
@@ -44,44 +36,7 @@
             </div>
         </div>
 
-        @*<div class="form-group">
-                @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.Edi:w
-            torFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
-                </div>
-            </div>*@
-        
-        <table class="table">
-            <tr>
-                <th>Product</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Amount</th>
-                <th>Status</th>
-                <th>Submitted On</th>
-                <th>Shipped On</th>
-                <th></th>
-            </tr>
 
-            @foreach (var item in Model.OrderItems)
-            {
-                <tr>
-                    <td>@Html.DisplayFor(modelItem => item.ProductName)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Price)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Amount)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Status)</td>
-                    <td>@Html.DisplayFor(modelItem => item.SubmittedOn)</td>
-                    <td>@Html.DisplayFor(modelItem => item.ShippedOn)</td>
-                    <td>
-                        @Html.ActionLink( "Edit", "Edit", "OrderItems", new { id = item.ID }, null)
-                    </td>
-                </tr>
-            }
-
-        </table>
         <div class="form-group">
             <div class="col-md-1">
                 <input type="submit" value="Save" class="btn btn-default" />
@@ -90,6 +45,42 @@
     </div>
 }
 
+<table class="table">
+    <tr>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Amount</th>
+        <th>Status</th>
+        <th>Submitted On</th>
+        <th>Shipped On</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.OrderItems)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.ProductName)</td>
+            <td>@Html.DisplayFor(modelItem => item.Price)</td>
+            <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
+            <td>@Html.DisplayFor(modelItem => item.Amount)</td>
+            <td>@Html.DisplayFor(modelItem => item.Status)</td>
+            <td>@Html.DisplayFor(modelItem => item.SubmittedOn)</td>
+            <td>@Html.DisplayFor(modelItem => item.ShippedOn)</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", "OrderItems", new { id = item.ID }, null)
+                <form action="/OrderItems/Submit" method="post">
+                    <input type="hidden" value="@item.ID" name="ID" />
+                    <input type="hidden" value="@item.OrderID" name="OrderID" />
+                    <input type="submit" value="submit" />
+                </form>
+            </td>
+        </tr>
+    }
+
+</table>
+
 <div>
     @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Add Item", "Create", "OrderItems", new { orderID = @Model.ID }, null)
 </div>

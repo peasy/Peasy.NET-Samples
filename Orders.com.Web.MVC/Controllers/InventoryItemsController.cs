@@ -49,5 +49,13 @@ namespace Orders.com.Web.MVC.Controllers
                 return _products;
             }
         }
+
+        [HttpGet]
+        public ActionResult Product(int id)
+        {
+            var service = _service as IInventoryItemService;
+            var inventoryItem = service.GetByProductCommand(id).Execute().Value;
+            return Json(inventoryItem, JsonRequestBehavior.AllowGet);
+        }
     }
 }

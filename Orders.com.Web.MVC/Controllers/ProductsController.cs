@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Orders.com.BLL.Domain;
 using Orders.com.BLL.Services;
+using System.Web.Mvc;
 
 namespace Orders.com.Web.MVC.Controllers
 {
@@ -31,6 +32,21 @@ namespace Orders.com.Web.MVC.Controllers
                 }
                 return _categories;
             }
+        }
+
+        [HttpGet]
+        public ActionResult Products(long categoryID)
+        {
+            var service = _service as IProductService;
+            var products = service.GetByCategoryCommand(categoryID).Execute().Value;
+            return Json(products, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult Product(long id)
+        {
+            var product = _service.GetByIDCommand(id).Execute().Value;
+            return Json(product, JsonRequestBehavior.AllowGet);
         }
     }
 }

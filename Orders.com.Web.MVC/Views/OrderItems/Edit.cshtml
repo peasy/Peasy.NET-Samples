@@ -17,13 +17,12 @@
         @Html.HiddenFor(model => model.OrderID)
         @Html.HiddenFor(model => model.Price)
 
-        @*<div class="form-group">
-            <label class="control-label col-md-2" for="CategoryID">Category</label>
+        <div class="form-group">
+            <label class="control-label col-md-1" for="CategoryID">Category</label>
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.CategoryID, new SelectList(Model.Categories, "CategoryID", "Name", Model.AssociatedCategory), "-- select one --", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.CategoryID, "", new { @class = "text-danger" })
             </div>
-        </div>*@
+        </div>
 
         <div class="form-group">
             <label class="control-label col-md-1" for="ProductID">Product</label>
@@ -36,14 +35,14 @@
         <div class="form-group">
             @Html.LabelFor(model => model.InStock, htmlAttributes: new { @class = "control-label col-md-1" })
             <div class="col-md-10">
-                @Html.DisplayFor(model => model.InStock, new { htmlAttributes = new { @class = "form-control" } })
+                <div class="col-md-10" id="inStock">@Model.InStock</div>
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-1" })
             <div class="col-md-10">
-                @Html.DisplayFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                <div class="col-md-10" id="price">@Model.Price</div>
             </div>
         </div>
 
@@ -57,9 +56,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.Amount, htmlAttributes: new { @class = "control-label col-md-1" })
-            <div class="col-md-10">
-                @Html.DisplayFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control" } })
-            </div>
+            <div class="col-md-10" id="amount">@Model.Amount</div>
         </div>
 
         <div class="form-group">
@@ -80,3 +77,7 @@
 <div>
     @Html.ActionLink("Back to List", "Edit", "Orders", new { id = Model.OrderID }, null)
 </div>
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/OrderItems.js")    
+}

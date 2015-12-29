@@ -39,6 +39,5 @@ namespace Orders.com.BLL.Domain
             get { return OrderItemID; }
             set { OrderItemID = value; }
         }
-
     }
 }
