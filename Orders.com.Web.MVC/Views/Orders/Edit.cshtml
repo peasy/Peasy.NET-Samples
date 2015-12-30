@@ -74,11 +74,16 @@
             <td>@Html.DisplayFor(modelItem => item.ShippedOn)</td>
             <td>
                 @Html.ActionLink("Edit", "Edit", "OrderItems", new { id = item.ID }, null)
-                <form action="/OrderItems/Submit" method="post">
-                    <input type="hidden" value="@item.ID" name="ID" />
-                    <input type="hidden" value="@item.OrderID" name="OrderID" />
-                    <input type="submit" value="submit" />
-                </form>
+                @if (item.CanShip)
+                {
+                    using (Html.BeginForm("ship", "orderitems"))
+                    {
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" value="@item.ID" name="ID" />
+                        <input type="hidden" value="@item.OrderID" name="OrderID" />
+                        <input type="submit" value="Ship" class="btn btn-default" />
+                    }
+                }
             </td>
         </tr>
     }

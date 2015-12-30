@@ -53,6 +53,11 @@ namespace Orders.com.Web.MVC.ViewModels
             }
         }
 
+        public bool CanShip
+        {
+            get { return Entity.OrderStatus().CanShip; }
+        }
+
         public string Status
         {
             get { return Entity.OrderStatus()?.Name; }

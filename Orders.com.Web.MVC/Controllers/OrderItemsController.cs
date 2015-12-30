@@ -49,7 +49,7 @@ namespace Orders.com.Web.MVC.Controllers
             if (result.Success)
                 return RedirectToAction("Edit", "Orders", new { id = vm.OrderID });
             else
-                return HandleFailedResult(vm, result);
+                return HandleFailedResult(ConfigureVM(vm), result);
         }
 
         [ValidateAntiForgeryToken]
@@ -59,14 +59,19 @@ namespace Orders.com.Web.MVC.Controllers
             if (result.Success)
                 return RedirectToAction("Edit", "Orders", new { id = vm.OrderID });
             else
-                return HandleFailedResult(vm, result);
+                return HandleFailedResult(ConfigureVM(vm), result);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Submit(long id, long orderID)
+        public ActionResult Ship(long id, long orderID)
         {
-            return RedirectToAction("Edit", "Orders", new { id = orderID });
+            var service = _service as IOrderItemService;
+            var result = service.ShipCommand(id).Execute();
+            if (result.Success)
+                return RedirectToAction("Edit", "Orders", new { id = orderID });
+            else
+                return HandleFailedResult(ConfigureVM(new OrderItemViewModel { ID = id, OrderID = orderID }), result);
         }
     }
 }
