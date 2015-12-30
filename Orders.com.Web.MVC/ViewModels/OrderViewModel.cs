@@ -3,6 +3,7 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Orders.com.BLL.Extensions;
 
 namespace Orders.com.Web.MVC.ViewModels
 {
@@ -40,6 +41,11 @@ namespace Orders.com.Web.MVC.ViewModels
             {
                 return Customers.FirstOrDefault(c => c.CustomerID == CustomerID);
             }
+        }
+
+        public bool? HasShippedItems
+        {
+            get { return OrderItems?.Any(i => i.Entity.OrderStatus().IsShipped); }
         }
 
         public IEnumerable<OrderItemViewModel> OrderItems { get; set; }

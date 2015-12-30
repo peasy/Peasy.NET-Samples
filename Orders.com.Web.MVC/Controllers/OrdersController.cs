@@ -34,6 +34,26 @@ namespace Orders.com.Web.MVC.Controllers
             return View(results);
         }
 
+        [ValidateAntiForgeryToken]
+        public override ActionResult Create(OrderViewModel vm)
+        {
+            var result = _service.InsertCommand(vm.Entity).Execute();
+            if (result.Success)
+                return RedirectToAction("Edit", "Orders", new { id = vm.ID });
+            else
+                return HandleFailedResult(vm, result);
+        }
+
+        [ValidateAntiForgeryToken]
+        public override ActionResult Edit(OrderViewModel vm)
+        {
+            var result = _service.UpdateCommand(vm.Entity).Execute();
+            if (result.Success)
+                return View(ConfigureVM(vm));
+            else
+                return HandleFailedResult(vm, result);
+        }
+
         protected override OrderViewModel ConfigureVM(OrderViewModel vm)
         {
             vm.Customers = Customers;

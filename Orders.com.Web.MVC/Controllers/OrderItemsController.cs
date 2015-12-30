@@ -42,6 +42,7 @@ namespace Orders.com.Web.MVC.Controllers
             return View(ConfigureVM(vm));
         }
 
+        [ValidateAntiForgeryToken]
         public override ActionResult Create(OrderItemViewModel vm)
         {
             var result = _service.InsertCommand(vm.Entity).Execute();
@@ -51,6 +52,7 @@ namespace Orders.com.Web.MVC.Controllers
                 return HandleFailedResult(vm, result);
         }
 
+        [ValidateAntiForgeryToken]
         public override ActionResult Edit(OrderItemViewModel vm)
         {
             var result = _service.UpdateCommand(vm.Entity).Execute();
@@ -61,6 +63,7 @@ namespace Orders.com.Web.MVC.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Submit(long id, long orderID)
         {
             return RedirectToAction("Edit", "Orders", new { id = orderID });

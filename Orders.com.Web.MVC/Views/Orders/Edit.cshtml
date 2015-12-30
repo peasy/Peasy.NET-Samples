@@ -24,8 +24,14 @@
         <div class="form-group">
             <label class="control-label col-md-1" for="CustomerID">Customer</label>
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.CustomerID, new SelectList(Model.Customers, "CustomerID", "Name", Model.AssociatedCustomer), "-- select one --", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.CustomerID, "", new { @class = "text-danger" })
+                @if (!Model.HasShippedItems.GetValueOrDefault())
+                {
+                    @Html.DropDownListFor(model => model.CustomerID, new SelectList(Model.Customers, "CustomerID", "Name", Model.AssociatedCustomer), "-- select one --", new { @class = "form-control", onchange = "this.form.submit()" })
+                    @Html.ValidationMessageFor(model => model.CustomerID, "", new { @class = "text-danger" })
+                }else 
+                {
+                    @Html.DisplayFor(model => model.AssociatedCustomer.Name)
+                }
             </div>
         </div>
 
@@ -36,12 +42,6 @@
             </div>
         </div>
 
-
-        <div class="form-group">
-            <div class="col-md-1">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </div>
     </div>
 }
 
@@ -81,6 +81,6 @@
 </table>
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index") |
     @Html.ActionLink("Add Item", "Create", "OrderItems", new { orderID = @Model.ID }, null)
 </div>
