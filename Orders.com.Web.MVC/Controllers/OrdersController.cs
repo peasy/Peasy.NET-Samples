@@ -5,6 +5,7 @@ using Orders.com.BLL.Services;
 using Orders.com.Web.MVC.ViewModels;
 using System.Collections.Generic;
 using Peasy.Core.Extensions;
+using Orders.com.BLL.Extensions;
 
 namespace Orders.com.Web.MVC.Controllers
 {
@@ -41,7 +42,7 @@ namespace Orders.com.Web.MVC.Controllers
             if (result.Success)
                 return RedirectToAction("Edit", "Orders", new { id = vm.ID });
             else
-                return HandleFailedResult(vm, result);
+                return HandleFailedResult(ConfigureVM(vm), result);
         }
 
         [ValidateAntiForgeryToken]
@@ -51,7 +52,26 @@ namespace Orders.com.Web.MVC.Controllers
             if (result.Success)
                 return View(ConfigureVM(vm));
             else
-                return HandleFailedResult(vm, result);
+                return HandleFailedResult(ConfigureVM(vm), result);
+        }
+
+        [ValidateAntiForgeryToken]
+        public ActionResult Submit(long id)
+        {
+            var vm = new OrderViewModel { ID = id };
+            var submittableItems = _orderItemService.GetByOrderCommand(id)
+                                                  .Execute()
+                                                  .Value
+                                                  .Where(i => i.OrderStatus().CanSubmit);
+
+            foreach (var item in submittableItems)
+            {
+                var result = _orderItemService.SubmitCommand(item.ID).Execute();
+                if (!result.Success)
+                    return HandleFailedResult(ConfigureVM(vm), result);
+            }
+
+            return RedirectToAction("Edit", "Orders", new { id = id });
         }
 
         protected override OrderViewModel ConfigureVM(OrderViewModel vm)

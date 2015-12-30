@@ -28,7 +28,8 @@
                 {
                     @Html.DropDownListFor(model => model.CustomerID, new SelectList(Model.Customers, "CustomerID", "Name", Model.AssociatedCustomer), "-- select one --", new { @class = "form-control", onchange = "this.form.submit()" })
                     @Html.ValidationMessageFor(model => model.CustomerID, "", new { @class = "text-danger" })
-                }else 
+                }
+                else
                 {
                     @Html.DisplayFor(model => model.AssociatedCustomer.Name)
                 }
@@ -40,6 +41,10 @@
             <div class="col-md-10">
                 @Html.DisplayFor(model => model.Total)
             </div>
+        </div>
+
+        <div class="form-group">
+            @Html.ActionLink("Add Item", "Create", "OrderItems", new { orderID = @Model.ID }, new { @class = "col-md-3" })
         </div>
 
     </div>
@@ -80,7 +85,13 @@
 
 </table>
 
-<div>
-    @Html.ActionLink("Back to List", "Index") |
-    @Html.ActionLink("Add Item", "Create", "OrderItems", new { orderID = @Model.ID }, null)
-</div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.ID)
+    <input type="submit" value="Submit Order" class="btn btn-default" formaction="@Url.Action("Submit")" />
+}
+
+<br />
+
+@Html.ActionLink("Back to List", "Index")
