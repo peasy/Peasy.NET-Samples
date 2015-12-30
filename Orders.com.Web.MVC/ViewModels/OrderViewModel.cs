@@ -43,6 +43,11 @@ namespace Orders.com.Web.MVC.ViewModels
             }
         }
 
+        public bool? HasUnsubmittedItems
+        {
+            get { return OrderItems?.Any(i => i.Entity.OrderStatus().CanSubmit); }
+        }
+
         public bool? HasShippedItems
         {
             get { return OrderItems?.Any(i => i.Entity.OrderStatus().IsShipped); }
