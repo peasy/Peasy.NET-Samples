@@ -1,0 +1,67 @@
+﻿@model Orders.com.Web.MVC.ViewModels.OrderViewModel
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete Order</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+
+<div class="form-horizontal">
+
+    <div class="form-group">
+        <label class="control-label col-md-1">Order ID</label>
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.ID)
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-1" for="CustomerID">Customer</label>
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.AssociatedCustomer.Name)
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-1">Total</label>
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.Total)
+        </div>
+    </div>
+    <table class="table">
+        <tr>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Amount</th>
+            <th>Status</th>
+        </tr>
+
+        @foreach (var item in Model.OrderItems)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.ProductName)</td>
+                <td>@Html.DisplayFor(modelItem => item.Price)</td>
+                <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
+                <td>@Html.DisplayFor(modelItem => item.Amount)</td>
+                <td>@Html.DisplayFor(modelItem => item.Status)</td>
+            </tr>
+        }
+
+    </table>
+
+    <div>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+
+    </div>
+</div>

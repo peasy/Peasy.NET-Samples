@@ -42,6 +42,10 @@
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.OrderID })
+            @if (!item.HasShippedItems)
+            {
+              <text>|</text> @Html.ActionLink("Delete", "Delete", new { id=item.OrderID })
+            }
         </td>
     </tr>
 }

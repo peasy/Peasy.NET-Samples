@@ -313,6 +313,7 @@
     <Content Include="Views\OrderItems\Edit.cshtml" />
     <Content Include="Views\OrderItems\Create.cshtml" />
     <Content Include="Views\Orders\Create.cshtml" />
+    <Content Include="Views\Orders\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
