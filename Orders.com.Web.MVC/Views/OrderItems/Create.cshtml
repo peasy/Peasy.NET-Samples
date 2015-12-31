@@ -20,7 +20,8 @@
         <div class="form-group">
             <label class="control-label col-md-1" for="CategoryID">Category</label>
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.CategoryID, new SelectList(Model.Categories, "CategoryID", "Name"), "-- select one --", new { @class = "form-control" })
+                @*@Html.DropDownListFor(model => model.CategoryID, new SelectList(Model.Categories, "CategoryID", "Name"), "-- select one --", new { @class = "form-control" })*@
+                @Html.DropDownList("CategoryID", new SelectList(Model.Categories, "CategoryID", "Name"), "-- select one --", new { @class = "form-control" })
             </div>
         </div>
 

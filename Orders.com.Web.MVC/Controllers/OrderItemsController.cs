@@ -3,6 +3,7 @@ using Orders.com.BLL.Services;
 using Orders.com.Web.MVC.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web.Mvc;
 
 namespace Orders.com.Web.MVC.Controllers
@@ -31,6 +32,7 @@ namespace Orders.com.Web.MVC.Controllers
             {
                 vm.InStock = _inventoryService.GetByProductCommand(vm.ProductID).Execute().Value.QuantityOnHand;
                 vm.AssociatedProduct = vm.Products.First(p => p.ProductID == vm.ProductID);
+                vm.AssociatedCategory = vm.Categories.First(c => c.CategoryID == vm.AssociatedProduct.CategoryID);
             }
             return vm;
         }
@@ -60,6 +62,18 @@ namespace Orders.com.Web.MVC.Controllers
                 return RedirectToAction("Edit", "Orders", new { id = vm.OrderID });
             else
                 return HandleFailedResult(ConfigureVM(vm), result);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public override ActionResult DeleteConfirmed(long id)
+        {
+            var item = _service.GetByIDCommand(id).Execute().Value;
+            var result = _service.DeleteCommand(id).Execute();
+            if (result.Success)
+                return RedirectToAction("Edit", "Orders", new { id = item.OrderID });
+            else
+                return HandleFailedResult(new OrderItemViewModel { ID = id, OrderID = item.OrderID }, result);
         }
 
         [HttpPost]

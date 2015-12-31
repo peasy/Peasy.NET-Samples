@@ -16,7 +16,7 @@
     }
 
     quantity.keyup(function() {
-        amount.text((quantity.val() * price.val()).toFixed(2));
+        amount.text(USD(quantity.val() * price.val()));
     });
 
     categories.change(function () {
@@ -46,5 +46,4 @@
     function USD(value) {
         return value.toLocaleString("en-US", {style: "currency", currency: "USD", minimumFractionDigits: 2});
     }
-
 });

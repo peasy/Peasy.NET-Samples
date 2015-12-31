@@ -52,6 +52,7 @@
 
 <table class="table">
     <tr>
+        <th></th>
         <th>Product</th>
         <th>Price</th>
         <th>Quantity</th>
@@ -65,15 +66,7 @@
     @foreach (var item in Model.OrderItems)
     {
         <tr>
-            <td>@Html.DisplayFor(modelItem => item.ProductName)</td>
-            <td>@Html.DisplayFor(modelItem => item.Price)</td>
-            <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
-            <td>@Html.DisplayFor(modelItem => item.Amount)</td>
-            <td>@Html.DisplayFor(modelItem => item.Status)</td>
-            <td>@Html.DisplayFor(modelItem => item.SubmittedOn)</td>
-            <td>@Html.DisplayFor(modelItem => item.ShippedOn)</td>
             <td>
-                @Html.ActionLink("Edit", "Edit", "OrderItems", new { id = item.ID }, null)
                 @if (item.CanShip)
                 {
                     using (Html.BeginForm("ship", "orderitems"))
@@ -83,6 +76,21 @@
                         <input type="hidden" value="@item.OrderID" name="OrderID" />
                         <input type="submit" value="Ship" class="btn btn-default" />
                     }
+                }
+            </td>
+            <td>@Html.DisplayFor(modelItem => item.ProductName)</td>
+            <td>@Html.DisplayFor(modelItem => item.Price)</td>
+            <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
+            <td>@Html.DisplayFor(modelItem => item.Amount)</td>
+            <td>@Html.DisplayFor(modelItem => item.Status)</td>
+            <td>@Html.DisplayFor(modelItem => item.SubmittedOn)</td>
+            <td>@Html.DisplayFor(modelItem => item.ShippedOn)</td>
+            <td>
+                @if (item.CanDelete)
+                {
+                    @Html.ActionLink("Edit", "Edit", "OrderItems", new { id = item.ID }, null)
+                    <text>|</text>
+                    @Html.ActionLink("Delete", "Delete", "OrderItems", new { id = item.ID }, null)
                 }
             </td>
         </tr>

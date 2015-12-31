@@ -20,15 +20,12 @@ namespace Orders.com.Web.MVC.ViewModels
         [Display(Name = "In Stock")]
         public decimal InStock { get; set; }
 
-        public long CategoryID { get; set; }
-
         public long ProductID
         {
             get { return Entity.ProductID; }
             set { Entity.ProductID = value; }
         }
 
-        [DisplayFormat(DataFormatString = "{0:G}")]
         public decimal Quantity
         {
             get { return Entity.Quantity; }
@@ -51,6 +48,11 @@ namespace Orders.com.Web.MVC.ViewModels
                 Entity.Price = value;
                 Amount = value * Quantity;
             }
+        }
+
+        public bool CanDelete
+        {
+            get { return !Entity.OrderStatus().IsShipped; }
         }
 
         public bool CanShip
@@ -88,6 +90,5 @@ namespace Orders.com.Web.MVC.ViewModels
         public Category AssociatedCategory { get; set; }
 
         public Product AssociatedProduct { get; set; }
-
     }
 }
