@@ -98,16 +98,20 @@
 
 </table>
 
-@if (Model.HasUnsubmittedItems.GetValueOrDefault())
-{
-    using (Html.BeginForm())
+<div class="form-actions no-color">
+    @if (Model.HasUnsubmittedItems.GetValueOrDefault())
     {
-        @Html.AntiForgeryToken()
-        @Html.HiddenFor(model => model.ID)
-        <input type="submit" value="Submit Order" class="btn btn-default" formaction="@Url.Action("Submit")" />
+        using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.ID)
+            <input type="submit" value="Submit Order" class="btn btn-default" formaction="@Url.Action("Submit")" />
+            <text>|</text>
+            @Html.ActionLink("Back to List", "Index")
+        }
     }
-}
-
-<br />
-
-@Html.ActionLink("Back to List", "Index")
+    else
+    {
+        @Html.ActionLink("Back to List", "Index")
+    }
+</div>
