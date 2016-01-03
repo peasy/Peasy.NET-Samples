@@ -35,10 +35,10 @@ namespace Orders.com.Web.MVC.Controllers
         }
 
         [HttpGet]
-        public ActionResult Products(long categoryID)
+        public ActionResult Category(long id)
         {
             var service = _service as IProductService;
-            var products = service.GetByCategoryCommand(categoryID).Execute().Value;
+            var products = service.GetByCategoryCommand(id).Execute().Value;
             return Json(products, JsonRequestBehavior.AllowGet);
         }
 

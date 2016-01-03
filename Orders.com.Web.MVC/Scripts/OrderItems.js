@@ -21,7 +21,7 @@
 
     categories.change(function () {
         var categoryID = categories.val();
-        $.getJSON("/products/products?categoryID=" + categoryID, function (data) {
+        $.getJSON("/products/category/" + categoryID, function (data) {
             var items = '<option>-- select one --</option>';
             $.each(data, function (i, state) {
                 console.log(state);
