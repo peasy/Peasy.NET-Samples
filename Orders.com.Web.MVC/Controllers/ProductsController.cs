@@ -48,5 +48,19 @@ namespace Orders.com.Web.MVC.Controllers
             var product = _service.GetByIDCommand(id).Execute().Value;
             return Json(product, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public override ActionResult DeleteConfirmed(long id)
+        {
+            var result = _service.DeleteCommand(id).Execute();
+            if (result.Success)
+                return RedirectToAction("Index");
+            else
+            {
+                var product = _service.GetByIDCommand(id).Execute().Value;
+                return HandleFailedResult(new ProductViewModel { Entity = product }, result);
+            }
+        }
     }
 }

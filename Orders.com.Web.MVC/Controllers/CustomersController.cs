@@ -1,6 +1,7 @@
 ﻿using Orders.com.Web.MVC.ViewModels;
 using Orders.com.BLL.Domain;
 using Orders.com.BLL.Services;
+using System.Web.Mvc;
 
 namespace Orders.com.Web.MVC.Controllers
 {
@@ -8,6 +9,20 @@ namespace Orders.com.Web.MVC.Controllers
     {
         public CustomersController(ICustomerService service) : base(service)
         {
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public override ActionResult DeleteConfirmed(long id)
+        {
+            var result = _service.DeleteCommand(id).Execute();
+            if (result.Success)
+                return RedirectToAction("Index");
+            else
+            {
+                var customer = _service.GetByIDCommand(id).Execute().Value;
+                return HandleFailedResult(new CustomerViewModel { Entity = customer }, result);
+            }
         }
     }
 

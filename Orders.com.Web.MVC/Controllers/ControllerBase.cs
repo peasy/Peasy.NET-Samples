@@ -103,7 +103,7 @@ namespace Orders.com.Web.MVC.Controllers
             if (result.Success)
                 return RedirectToAction("Index");
             else
-                return HandleFailedResult(new TViewModel(), result);
+                return HandleFailedResult(ConfigureVM(new TViewModel()), result);
         }
 
         protected ActionResult HandleFailedResult(TViewModel vm, ExecutionResult result)
