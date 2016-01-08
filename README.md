@@ -2,9 +2,13 @@
 
 # A sample application
 
-A full implementation of a middle tier built with peasy and sample consumer clients (WPF, Web API, etc.) can be found here.  You can clone the repo or download the entire project as a [zip](https://github.com/peasy/samples/archive/master.zip).
+A full implementation of a middle tier built with peasy and sample consumer clients (WPF, Web API, and ASP.NET MVC) can be found here.  You can clone the repo or download the entire project as a [zip](https://github.com/peasy/samples/archive/master.zip).
 
 Once downloaded, open Orders.com.sln with Visual Studio, set the WPF project and Web Api projects as the startup projects and run.
+
+The sample application is a ficticious order entry / inventory management system, and offers a WPF as well as an ASP.NET MVC client.  All efforts were made to keep these applications as simple as possible to keep the focus more on how a middle tier is both written and consumed.
+
+The easiest way to get up and running is to set either the WPF project or the ASP.NET MVC project as the startup project and run the application.  Each project is configured to use in-memory [data proxies]().  However, the sample applications can be configured to interact with a SQL Server database or HTTP proxies (via Web Api) as well.
 
 ### SQL Server Setup
 
