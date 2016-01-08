@@ -2,9 +2,9 @@
 
 # A sample application
 
-A full implementation of a middle tier built with peasy and sample consumer clients (WPF, Web API, and ASP.NET MVC) can be found here.  You can clone the repo or download the entire project as a [zip](https://github.com/peasy/samples/archive/master.zip).
+A full implementation of a middle tier built with peasy and sample consumer clients (WPF, Web API, and ASP.NET MVC) can be found here.  You can clone the repo or download the entire solution as a [zip](https://github.com/peasy/samples/archive/master.zip).
 
-The sample application is a ficticious order entry / inventory management system, and offers a WPF as well as an ASP.NET MVC client.  All efforts were made to keep these applications as simple as possible to keep the focus on how a middle tier is written with peasy and consumed by multiple clients.
+The sample application is a ficticious order entry / inventory management system, and offers both WPF and ASP.NET MVC clients.  All efforts were made to keep these applications as simple as possible to keep the focus on how a middle tier is written with peasy and consumed by multiple clients.
 
 The easiest way to get up and running is to set either the WPF project or the ASP.NET MVC project as the startup project and run the application.  By default, these projects are configured to use in-memory implementations of the [data proxies](https://github.com/peasy/Peasy.NET/wiki/Data-Proxy).  
 
@@ -56,6 +56,17 @@ Be sure to [setup SQL Server](https://github.com/peasy/Samples#sql-server-setup)
 
 #### WPF -> Web API -> SQL Server
 ![WPF -> In Memory](https://www.dropbox.com/s/3jnzgut90xfoy23/WPF-API-SQL.png?dl=0&raw=1)
+
+In this scenario, the WPF client consumes peasy [business services](https://github.com/peasy/Peasy.NET/wiki/ServiceBase) that are injected with HTTP [data proxies](https://github.com/peasy/Peasy.NET/wiki/Data-Proxy) and communicate with the Web API project.  In turn, the Web API project can be configured to use in-memory or EF6 data proxies.
+
+To configure the WPF application to use business services that are injected with EF6 data proxies, locate the ```MainWindow_Loaded``` event handler in the [MainWindow](https://github.com/peasy/Samples/blob/master/Orders.com.WPF/MainWindow.xaml.cs) class and ensure the following line exists:
+
+```c#
+  void MainWindow_Loaded(object sender, RoutedEventArgs e)
+  {
+      ConfigureEFUsage();
+  }
+```
 
 #### ASP.NET MVC -> In Memory
 ![WPF -> In Memory](https://www.dropbox.com/s/woda85tpyk7l3ht/MVC.png?dl=0&raw=1)
