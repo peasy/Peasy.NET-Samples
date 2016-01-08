@@ -22,7 +22,7 @@ Because these clients consume a middle tier written with peasy, they can be conf
 
 * [WPF -> In Memory](https://github.com/peasy/Samples#wpf---in-memory)
 * [WPF -> SQL Server](https://github.com/peasy/Samples#wpf---sql-server)
-* [WPF -> Web API -> In Memory](https://github.com/peasy/Samples#wpf---web-api---sql-server)
+* [WPF -> Web API -> In Memory](https://github.com/peasy/Samples#wpf---web-api---in-memory)
 * [WPF -> Web API -> SQL Server](https://github.com/peasy/Samples#wpf---web-api---sql-server)
 * [ASP.NET MVC -> In Memory](https://github.com/peasy/Samples#aspnet-mvc---in-memory)
 * [ASP.NET MVC -> SQL Server](https://github.com/peasy/Samples#aspnet-mvc---sql-server)
