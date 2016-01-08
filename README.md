@@ -18,8 +18,14 @@ The sample applications can be configured to interact with a SQL Server database
 
 ### Configurations
 
-Because these clients consume a middle tier written with peasy, they can be configured in different ways to fulfill your needs.  Below are multiple available configurations that serve to showcase how you might deploy applications consuming your middle tier written with peasy.
+Because these clients consume a middle tier written with peasy, they can be configured in different ways to fulfill your needs, whether that be to facilitate rapid development and testing or to achieve scalability benefits.  Below are multiple available configurations that serve to showcase how you might deploy applications consuming your middle tier written with peasy.
 
+* [WPF -> In Memory](https://github.com/peasy/Samples#wpf---in-memory)
+* [WPF -> SQL Server](https://github.com/peasy/Samples#wpf---sql-server)
+* [WPF -> Web API -> SQL Server](https://github.com/peasy/Samples#wpf---web-api---sql-server)
+* [ASP.NET MVC -> In Memory](https://github.com/peasy/Samples#aspnet-mvc---in-memory)
+* [ASP.NET MVC -> SQL Server](https://github.com/peasy/Samples#aspnet-mvc---sql-server)
+* [ASP.NET MVC -> Web API -> SQL Server](https://github.com/peasy/Samples#aspnet-mvc---web-api---sql-server)
 #### WPF -> In Memory
 
 ![WPF -> In Memory](https://www.dropbox.com/s/yex9qv528um3re6/WPF.png?dl=0&raw=1)
