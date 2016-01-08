@@ -22,6 +22,7 @@ Because these clients consume a middle tier written with peasy, they can be conf
 
 * [WPF -> In Memory](https://github.com/peasy/Samples#wpf---in-memory)
 * [WPF -> SQL Server](https://github.com/peasy/Samples#wpf---sql-server)
+* [WPF -> Web API -> In Memory](https://github.com/peasy/Samples#wpf---web-api---sql-server)
 * [WPF -> Web API -> SQL Server](https://github.com/peasy/Samples#wpf---web-api---sql-server)
 * [ASP.NET MVC -> In Memory](https://github.com/peasy/Samples#aspnet-mvc---in-memory)
 * [ASP.NET MVC -> SQL Server](https://github.com/peasy/Samples#aspnet-mvc---sql-server)
@@ -34,10 +35,10 @@ Because these clients consume a middle tier written with peasy, they can be conf
 In this scenario, the WPF client consumes peasy [business services](https://github.com/peasy/Peasy.NET/wiki/ServiceBase) that are injected with in-memory [data proxies](https://github.com/peasy/Peasy.NET/wiki/Data-Proxy).  To configure the WPF application to use business services that are injected with in-memory data proxies, locate the ```MainWindow_Loaded``` event handler in the [MainWindow](https://github.com/peasy/Samples/blob/master/Orders.com.WPF/MainWindow.xaml.cs) class and ensure the following line exists:
 
 ```c#
-  void MainWindow_Loaded(object sender, RoutedEventArgs e)
-  {
-      ConfigureInMemoryUsage();
-  }
+void MainWindow_Loaded(object sender, RoutedEventArgs e)
+{
+    ConfigureInMemoryUsage();
+}
 ```
 
 #### WPF -> SQL Server
@@ -46,27 +47,54 @@ In this scenario, the WPF client consumes peasy [business services](https://gith
 In this scenario, the WPF client consumes peasy [business services](https://github.com/peasy/Peasy.NET/wiki/ServiceBase) that are injected with Entity Framework 6.0 [data proxies](https://github.com/peasy/Peasy.NET/wiki/Data-Proxy) and communicate with a SQL Server database.  To configure the WPF application to use business services that are injected with EF6 data proxies, locate the ```MainWindow_Loaded``` event handler in the [MainWindow](https://github.com/peasy/Samples/blob/master/Orders.com.WPF/MainWindow.xaml.cs) class and ensure the following line exists:
 
 ```c#
-  void MainWindow_Loaded(object sender, RoutedEventArgs e)
-  {
-      ConfigureEFUsage();
-  }
+void MainWindow_Loaded(object sender, RoutedEventArgs e)
+{
+    ConfigureEFUsage();
+}
 ```
 
 Be sure to [setup SQL Server](https://github.com/peasy/Samples#sql-server-setup) after changing the configuration and running the application. 
+
+#### WPF -> Web API -> In Memory
+![WPF -> Web API -> In Memory](https://www.dropbox.com/s/qzouuwj1lrec44v/WPF-WebAPI.png?dl=0&raw=1)
+
+In this scenario, the WPF client consumes peasy [business services](https://github.com/peasy/Peasy.NET/wiki/ServiceBase) that are injected with HTTP [data proxies](https://github.com/peasy/Peasy.NET/wiki/Data-Proxy) and communicate with the Web API project.  In turn, the Web API project is configured to use in-memory data proxies.
+
+To configure the WPF application to use business services that are injected with HTTP data proxies, locate the ```MainWindow_Loaded``` event handler in the [MainWindow](https://github.com/peasy/Samples/blob/master/Orders.com.WPF/MainWindow.xaml.cs) class and ensure the following line exists:
+
+```c#
+void MainWindow_Loaded(object sender, RoutedEventArgs e)
+{
+    ConfigureHttpClientUsage();
+}
+```
+
+An important thing to note is that the configuration in ```ConfigureHttpClientUsage()``` uses a few business services that can be referred to as pass-thru classes.
+
+By default, the web api project has been configured to use in-memory data proxies.  However, you can configure the Web Api project to consume EF6 data proxies by changing the configuration.  In the Web Api project you will find a DependencyInjection.config file that contains 2 sections for possible configurations for data proxies, EF6 and In-Memory, respectively.
+
+To run, set the WPF and Web Api as the startup projects and run the application.
 
 #### WPF -> Web API -> SQL Server
 ![WPF -> In Memory](https://www.dropbox.com/s/3jnzgut90xfoy23/WPF-API-SQL.png?dl=0&raw=1)
 
 In this scenario, the WPF client consumes peasy [business services](https://github.com/peasy/Peasy.NET/wiki/ServiceBase) that are injected with HTTP [data proxies](https://github.com/peasy/Peasy.NET/wiki/Data-Proxy) and communicate with the Web API project.  In turn, the Web API project can be configured to use in-memory or EF6 data proxies.
 
-To configure the WPF application to use business services that are injected with EF6 data proxies, locate the ```MainWindow_Loaded``` event handler in the [MainWindow](https://github.com/peasy/Samples/blob/master/Orders.com.WPF/MainWindow.xaml.cs) class and ensure the following line exists:
+To configure the WPF application to use business services that are injected with HTTP data proxies, locate the ```MainWindow_Loaded``` event handler in the [MainWindow](https://github.com/peasy/Samples/blob/master/Orders.com.WPF/MainWindow.xaml.cs) class and ensure the following line exists:
 
 ```c#
-  void MainWindow_Loaded(object sender, RoutedEventArgs e)
-  {
-      ConfigureEFUsage();
-  }
+void MainWindow_Loaded(object sender, RoutedEventArgs e)
+{
+    ConfigureHttpClientUsage();
+}
 ```
+
+An important thing to note is that the configuration in ```ConfigureHttpClientUsage()``` uses a few business services that can be referred to as pass-thru classes.
+
+By default, the web api project has been configured to use in-memory data proxies.  However, you can configure the Web Api project to consume EF6 data proxies by changing the configuration.  In the Web Api project you will find a DependencyInjection.config file that contains 2 sections for possible configurations for data proxies, EF6 and In-Memory, respectively.
+
+To run, set the WPF and Web Api as the startup projects and run the application.
+
 
 #### ASP.NET MVC -> In Memory
 ![WPF -> In Memory](https://www.dropbox.com/s/woda85tpyk7l3ht/MVC.png?dl=0&raw=1)
