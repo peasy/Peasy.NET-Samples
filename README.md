@@ -10,7 +10,7 @@ The easiest way to get up and running is to set either the WPF project or the AS
 
 ### SQL Server Setup
 
-The sample applications can be configured to interact with a SQL Server database or HTTP proxies (via Web Api) as well.
+The sample applications can be configured to interact with a SQL Server database as well.  Here are the steps to setup a SQL Server database for use by the sample applications:
 
 1.) in package manager console, select Orders.com.DAL.EF in the Default project drop down list
 
@@ -18,11 +18,20 @@ The sample applications can be configured to interact with a SQL Server database
 
 ### Configurations
 
-Because these clients consume a middle tier written with peasy, they can be configured in different ways to fulfill your needs.
+Because these clients consume a middle tier written with peasy, they can be configured in different ways to fulfill your needs.  Below are multiple available configurations that serve to showcase how you might deploy applications consuming your middle tier written with peasy.
 
 #### WPF -> In Memory
 
 ![WPF -> In Memory](https://www.dropbox.com/s/yex9qv528um3re6/WPF.png?dl=0&raw=1)
+
+In this scenario, the WPF client consumes peasy [business services]() that are injected with in-memory [data proxies]().  To configure the WPF application to use business services that are injected with in-memory data proxies, locate the ```MainWindow_Loaded``` event handler in the [MainWindow](https://github.com/peasy/Samples/blob/master/Orders.com.WPF/MainWindow.xaml.cs) class and ensure the following line exists:
+
+```c#
+  void MainWindow_Loaded(object sender, RoutedEventArgs e)
+  {
+      ConfigureInMemoryUsage();
+  }
+```
 
 #### WPF -> SQL Server
 ![WPF -> SQL Server](https://www.dropbox.com/s/s5xvkdgkasynzd6/WPF-SQL.png?dl=0&raw=1)
