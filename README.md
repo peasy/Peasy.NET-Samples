@@ -43,8 +43,6 @@ In this scenario, the WPF client consumes peasy [business services](https://gith
 #### WPF -> SQL Server
 ![WPF -> SQL Server](https://www.dropbox.com/s/s5xvkdgkasynzd6/WPF-SQL.png?dl=0&raw=1)
 
-![WPF -> In Memory](https://www.dropbox.com/s/yex9qv528um3re6/WPF.png?dl=0&raw=1)
-
 In this scenario, the WPF client consumes peasy [business services](https://github.com/peasy/Peasy.NET/wiki/ServiceBase) that are injected with Entity Framework 6.0 [data proxies](https://github.com/peasy/Peasy.NET/wiki/Data-Proxy) and communicate with a SQL Server database.  To configure the WPF application to use business services that are injected with EF6 data proxies, locate the ```MainWindow_Loaded``` event handler in the [MainWindow](https://github.com/peasy/Samples/blob/master/Orders.com.WPF/MainWindow.xaml.cs) class and ensure the following line exists:
 
 ```c#
