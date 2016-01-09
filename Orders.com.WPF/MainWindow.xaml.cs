@@ -7,9 +7,6 @@ using System.Windows.Controls;
 
 namespace Orders.com.WPF
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow
     {
         private CustomerService _customersService;
@@ -38,8 +35,9 @@ namespace Orders.com.WPF
             var orderItemDataProxy = new OrderItemsHttpServiceProxy();
             var orderRepository = new OrdersHttpServiceProxy();
             var categoriesDataProxy = new CategoriesHttpServiceProxy();
+
             _inventoryService = new InventoryItemService(inventoryDataProxy);
-            _orderItemsService = new OrderItemClientService(orderItemDataProxy, productsDataProxy, inventoryDataProxy, new DTCTransactionContext());
+            _orderItemsService = new OrderItemService(orderItemDataProxy, productsDataProxy, inventoryDataProxy, new DTCTransactionContext());
             _ordersService = new OrderService(orderRepository, _orderItemsService, new DTCTransactionContext());
             _customersService = new CustomerService(customerDataProxy, _ordersService);
             _productsService = new ProductClientService(productsDataProxy, orderRepository, _inventoryService, new DTCTransactionContext());
@@ -73,6 +71,7 @@ namespace Orders.com.WPF
             var orderItemDataProxy = new DAL.EF.OrderItemRepository();
             var orderRepository = new DAL.EF.OrderRepository();
             var categoriesDataProxy = new DAL.EF.CategoryRepository();
+
             _inventoryService = new InventoryItemService(inventoryDataProxy);
             _orderItemsService = new OrderItemService(orderItemDataProxy, productsDataProxy, inventoryDataProxy, new DTCTransactionContext());
             _ordersService = new OrderService(orderRepository, _orderItemsService, new DTCTransactionContext());
