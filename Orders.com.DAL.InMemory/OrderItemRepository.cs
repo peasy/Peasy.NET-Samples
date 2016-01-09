@@ -8,7 +8,7 @@ using Orders.com.BLL.DataProxy;
 
 namespace Orders.com.DAL.InMemory
 {
-    public class OrderItemRepository : OrdersDotComMockBase<OrderItem>, IOrderItemDataProxy
+    public class OrderItemRepository : OrdersDotComRepositoryBase<OrderItem>, IOrderItemDataProxy
     {
         public IEnumerable<OrderItem> GetByOrder(long orderID)
         {

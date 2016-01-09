@@ -11,7 +11,7 @@ using Orders.com.BLL.QueryData;
 
 namespace Orders.com.DAL.InMemory
 {
-    public class OrderRepository : OrdersDotComMockBase<Order>, IOrderDataProxy
+    public class OrderRepository : OrdersDotComRepositoryBase<Order>, IOrderDataProxy
     {
         private ICustomerDataProxy _customerDataProxy;
         private IOrderItemDataProxy _orderItemDataProxy;

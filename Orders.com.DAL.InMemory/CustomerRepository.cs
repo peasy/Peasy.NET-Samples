@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Orders.com.DAL.InMemory
 {
-    public class CustomerRepository : OrdersDotComMockBase<Customer>, ICustomerDataProxy
+    public class CustomerRepository : OrdersDotComRepositoryBase<Customer>, ICustomerDataProxy
     {
         protected override IEnumerable<Customer> SeedDataProxy()
         {

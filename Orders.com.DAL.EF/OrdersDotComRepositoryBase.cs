@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace Orders.com.DAL.EF
 {
-
     public abstract class OrdersDotComRepositoryBase<T> : EF6DataProxyBase<T, T, long>, IServiceDataProxy<T, long> where T : DomainBase, new()
     {
         public OrdersDotComRepositoryBase() : base(new MapsterHelper())

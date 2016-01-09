@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Orders.com.DAL.InMemory
 {
-    public class ProductRepository : OrdersDotComMockBase<Product>, IProductDataProxy
+    public class ProductRepository : OrdersDotComRepositoryBase<Product>, IProductDataProxy
     {
         protected override IEnumerable<Product> SeedDataProxy()
         {

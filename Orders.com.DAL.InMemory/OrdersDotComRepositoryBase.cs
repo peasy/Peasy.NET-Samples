@@ -8,7 +8,7 @@ using Orders.com.BLL.Extensions;
 
 namespace Orders.com.DAL.InMemory
 {
-    public class OrdersDotComMockBase<DTO> : InMemoryDataProxyBase<DTO, long> where DTO : IDomainObject<long>
+    public class OrdersDotComRepositoryBase<DTO> : InMemoryDataProxyBase<DTO, long> where DTO : IDomainObject<long>
     {
         public override DTO GetByID(long id)
         {

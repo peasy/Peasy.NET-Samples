@@ -59,7 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="InventoryItemRepository.cs" />
-    <Compile Include="OrdersDotComMockBase.cs" />
+    <Compile Include="OrdersDotComRepositoryBase.cs" />
     <Compile Include="OrderStatusRepository.cs" />
     <Compile Include="OrderItemRepository.cs" />
     <Compile Include="OrderRepository.cs" />
