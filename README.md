@@ -30,7 +30,7 @@ Because these clients consume a middle tier written with peasy, they can be conf
 
 #### WPF &#8594; In Memory
 
-![WPF &#8594; In Memory](https://www.dropbox.com/s/yex9qv528um3re6/WPF.png?dl=0&raw=1)
+![WPF &#8594; In Memory](https://www.dropbox.com/s/yls7db3j3pxy4ol/WPF%20%281%29.png?dl=0&raw=1)
 
 In this scenario, the WPF client consumes [business services](https://github.com/peasy/Peasy.NET/wiki/ServiceBase) that are injected with [data proxies](https://github.com/peasy/Peasy.NET/wiki/Data-Proxy) that communicate with in-memory data stores.  To configure the WPF application to use business services that are injected with in-memory data proxies, locate the ```MainWindow_Loaded``` event handler in the [MainWindow](https://github.com/peasy/Samples/blob/master/Orders.com.WPF/MainWindow.xaml.cs) class and ensure the following line exists:
 
@@ -46,7 +46,7 @@ The ```ConfigureInMemoryUsage``` method instantiates the business services and p
 To run the application, ensure that the WPF project is set as the startup project.
 
 #### WPF &#8594; SQL Server
-![WPF &#8594; SQL Server](https://www.dropbox.com/s/s5xvkdgkasynzd6/WPF-SQL.png?dl=0&raw=1)
+![WPF &#8594; SQL Server](https://www.dropbox.com/s/02stvqm7dby969m/WPF-SQL%20%282%29.png?dl=0&raw=1)
 
 In this scenario, the WPF client consumes [business services](https://github.com/peasy/Peasy.NET/wiki/ServiceBase) that are injected with [data proxies](https://github.com/peasy/Peasy.NET/wiki/Data-Proxy) that use Entity Framework 6.0 to communicate with a SQL Server database.  To configure the WPF application to use business services injected with EF6 data proxies, locate the ```MainWindow_Loaded``` event handler in the [MainWindow](https://github.com/peasy/Samples/blob/master/Orders.com.WPF/MainWindow.xaml.cs) class and ensure the following line exists:
 
@@ -64,7 +64,7 @@ Before running the application, be sure to [setup SQL Server](https://github.com
 To run the application, ensure that the WPF project is set as the startup project.
 
 #### WPF &#8594; Web API &#8594; In Memory
-![WPF &#8594; Web API &#8594; In Memory](https://www.dropbox.com/s/qzouuwj1lrec44v/WPF-WebAPI.png?dl=0&raw=1)
+![WPF &#8594; Web API &#8594; In Memory](https://www.dropbox.com/s/4ujrou39t6jpq6i/WPF-API.png?dl=0=0&raw=1)
 
 In this scenario, the WPF client consumes [business services](https://github.com/peasy/Peasy.NET/wiki/ServiceBase) that are injected with [data proxies](https://github.com/peasy/Peasy.NET/wiki/Data-Proxy) that use HTTP (via HttpClient) to communicate with the Web API application.  In turn, the Web API application uses business services that are injected with data proxies that communicate with in-memory data stores.
 
@@ -90,7 +90,7 @@ Notice that there are two configuration sections for data proxies, one for Entit
 To run the application, set the WPF and Web Api as the startup projects in the solution and run the application.
 
 #### WPF &#8594; Web API &#8594; SQL Server
-![WPF &#8594; In Memory](https://www.dropbox.com/s/3jnzgut90xfoy23/WPF-API-SQL.png?dl=0&raw=1)
+![WPF &#8594; API &#8594 In Memory](https://www.dropbox.com/s/7k1kz1j9k3tueax/WPF-API-SQL%20%281%29.png?dl=0&raw=1)
 
 In this scenario, the WPF client consumes [business services](https://github.com/peasy/Peasy.NET/wiki/ServiceBase) that are injected with [data proxies](https://github.com/peasy/Peasy.NET/wiki/Data-Proxy) that use HTTP (via HttpClient) to communicate with the Web API application.  In turn, the Web API application uses business services that are injected with data proxies that use Entity Framework 6.0 to communicate with a SQL Server database.
 
@@ -118,13 +118,16 @@ Before running the application, be sure to [setup SQL Server](https://github.com
 To run the application, set the WPF and Web Api as the startup projects in the solution and run the application.
 
 #### ASP.NET MVC &#8594; In Memory
-![WPF &#8594; In Memory](https://www.dropbox.com/s/woda85tpyk7l3ht/MVC.png?dl=0&raw=1)
+![WPF &#8594; In Memory](https://www.dropbox.com/s/l3q8y2obxhxy9ca/MVC%20%281%29.png?dl=0&raw=1)
 
 #### ASP.NET MVC &#8594; SQL Server
 ![WPF &#8594; In Memory](https://www.dropbox.com/s/9gsj1omqezv2f0b/MVC-SQL.png?dl=0&raw=1)
 
+#### ASP.NET MVC &#8594; Web API &#8594; In Memory
+![WPF &#8594; In Memory](https://www.dropbox.com/s/ubegb4hp860nkjf/MVC-API.png?dl=0&raw=1)
+
 #### ASP.NET MVC &#8594; Web API &#8594; SQL Server
-![WPF &#8594; In Memory](https://www.dropbox.com/s/12s0xb94aj8fuyu/MVC-API-SQL.png?dl=0&raw=1)
+![WPF &#8594; In Memory](https://www.dropbox.com/s/rv5rd4omoghluq9/MVC-API-SQL%20%281%29.png?dl=0&raw=1)
 
 
 ### Using pass thru service service proxies
