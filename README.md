@@ -43,6 +43,8 @@ void MainWindow_Loaded(object sender, RoutedEventArgs e)
 
 The ```ConfigureInMemoryUsage``` method instantiates the business services and passes concrete [in-memory data proxies](https://github.com/peasy/Peasy.DataProxy.InMemory) to them for data access.
 
+To run the application, ensure that the WPF project is set as the startup project.
+
 #### WPF &#8594; SQL Server
 ![WPF &#8594; SQL Server](https://www.dropbox.com/s/s5xvkdgkasynzd6/WPF-SQL.png?dl=0&raw=1)
 
@@ -59,10 +61,12 @@ The ```ConfigureEFUsage``` method instantiates the business services and passes 
 
 Before running the application, be sure to [setup SQL Server](https://github.com/peasy/Samples#sql-server-setup) after changing the configuration. 
 
+To run the application, ensure that the WPF project is set as the startup project.
+
 #### WPF &#8594; Web API &#8594; In Memory
 ![WPF &#8594; Web API &#8594; In Memory](https://www.dropbox.com/s/qzouuwj1lrec44v/WPF-WebAPI.png?dl=0&raw=1)
 
-In this scenario, the WPF client consumes [business services](https://github.com/peasy/Peasy.NET/wiki/ServiceBase) that are injected with [data proxies](https://github.com/peasy/Peasy.NET/wiki/Data-Proxy) that use HTTP (via HttpClient) to communicate with the Web API project.  In turn, the Web API project is configured to use in-memory data proxies by default.
+In this scenario, the WPF client consumes [business services](https://github.com/peasy/Peasy.NET/wiki/ServiceBase) that are injected with [data proxies](https://github.com/peasy/Peasy.NET/wiki/Data-Proxy) that use HTTP (via HttpClient) to communicate with the Web API application.  In turn, the Web API application uses business services that are injected with data proxies that communicate with in-memory data stores.
 
 To configure the WPF application to use business services that are injected with HTTP data proxies, locate the ```MainWindow_Loaded``` event handler in the [MainWindow](https://github.com/peasy/Samples/blob/master/Orders.com.WPF/MainWindow.xaml.cs) class and ensure the following line exists:
 
@@ -77,7 +81,55 @@ An important thing to note is that the configuration code in ```ConfigureHttpCli
 
 ![wpf http config](https://www.dropbox.com/s/mfxllpsyieuutri/wpf_http_config.png?dl=0&raw=1)
 
-The classes highlighted in red represent pass-through service classes.  These classes inherit from other service classes and override members to bypass any command logic to simply marshal calls to the data proxy.  This is due to the fact that command methods in the business services use logic to orchestrate logic among different services within transactions, or to eliminate the potential for work to be executed twice.
+The classes highlighted in red represent pass-through service classes.  These classes inherit from other service classes and override command methods to bypass any command logic to simply marshal calls to the data proxy.  For more information about the necessity of pass through commands, see []().
+
+The next step is to configure the Web API project.  The Web API project uses dynamic dependency injection to create business services and data proxies that will be injected into the API controllers.  To configure the Web API project to consume in-memory data proxies, open the [DependencyInjection.config](https://github.com/peasy/Samples/blob/master/Orders.com.Web.Api/DependencyInjection.config) file.
+
+Notice that there are two configuration sections for data proxies, one for Entity Framework and one for In-Memory, respectively.  Simply ensure that the Entity Framework section is commented out and the In Memory section is uncommented.
+
+To run the application, set the WPF and Web Api as the startup projects in the solution and run the application.
+
+#### WPF &#8594; Web API &#8594; SQL Server
+![WPF &#8594; In Memory](https://www.dropbox.com/s/3jnzgut90xfoy23/WPF-API-SQL.png?dl=0&raw=1)
+
+In this scenario, the WPF client consumes [business services](https://github.com/peasy/Peasy.NET/wiki/ServiceBase) that are injected with [data proxies](https://github.com/peasy/Peasy.NET/wiki/Data-Proxy) that use HTTP (via HttpClient) to communicate with the Web API application.  In turn, the Web API application uses business services that are injected with data proxies that use Entity Framework 6.0 to communicate with a SQL Server database.
+
+To configure the WPF application to use business services that are injected with HTTP data proxies, locate the ```MainWindow_Loaded``` event handler in the [MainWindow](https://github.com/peasy/Samples/blob/master/Orders.com.WPF/MainWindow.xaml.cs) class and ensure the following line exists:
+
+```c#
+void MainWindow_Loaded(object sender, RoutedEventArgs e)
+{
+    ConfigureHttpClientUsage();
+}
+```
+
+An important thing to note is that the configuration code in ```ConfigureHttpClientUsage()``` uses two business services that can be referred to as pass-thru or client service classes.  Let's take a look at the code:
+
+![wpf http config](https://www.dropbox.com/s/mfxllpsyieuutri/wpf_http_config.png?dl=0&raw=1)
+
+The classes highlighted in red represent pass-through service classes.  These classes inherit from other service classes and override command methods to bypass any command logic to simply marshal calls to the data proxy.  For more information about the necessity of pass through commands, see []().
+
+The next step is to configure the Web API project.  The Web API project uses dynamic dependency injection to create business services and data proxies that will be injected into the API controllers.  To configure the Web API project to consume Entity Framework data proxies, open the [DependencyInjection.config](https://github.com/peasy/Samples/blob/master/Orders.com.Web.Api/DependencyInjection.config) file.
+
+Notice that there are two configuration sections for data proxies, one for Entity Framework and one for In-Memory, respectively.  Simply ensure that the Entity Framework section is uncommented and the In Memory section is commented out.
+
+Before running the application, be sure to [setup SQL Server](https://github.com/peasy/Samples#sql-server-setup) after changing the configuration. 
+
+To run the application, set the WPF and Web Api as the startup projects in the solution and run the application.
+
+#### ASP.NET MVC &#8594; In Memory
+![WPF &#8594; In Memory](https://www.dropbox.com/s/woda85tpyk7l3ht/MVC.png?dl=0&raw=1)
+
+#### ASP.NET MVC &#8594; SQL Server
+![WPF &#8594; In Memory](https://www.dropbox.com/s/9gsj1omqezv2f0b/MVC-SQL.png?dl=0&raw=1)
+
+#### ASP.NET MVC &#8594; Web API &#8594; SQL Server
+![WPF &#8594; In Memory](https://www.dropbox.com/s/12s0xb94aj8fuyu/MVC-API-SQL.png?dl=0&raw=1)
+
+
+### Using pass thru service service proxies
+
+This is due to the fact that command methods in the business services use logic to orchestrate logic among different services within transactions, or to eliminate the potential for work to be executed twice.
 
 To illustrate this, let's take a look at the following method from the OrderItemService.ShipCommand method:
 
@@ -114,42 +166,8 @@ protected override OrderItem OnExecute()
 } 
 ```
 
-This method is responsible for decrementing inventory and then setting the status of the current order item to 'shipped'.  In this scenario, the WPF application is using an HTTP order item data proxy that will marshal the call to a receiving ```Ship``` method of the OrderItems Web Api controller.  Because the Ship method of the OrderItems controller is also configured to use the ShipCommand, this logic will be executed again, thus decrementing the inventory twice.
+This method is responsible for decrementing inventory followed by updating the status of the current order item to 'shipped'.  In this scenario, the application is using an HTTP order item data proxy that will marshal the call to a receiving ```Ship``` method of the OrderItems Web Api controller.  Because the Ship method of the OrderItems controller is also configured to use the ShipCommand, this logic will be executed again, thus decrementing the inventory twice.
 
 To address this issue, the OrderItemClientService class was created that overrides the ```Ship``` method and simply marshals the call to the _orderItemDataProxy.Ship method, bypassing the logic of the ShipCommand on the client, and allowing the OrderItem Web Api Service to handle the logic.
 
 Further notice that the ShipCommand logic executes the code atomically within a transaction.  Because it is notoriously difficult to orchestrate transactions that occur via HTTP service calls, it is best to bypass the logic on the client and allow the server to execute the code atomically against a data store.
-
-To run, set the WPF and Web Api as the startup projects and run the application.
-
-#### WPF &#8594; Web API &#8594; SQL Server
-![WPF &#8594; In Memory](https://www.dropbox.com/s/3jnzgut90xfoy23/WPF-API-SQL.png?dl=0&raw=1)
-
-In this scenario, the WPF client consumes peasy [business services](https://github.com/peasy/Peasy.NET/wiki/ServiceBase) that are injected with HTTP [data proxies](https://github.com/peasy/Peasy.NET/wiki/Data-Proxy) and communicate with the Web API project.  In turn, the Web API project can be configured to use in-memory or EF6 data proxies.
-
-To configure the WPF application to use business services that are injected with HTTP data proxies, locate the ```MainWindow_Loaded``` event handler in the [MainWindow](https://github.com/peasy/Samples/blob/master/Orders.com.WPF/MainWindow.xaml.cs) class and ensure the following line exists:
-
-```c#
-void MainWindow_Loaded(object sender, RoutedEventArgs e)
-{
-    ConfigureHttpClientUsage();
-}
-```
-
-An important thing to note is that the configuration in ```ConfigureHttpClientUsage()``` uses a few business services that can be referred to as pass-thru classes.
-
-![wpf http config](https://www.dropbox.com/s/mfxllpsyieuutri/wpf_http_config.png?dl=0&raw=1)
-
-By default, the web api project has been configured to use in-memory data proxies.  However, you can configure the Web Api project to consume EF6 data proxies by changing the configuration.  In the Web Api project you will find a DependencyInjection.config file that contains 2 sections for possible configurations for data proxies, EF6 and In-Memory, respectively.
-
-To run, set the WPF and Web Api as the startup projects and run the application.
-
-
-#### ASP.NET MVC &#8594; In Memory
-![WPF &#8594; In Memory](https://www.dropbox.com/s/woda85tpyk7l3ht/MVC.png?dl=0&raw=1)
-
-#### ASP.NET MVC &#8594; SQL Server
-![WPF &#8594; In Memory](https://www.dropbox.com/s/9gsj1omqezv2f0b/MVC-SQL.png?dl=0&raw=1)
-
-#### ASP.NET MVC &#8594; Web API &#8594; SQL Server
-![WPF &#8594; In Memory](https://www.dropbox.com/s/12s0xb94aj8fuyu/MVC-API-SQL.png?dl=0&raw=1)
