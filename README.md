@@ -32,7 +32,7 @@ Because these clients consume a middle tier written with peasy, they can be conf
 
 ![WPF &#8594; In Memory](https://www.dropbox.com/s/yex9qv528um3re6/WPF.png?dl=0&raw=1)
 
-In this scenario, the WPF client consumes [business services](https://github.com/peasy/Peasy.NET/wiki/ServiceBase) that are injected with in-memory [data proxies](https://github.com/peasy/Peasy.NET/wiki/Data-Proxy).  To configure the WPF application to use business services that are injected with in-memory data proxies, locate the ```MainWindow_Loaded``` event handler in the [MainWindow](https://github.com/peasy/Samples/blob/master/Orders.com.WPF/MainWindow.xaml.cs) class and ensure the following line exists:
+In this scenario, the WPF client consumes [business services](https://github.com/peasy/Peasy.NET/wiki/ServiceBase) that are injected with [data proxies](https://github.com/peasy/Peasy.NET/wiki/Data-Proxy) that communicate with in-memory data stores.  To configure the WPF application to use business services that are injected with in-memory data proxies, locate the ```MainWindow_Loaded``` event handler in the [MainWindow](https://github.com/peasy/Samples/blob/master/Orders.com.WPF/MainWindow.xaml.cs) class and ensure the following line exists:
 
 ```c#
 void MainWindow_Loaded(object sender, RoutedEventArgs e)
@@ -46,7 +46,7 @@ The ```ConfigureInMemoryUsage``` method instantiates the business services and p
 #### WPF &#8594; SQL Server
 ![WPF &#8594; SQL Server](https://www.dropbox.com/s/s5xvkdgkasynzd6/WPF-SQL.png?dl=0&raw=1)
 
-In this scenario, the WPF client consumes [business services](https://github.com/peasy/Peasy.NET/wiki/ServiceBase) that are injected with Entity Framework 6.0 [data proxies](https://github.com/peasy/Peasy.NET/wiki/Data-Proxy) configured to communicate with a SQL Server database.  To configure the WPF application to use business services injected with EF6 data proxies, locate the ```MainWindow_Loaded``` event handler in the [MainWindow](https://github.com/peasy/Samples/blob/master/Orders.com.WPF/MainWindow.xaml.cs) class and ensure the following line exists:
+In this scenario, the WPF client consumes [business services](https://github.com/peasy/Peasy.NET/wiki/ServiceBase) that are injected with [data proxies](https://github.com/peasy/Peasy.NET/wiki/Data-Proxy) that use Entity Framework 6.0 to communicate with a SQL Server database.  To configure the WPF application to use business services injected with EF6 data proxies, locate the ```MainWindow_Loaded``` event handler in the [MainWindow](https://github.com/peasy/Samples/blob/master/Orders.com.WPF/MainWindow.xaml.cs) class and ensure the following line exists:
 
 ```c#
 void MainWindow_Loaded(object sender, RoutedEventArgs e)
@@ -62,7 +62,7 @@ Before running the application, be sure to [setup SQL Server](https://github.com
 #### WPF &#8594; Web API &#8594; In Memory
 ![WPF &#8594; Web API &#8594; In Memory](https://www.dropbox.com/s/qzouuwj1lrec44v/WPF-WebAPI.png?dl=0&raw=1)
 
-In this scenario, the WPF client consumes [business services](https://github.com/peasy/Peasy.NET/wiki/ServiceBase) that are injected with HTTP [data proxies](https://github.com/peasy/Peasy.NET/wiki/Data-Proxy) configured to communicate with the Web API project.  In turn, the Web API project is configured to use in-memory data proxies by default.
+In this scenario, the WPF client consumes [business services](https://github.com/peasy/Peasy.NET/wiki/ServiceBase) that are injected with [data proxies](https://github.com/peasy/Peasy.NET/wiki/Data-Proxy) that use HTTP (via HttpClient) to communicate with the Web API project.  In turn, the Web API project is configured to use in-memory data proxies by default.
 
 To configure the WPF application to use business services that are injected with HTTP data proxies, locate the ```MainWindow_Loaded``` event handler in the [MainWindow](https://github.com/peasy/Samples/blob/master/Orders.com.WPF/MainWindow.xaml.cs) class and ensure the following line exists:
 
@@ -73,9 +73,52 @@ void MainWindow_Loaded(object sender, RoutedEventArgs e)
 }
 ```
 
-An important thing to note is that the configuration in ```ConfigureHttpClientUsage()``` uses a few business services that can be referred to as pass-thru classes.
+An important thing to note is that the configuration code in ```ConfigureHttpClientUsage()``` uses a few business services that can be referred to as pass-thru or client classes.  Let's take a look at the code:
 
-By default, the web api project has been configured to use in-memory data proxies.  However, you can configure the Web Api project to consume EF6 data proxies by changing the configuration.  In the Web Api project you will find a DependencyInjection.config file that contains 2 sections for possible configurations for data proxies, EF6 and In-Memory, respectively.
+![wpf http config](https://www.dropbox.com/s/mfxllpsyieuutri/wpf_http_config.png?dl=0&raw=1)
+
+The classes highlighted in red represent pass-through classes.  These classes inherit from other service classes and override members to bypass any command logic and simply marshal calls to the data proxy.  This is due to the fact that certain methods in the business services use commands that orchestrate logic among different services within transactions, or to eliminate the potential for work to be executed twice.
+
+To illustrate this, let's take a look at the following method from the OrderItemService.ShipCommand:
+
+```c#
+public virtual ICommand<OrderItem> ShipCommand(long orderItemID)
+{
+    // perform auth check?
+    var proxy = DataProxy as IOrderItemDataProxy;
+    return new ShipOrderItemCommand(orderItemID, proxy, _inventoryDataProxy, _transactionContext);
+}
+```
+
+The ```ShipCommand``` method simply returns an instance of the ShipOrderItemCommand, and will invoke the following code when Execute() is invoked on it:
+
+```c#
+protected override OrderItem OnExecute()
+{
+    return _transactionContext.Execute(() =>
+    {
+        var inventoryItem = _inventoryDataProxy.GetByProduct(CurrentOrderItem.ProductID);
+        if (inventoryItem.QuantityOnHand - CurrentOrderItem.Quantity >= 0)
+        {
+            CurrentOrderItem.OrderStatus().SetShippedState();
+            CurrentOrderItem.ShippedDate = DateTime.Now.ToUniversalTime();
+            inventoryItem.QuantityOnHand -= CurrentOrderItem.Quantity;
+            _inventoryDataProxy.Update(inventoryItem);
+        }
+        else
+        {
+            CurrentOrderItem.OrderStatus().SetBackorderedState();
+            CurrentOrderItem.BackorderedDate = DateTime.Now.ToUniversalTime();
+        }
+        return _orderItemDataProxy.Ship(CurrentOrderItem);
+    });
+} 
+```
+
+This method is responsible for decrementing inventory and then setting the status of the current order item to 'shipped'.  In this scenario, the WPF application is using an HTTP order item data proxy that will marshal the call to a receiving ```Ship``` method of the OrderItems Web Api controller.  Because the Ship method is configured to also use the ShipCommand, this logic will be executed again, thus decrementing the inventory twice.
+
+To get around this issue, the OrderItemClientService class was created that overrides the ```Ship``` method and simply marshals the call to the _orderItemDataProxy.Ship method, bypassing the logic of the ShipCommand on the client, and allowing the OrderItem Web Api Service to handle the logic.
+
 
 To run, set the WPF and Web Api as the startup projects and run the application.
 
