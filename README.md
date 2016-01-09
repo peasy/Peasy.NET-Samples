@@ -32,7 +32,7 @@ Because these clients consume a middle tier written with peasy, they can be conf
 
 ![WPF -> In Memory](https://www.dropbox.com/s/yex9qv528um3re6/WPF.png?dl=0&raw=1)
 
-In this scenario, the WPF client consumes peasy [business services](https://github.com/peasy/Peasy.NET/wiki/ServiceBase) that are injected with in-memory [data proxies](https://github.com/peasy/Peasy.NET/wiki/Data-Proxy).  To configure the WPF application to use business services that are injected with in-memory data proxies, locate the ```MainWindow_Loaded``` event handler in the [MainWindow](https://github.com/peasy/Samples/blob/master/Orders.com.WPF/MainWindow.xaml.cs) class and ensure the following line exists:
+In this scenario, the WPF client consumes [business services](https://github.com/peasy/Peasy.NET/wiki/ServiceBase) that are injected with in-memory [data proxies](https://github.com/peasy/Peasy.NET/wiki/Data-Proxy).  To configure the WPF application to use business services that are injected with in-memory data proxies, locate the ```MainWindow_Loaded``` event handler in the [MainWindow](https://github.com/peasy/Samples/blob/master/Orders.com.WPF/MainWindow.xaml.cs) class and ensure the following line exists:
 
 ```c#
 void MainWindow_Loaded(object sender, RoutedEventArgs e)
@@ -41,10 +41,12 @@ void MainWindow_Loaded(object sender, RoutedEventArgs e)
 }
 ```
 
+The ```ConfigureInMemoryUsage``` method instantiates the business services and passes concrete in-memory data proxies to them for data access.
+
 #### WPF -> SQL Server
 ![WPF -> SQL Server](https://www.dropbox.com/s/s5xvkdgkasynzd6/WPF-SQL.png?dl=0&raw=1)
 
-In this scenario, the WPF client consumes peasy [business services](https://github.com/peasy/Peasy.NET/wiki/ServiceBase) that are injected with Entity Framework 6.0 [data proxies](https://github.com/peasy/Peasy.NET/wiki/Data-Proxy) and communicate with a SQL Server database.  To configure the WPF application to use business services that are injected with EF6 data proxies, locate the ```MainWindow_Loaded``` event handler in the [MainWindow](https://github.com/peasy/Samples/blob/master/Orders.com.WPF/MainWindow.xaml.cs) class and ensure the following line exists:
+In this scenario, the WPF client consumes [business services](https://github.com/peasy/Peasy.NET/wiki/ServiceBase) that are injected with Entity Framework 6.0 [data proxies](https://github.com/peasy/Peasy.NET/wiki/Data-Proxy) configured to communicate with a SQL Server database.  To configure the WPF application to use business services injected with EF6 data proxies, locate the ```MainWindow_Loaded``` event handler in the [MainWindow](https://github.com/peasy/Samples/blob/master/Orders.com.WPF/MainWindow.xaml.cs) class and ensure the following line exists:
 
 ```c#
 void MainWindow_Loaded(object sender, RoutedEventArgs e)
@@ -53,12 +55,12 @@ void MainWindow_Loaded(object sender, RoutedEventArgs e)
 }
 ```
 
-Be sure to [setup SQL Server](https://github.com/peasy/Samples#sql-server-setup) after changing the configuration and running the application. 
+Before running the application, be sure to [setup SQL Server](https://github.com/peasy/Samples#sql-server-setup) after changing the configuration. 
 
 #### WPF -> Web API -> In Memory
 ![WPF -> Web API -> In Memory](https://www.dropbox.com/s/qzouuwj1lrec44v/WPF-WebAPI.png?dl=0&raw=1)
 
-In this scenario, the WPF client consumes peasy [business services](https://github.com/peasy/Peasy.NET/wiki/ServiceBase) that are injected with HTTP [data proxies](https://github.com/peasy/Peasy.NET/wiki/Data-Proxy) and communicate with the Web API project.  In turn, the Web API project is configured to use in-memory data proxies.
+In this scenario, the WPF client consumes [business services](https://github.com/peasy/Peasy.NET/wiki/ServiceBase) that are injected with HTTP [data proxies](https://github.com/peasy/Peasy.NET/wiki/Data-Proxy) configured to communicate with the Web API project.  In turn, the Web API project is configured to use in-memory data proxies by default.
 
 To configure the WPF application to use business services that are injected with HTTP data proxies, locate the ```MainWindow_Loaded``` event handler in the [MainWindow](https://github.com/peasy/Samples/blob/master/Orders.com.WPF/MainWindow.xaml.cs) class and ensure the following line exists:
 
