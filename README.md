@@ -64,7 +64,7 @@ Before running the application, be sure to [setup SQL Server](https://github.com
 To run the application, ensure that the WPF project is set as the startup project.
 
 #### WPF &#8594; Web API &#8594; In Memory
-![WPF &#8594; Web API &#8594; In Memory](https://www.dropbox.com/s/4ujrou39t6jpq6i/WPF-API.png?dl=0=0&raw=1)
+![WPF &#8594; Web API &#8594; In Memory](https://www.dropbox.com/s/4ujrou39t6jpq6i/WPF-API.png?dl=0&raw=1)
 
 In this scenario, the WPF client consumes [business services](https://github.com/peasy/Peasy.NET/wiki/ServiceBase) that are injected with [data proxies](https://github.com/peasy/Peasy.NET/wiki/Data-Proxy) that use HTTP (via HttpClient) to communicate with the Web API application.  In turn, the Web API application uses business services that are injected with data proxies that communicate with in-memory data stores.
 
