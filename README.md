@@ -91,6 +91,8 @@ void MainWindow_Loaded(object sender, RoutedEventArgs e)
 
 An important thing to note is that the configuration in ```ConfigureHttpClientUsage()``` uses a few business services that can be referred to as pass-thru classes.
 
+![wpf http config](https://www.dropbox.com/s/mfxllpsyieuutri/wpf_http_config.png?dl=0&raw=1)
+
 By default, the web api project has been configured to use in-memory data proxies.  However, you can configure the Web Api project to consume EF6 data proxies by changing the configuration.  In the Web Api project you will find a DependencyInjection.config file that contains 2 sections for possible configurations for data proxies, EF6 and In-Memory, respectively.
 
 To run, set the WPF and Web Api as the startup projects and run the application.
