@@ -122,7 +122,7 @@ Before running the application, be sure to [setup SQL Server](https://github.com
 To run the application, set the WPF and Web Api projects as the startup projects in the solution and run the application.
 
 #### ASP.NET MVC &#8594; In Memory
-![WPF &#8594; In Memory](https://www.dropbox.com/s/l3q8y2obxhxy9ca/MVC%20%281%29.png?dl=0&raw=1)
+![MVC &#8594; In Memory](https://www.dropbox.com/s/l3q8y2obxhxy9ca/MVC%20%281%29.png?dl=0&raw=1)
 
 In this scenario, the ASP.NET MVC client consumes [business services](https://github.com/peasy/Peasy.NET/wiki/ServiceBase) that are injected with [data proxies](https://github.com/peasy/Peasy.NET/wiki/Data-Proxy) that communicate with in-memory data stores.  
 
@@ -133,7 +133,7 @@ Notice that there are three configuration sections for data proxies; Entity Fram
 To run the application, ensure that the MVC project is set as the startup project.
 
 #### ASP.NET MVC &#8594; SQL Server
-![WPF &#8594; In Memory](https://www.dropbox.com/s/9gsj1omqezv2f0b/MVC-SQL.png?dl=0&raw=1)
+![MVC &#8594; SQL Server](https://www.dropbox.com/s/9gsj1omqezv2f0b/MVC-SQL.png?dl=0&raw=1)
 
 In this scenario, the ASP.NET MVC client consumes [business services](https://github.com/peasy/Peasy.NET/wiki/ServiceBase) that are injected with [data proxies](https://github.com/peasy/Peasy.NET/wiki/Data-Proxy) that use Entity Framework 6.0 to communicate with a SQL Server database.  
 
@@ -146,11 +146,13 @@ Before running the application, be sure to [setup SQL Server](https://github.com
 To run the application, ensure that the MVC project is set as the startup project.
 
 #### ASP.NET MVC &#8594; Web API &#8594; In Memory
-![WPF &#8594; In Memory](https://www.dropbox.com/s/ubegb4hp860nkjf/MVC-API.png?dl=0&raw=1)
+![MVC &#8594; API &#8594; In Memory](https://www.dropbox.com/s/ubegb4hp860nkjf/MVC-API.png?dl=0&raw=1)
 
 #### ASP.NET MVC &#8594; Web API &#8594; SQL Server
-![WPF &#8594; In Memory](https://www.dropbox.com/s/rv5rd4omoghluq9/MVC-API-SQL%20%281%29.png?dl=0&raw=1)
+![MVC &#8594; APS &#8594; SQL Server](https://www.dropbox.com/s/rv5rd4omoghluq9/MVC-API-SQL%20%281%29.png?dl=0&raw=1)
 
+#### WPF & ASP.NET MVC &#8594; Web API &#8594; SQL Server
+![WPF & MVC &#8594; API &#8594; SQL Server](https://www.dropbox.com/s/3mljqi2o9i1dv9c/WPF-MVC-API-SQL.png?dl=0&raw=1)
 
 ### Using pass thru service service proxies
 
