@@ -73,24 +73,23 @@ void MainWindow_Loaded(object sender, RoutedEventArgs e)
 }
 ```
 
-An important thing to note is that the configuration code in ```ConfigureHttpClientUsage()``` uses a few business services that can be referred to as pass-thru or client classes.  Let's take a look at the code:
+An important thing to note is that the configuration code in ```ConfigureHttpClientUsage()``` uses two business services that can be referred to as pass-thru or client service classes.  Let's take a look at the code:
 
 ![wpf http config](https://www.dropbox.com/s/mfxllpsyieuutri/wpf_http_config.png?dl=0&raw=1)
 
-The classes highlighted in red represent pass-through classes.  These classes inherit from other service classes and override members to bypass any command logic and simply marshal calls to the data proxy.  This is due to the fact that certain methods in the business services use commands that orchestrate logic among different services within transactions, or to eliminate the potential for work to be executed twice.
+The classes highlighted in red represent pass-through service classes.  These classes inherit from other service classes and override members to bypass any command logic to simply marshal calls to the data proxy.  This is due to the fact that command methods in the business services use logic to orchestrate logic among different services within transactions, or to eliminate the potential for work to be executed twice.
 
-To illustrate this, let's take a look at the following method from the OrderItemService.ShipCommand:
+To illustrate this, let's take a look at the following method from the OrderItemService.ShipCommand method:
 
 ```c#
 public virtual ICommand<OrderItem> ShipCommand(long orderItemID)
 {
-    // perform auth check?
     var proxy = DataProxy as IOrderItemDataProxy;
     return new ShipOrderItemCommand(orderItemID, proxy, _inventoryDataProxy, _transactionContext);
 }
 ```
 
-The ```ShipCommand``` method simply returns an instance of the ShipOrderItemCommand, and will invoke the following code when Execute() is invoked on it:
+The ```ShipCommand``` method simply returns an instance of the ShipOrderItemCommand, and will invoke the following code when Execute() is invoked (remember that Command.Execute or Command.ExecuteAsync will invoke OnExecute or OnExecuteAsync, respectively):
 
 ```c#
 protected override OrderItem OnExecute()
@@ -115,10 +114,11 @@ protected override OrderItem OnExecute()
 } 
 ```
 
-This method is responsible for decrementing inventory and then setting the status of the current order item to 'shipped'.  In this scenario, the WPF application is using an HTTP order item data proxy that will marshal the call to a receiving ```Ship``` method of the OrderItems Web Api controller.  Because the Ship method is configured to also use the ShipCommand, this logic will be executed again, thus decrementing the inventory twice.
+This method is responsible for decrementing inventory and then setting the status of the current order item to 'shipped'.  In this scenario, the WPF application is using an HTTP order item data proxy that will marshal the call to a receiving ```Ship``` method of the OrderItems Web Api controller.  Because the Ship method of the OrderItems controller is also configured to use the ShipCommand, this logic will be executed again, thus decrementing the inventory twice.
 
-To get around this issue, the OrderItemClientService class was created that overrides the ```Ship``` method and simply marshals the call to the _orderItemDataProxy.Ship method, bypassing the logic of the ShipCommand on the client, and allowing the OrderItem Web Api Service to handle the logic.
+To address this issue, the OrderItemClientService class was created that overrides the ```Ship``` method and simply marshals the call to the _orderItemDataProxy.Ship method, bypassing the logic of the ShipCommand on the client, and allowing the OrderItem Web Api Service to handle the logic.
 
+Further notice that the ShipCommand logic executes the code atomically within a transaction.  Because it is notoriously difficult to orchestrate transactions that occur via HTTP service calls, it is best to bypass the logic on the client and allow the server to execute the code atomically against a data store.
 
 To run, set the WPF and Web Api as the startup projects and run the application.
 
