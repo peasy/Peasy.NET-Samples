@@ -2,11 +2,11 @@
 
 # A sample application
 
-![screenshot](https://www.dropbox.com/s/lw5y82r0yj4jrt3/screenshot.png?dl=0&raw=1)
-
 A full implementation of a middle tier built with peasy and sample consumer clients (WPF, Web API, and ASP.NET MVC) can be found here.  You can clone the repo or download the entire solution as a [zip](https://github.com/peasy/samples/archive/master.zip).
 
 The sample application is a ficticious order entry / inventory management system, and offers both WPF and ASP.NET MVC clients.  All efforts were made to keep these applications as simple as possible to keep the focus on how a middle tier is written with peasy and consumed by multiple clients.
+
+![screenshot](https://www.dropbox.com/s/lw5y82r0yj4jrt3/screenshot.png?dl=0&raw=1)
 
 The easiest way to get up and running is to set either the WPF project or the ASP.NET MVC project as the startup project and run the application.  By default, these projects are configured to use in-memory implementations of the [data proxies](https://github.com/peasy/Peasy.NET/wiki/Data-Proxy).  
 
