@@ -49,17 +49,9 @@ namespace Orders.com.Web.Api
                     if (result.Value == null)
                     {
                         return Request.CreateErrorResponse(HttpStatusCode.NotFound, BuildNotFoundHttpError(id));
-                        //var message = BuildNotFoundResponseMessage(className, id);
-                        //throw new HttpResponseException(message);
                     }
                     var response = Request.CreateResponse(HttpStatusCode.OK, result.Value);
-                    //response.Headers.ETag = new EntityTagHeaderValue(string.Format("\"{0}\"", result.ETagValue(), true));
-                    //response.Content.Headers.LastModified = DateTime.Now.ToUniversalTime(); // result.LastModified.Value.ToUniversalTime();
-
                     return response;
-                    //.AppendCacheControl(36000)
-                    //.AppendExpires(60)
-                    //.AppendLastModified();
                 }
 
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, string.Join("\n", result.Errors));
@@ -100,58 +92,21 @@ namespace Orders.com.Web.Api
             }
         }
 
-        //// POST api/contracts
-        ///// <remarks>Supports batch inserts</remarks>
-        //public HttpResponseMessage Post(IEnumerable<T> items)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //// POST api/contracts
-        //public async virtual Task<HttpResponseMessage> Post(T value)
-        //{
-        //    if (value == null) return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "The request payload could not be parsed");
-
-        //    var InsertCommand = _businessService.GetInsertAsyncCommand(value);
-
-        //    if (InsertCommand.CanInvoke)
-        //    {
-        //        T newEntity = await InsertCommand.InvokeAsync();
-        //        // http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html#sec9.5
-        //        var responseMessage = Request.CreateResponse(HttpStatusCode.Created, newEntity);
-        //        responseMessage.Headers.Location = new Uri(BuildNewResourceUriString(newEntity.ID));
-        //        return responseMessage;
-        //    }
-
-        //    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState.ClearFirst().ThenAddRange(InsertCommand.GetValidationErrors(value)));
-        //}
-
-
         // PUT api/contracts/5
         public virtual HttpResponseMessage Put(TKey id, T value)
         {
             if (value == null) return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "The request payload could not be parsed");
 
-            //if (Request.Headers.IfMatch.Count == 0) 
-            //    return Request.CreateErrorResponse(HttpStatusCode.PreconditionFailed, "A PUT request must contain a If-Match header value whose content is the ETag value from a previous GET request");
             try
             {
                 var result = _businessService.UpdateCommand(value).Execute();
 
                 if (result.Success)
                 {
-                    //if (currentSnapshot.ETagValue() != Request.Headers.IfMatch.First().Tag)
-                    //    return Request.CreateErrorResponse(HttpStatusCode.PreconditionFailed, "A concurrency issue occurred.  Try a GET on the resource and attempt the PUT again.");
-
                     value.ID = id;
                     T updatedEntity = result.Value;
-
                     // http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html#sec9.6
                     var response = Request.CreateResponse(HttpStatusCode.OK, updatedEntity);
-
-                    //response.Headers.ETag = new EntityTagHeaderValue(string.Format("\"{0}\"", result.ETagValue(), true));
-                    //response.Content.Headers.LastModified = DateTime.Now.ToUniversalTime(); // result.LastModified.Value.ToUniversalTime();
-
                     return response;
                 }
 
@@ -170,13 +125,6 @@ namespace Orders.com.Web.Api
                 return Request.CreateErrorResponse(HttpStatusCode.NotImplemented, ex.Message);
             }
         }
-
-        // PUT api/contracts
-        /// <remarks>Supports batch updates</remarks>
-        //public virtual HttpResponseMessage Put(IEnumerable<T> items)
-        //{
-        //    throw new NotImplementedException();
-        //}
 
         // DELETE api/contracts/5
         public virtual HttpResponseMessage Delete(TKey id)
