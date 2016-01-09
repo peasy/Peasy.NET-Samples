@@ -77,6 +77,10 @@
       <HintPath>..\packages\Peasy.DataProxy.EF6.1.0.0.0\lib\net451\Peasy.DataProxy.EF6.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Peasy.DataProxy.Http, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Peasy.DataProxy.Http.1.0.0.1\lib\portable-net451+win81\Peasy.DataProxy.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Peasy.DataProxy.InMemory, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Peasy.DataProxy.InMemory.1.0.0.2\lib\portable-net451+win81\Peasy.DataProxy.InMemory.dll</HintPath>
       <Private>True</Private>
@@ -84,6 +88,10 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -335,6 +343,10 @@
     <ProjectReference Include="..\Orders.com.DAL.EF\Orders.com.DAL.EF.csproj">
       <Project>{5c72c89f-28a0-4852-a5a4-a2eef6021a9f}</Project>
       <Name>Orders.com.DAL.EF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Orders.com.DAL.Http\Orders.com.DAL.Http.csproj">
+      <Project>{3edd8d84-2f35-49e6-8853-146f25af4007}</Project>
+      <Name>Orders.com.DAL.Http</Name>
     </ProjectReference>
     <ProjectReference Include="..\Orders.com.DAL.InMemory\Orders.com.DAL.InMemory.csproj">
       <Project>{0debee6b-3561-47b8-a622-d2407839123b}</Project>

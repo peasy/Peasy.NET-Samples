@@ -40,7 +40,7 @@ namespace Orders.com.Web.MVC.Controllers
         {
             var result = _service.InsertCommand(vm.Entity).Execute();
             if (result.Success)
-                return RedirectToAction("Edit", "Orders", new { id = vm.ID });
+                return RedirectToAction("Edit", "Orders", new { id = result.Value.ID });
             else
                 return HandleFailedResult(ConfigureVM(vm), result);
         }
