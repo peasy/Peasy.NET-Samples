@@ -4,7 +4,7 @@
 
 A full implementation of a middle tier built with peasy and sample consumer clients (WPF, Web API, and ASP.NET MVC) can be found here.  You can clone the repo or download the entire solution as a [zip](https://github.com/peasy/samples/archive/master.zip).
 
-The sample application is a ficticious order entry / inventory management system, and offers both WPF and ASP.NET MVC clients.  All efforts were made to keep these applications as simple as possible to keep the focus on how a middle tier is written with peasy and consumed by multiple clients.
+The sample application is a ficticious order entry / inventory management system, and provides both WPF and ASP.NET MVC UI clients.  All efforts were made to keep these applications as simple as possible to keep the focus on how a middle tier is written with peasy and consumed by multiple clients.
 
 ![screenshot](https://www.dropbox.com/s/lw5y82r0yj4jrt3/screenshot.png?dl=0&raw=1)
 
@@ -30,6 +30,7 @@ Because these clients consume a middle tier written with peasy, they can be conf
 * [ASP.NET MVC &#8594; SQL Server](https://github.com/peasy/Samples#aspnet-mvc--sql-server)
 * [ASP.NET MVC &#8594; Web API -> In Memory](https://github.com/peasy/Samples#aspnet-mvc--web-api--in-memory)
 * [ASP.NET MVC &#8594; Web API -> SQL Server](https://github.com/peasy/Samples#aspnet-mvc--web-api--sql-server)
+* [ASP.NET MVC & WPF &#8594; Web API -> (In Memory or SQL Server)](https://github.com/peasy/Samples#aspnet-mvc--web-api--sql-server)
 
 #### WPF &#8594; In Memory
 
