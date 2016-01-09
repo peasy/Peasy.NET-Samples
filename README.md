@@ -26,6 +26,7 @@ Because these clients consume a middle tier written with peasy, they can be conf
 * [WPF &#8594; Web API -> SQL Server](https://github.com/peasy/Samples#wpf--web-api--sql-server)
 * [ASP.NET MVC &#8594; In Memory](https://github.com/peasy/Samples#aspnet-mvc--in-memory)
 * [ASP.NET MVC &#8594; SQL Server](https://github.com/peasy/Samples#aspnet-mvc--sql-server)
+* [ASP.NET MVC &#8594; Web API -> In Memory](https://github.com/peasy/Samples#aspnet-mvc--web-api--in-memory)
 * [ASP.NET MVC &#8594; Web API -> SQL Server](https://github.com/peasy/Samples#aspnet-mvc--web-api--sql-server)
 
 #### WPF &#8594; In Memory
@@ -120,8 +121,26 @@ To run the application, set the WPF and Web Api as the startup projects in the s
 #### ASP.NET MVC &#8594; In Memory
 ![WPF &#8594; In Memory](https://www.dropbox.com/s/l3q8y2obxhxy9ca/MVC%20%281%29.png?dl=0&raw=1)
 
+In this scenario, the ASP.NET MVC client consumes [business services](https://github.com/peasy/Peasy.NET/wiki/ServiceBase) that are injected with [data proxies](https://github.com/peasy/Peasy.NET/wiki/Data-Proxy) that communicate with in-memory data stores.  
+
+The MVC project uses dynamic dependency injection to create business services and data proxies that will be injected into the MVC controllers.  To configure the MVC project to consume in-memory data proxies, open the [DependencyInjection.config](https://github.com/peasy/Samples/blob/master/Orders.com.Web.MVC/DependencyInjection.config) file.
+
+Notice that there are two configuration sections for data proxies; one for Entity Framework and one for In-Memory, respectively.  Simply ensure that the Entity Framework section is commented out and the In Memory section is uncommented.
+
+To run the application, ensure that the MVC project is set as the startup project.
+
 #### ASP.NET MVC &#8594; SQL Server
 ![WPF &#8594; In Memory](https://www.dropbox.com/s/9gsj1omqezv2f0b/MVC-SQL.png?dl=0&raw=1)
+
+In this scenario, the ASP.NET MVC client consumes [business services](https://github.com/peasy/Peasy.NET/wiki/ServiceBase) that are injected with [data proxies](https://github.com/peasy/Peasy.NET/wiki/Data-Proxy) that use Entity Framework 6.0 to communicate with a SQL Server database.  
+
+The MVC project uses dynamic dependency injection to create business services and data proxies that will be injected into the MVC controllers.  To configure the MVC project to consume Entity Framework data proxies, open the [DependencyInjection.config](https://github.com/peasy/Samples/blob/master/Orders.com.Web.MVC/DependencyInjection.config) file.
+
+Notice that there are two configuration sections for data proxies; one for Entity Framework and one for In-Memory, respectively.  Simply ensure that the Entity Framework section not commented out and the In Memory section is commented.
+
+Before running the application, be sure to [setup SQL Server](https://github.com/peasy/Samples#sql-server-setup) after changing the configuration. 
+
+To run the application, ensure that the MVC project is set as the startup project.
 
 #### ASP.NET MVC &#8594; Web API &#8594; In Memory
 ![WPF &#8594; In Memory](https://www.dropbox.com/s/ubegb4hp860nkjf/MVC-API.png?dl=0&raw=1)
