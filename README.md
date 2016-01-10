@@ -14,7 +14,7 @@ The easiest way to get up and running is to set either the WPF project or the AS
 
 The sample applications can be configured to interact with a SQL Server database.  Here are the steps to setup a SQL Server database for use by the sample applications:
 
-1.) In package manager console, select Orders.com.DAL.EF in the Default project drop down list
+1.) In package manager console, select ```Orders.com.DAL.EF``` in the Default project drop down list
 
 2.) Execute following command: update-database -verbose
 
