@@ -158,7 +158,7 @@ Also notice that there are two configuration sections for business services; MVC
 
 An important thing to note is that the ```Business Services - Web API``` section in the configuration file uses two business services that can be referred to as pass-thru or client service classes.  Let's take a look at the config section:
 
-![MVC-Config](https://www.dropbox.com/s/bwdslmakb9uic6j/MVC-DI-Config.png?dl=0)
+![MVC-Config](https://www.dropbox.com/s/bwdslmakb9uic6j/MVC-DI-Config.png?dl=0&raw=1)
 
 The classes highlighted in red represent pass-through service classes.  These classes inherit from other service classes and override command methods to bypass any command logic to simply marshal calls to the data proxy.  To learn more about the necessity of pass through commands, see []().
 
@@ -181,7 +181,7 @@ Also notice that there are two configuration sections for business services; MVC
 
 An important thing to note is that the ```Business Services - Web API``` section in the configuration file uses two business services that can be referred to as pass-thru or client service classes.  Let's take a look at the config section:
 
-![MVC-Config](https://www.dropbox.com/s/bwdslmakb9uic6j/MVC-DI-Config.png?dl=0)
+![MVC-Config](https://www.dropbox.com/s/bwdslmakb9uic6j/MVC-DI-Config.png?dl=0&raw=1)
 
 The classes highlighted in red represent pass-through service classes.  These classes inherit from other service classes and override command methods to bypass any command logic to simply marshal calls to the data proxy.  To learn more about the necessity of pass through commands, see []().
 
@@ -195,6 +195,15 @@ To run the application, set the WPF and Web Api projects as the startup projects
 
 #### Multiple Clients &#8594; Web API &#8594; SQL Server
 ![Multiple Clients &#8594; API &#8594; SQL Server](https://www.dropbox.com/s/2h90bdax1ilfvg0/all-clients.png?dl=0&raw=1)
+
+In this scenario, WPF, ASP.NET MVC, and non-.NET clients (browsers, mobile devices, Java, etc.) directly communicate with the Web Api application via HTTP.  This setup provides ultimate flexibility, allowing virtually any client capable of HTTP communications to interact with our middle tier.
+
+In the case of the .NET clients, they consume the business services, often times preventing unnecessary round trips to the Web Api upon unsuccessful business rule validations.  The Web Api application consumes these same set of business services to serve as a last line of defense against non-.NET clients.
+
+This configuration can be accomplished by following these two configuration setup procedures:
+
+#####[WPF &#8594; Web API &#8594; SQL Server]()
+#####[ASP.NET MVC &#8594; Web API &#8594; SQL Server]()
 
 ### Using pass thru service service proxies
 
