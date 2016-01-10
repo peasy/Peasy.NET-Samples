@@ -30,7 +30,7 @@ Because these clients consume a middle tier written with peasy, they can be conf
 * [ASP.NET MVC &#8594; SQL Server](https://github.com/peasy/Samples#aspnet-mvc--sql-server)
 * [ASP.NET MVC &#8594; Web API -> In Memory](https://github.com/peasy/Samples#aspnet-mvc--web-api--in-memory)
 * [ASP.NET MVC &#8594; Web API -> SQL Server](https://github.com/peasy/Samples#aspnet-mvc--web-api--sql-server)
-* [ASP.NET MVC & WPF &#8594; Web API -> (In Memory or SQL Server)](https://github.com/peasy/Samples#wpf--aspnet-mvc--web-api--sql-server)
+* [Multiple Clients &#8594; Web API -> (In Memory or SQL Server)](https://github.com/peasy/Samples#wpf--aspnet-mvc--web-api--sql-server)
 
 #### WPF &#8594; In Memory
 
@@ -111,7 +111,7 @@ An important thing to note is that the configuration code in ```ConfigureHttpCli
 
 ![wpf http config](https://www.dropbox.com/s/mfxllpsyieuutri/wpf_http_config.png?dl=0&raw=1)
 
-The classes highlighted in red represent pass-through service classes.  These classes inherit from other service classes and override command methods to bypass any command logic to simply marshal calls to the data proxy.  For more information about the necessity of pass through commands, see []().
+The classes highlighted in red represent pass-through service classes.  These classes inherit from other service classes and override command methods to bypass any command logic to simply marshal calls to the data proxy.  To learn more about the necessity of pass through commands, see []().
 
 The next step is to configure the Web API project.  The Web API project uses dynamic dependency injection to create business services and data proxies that will be injected into the API controllers.  To configure the Web API project to consume Entity Framework data proxies, open the [DependencyInjection.config](https://github.com/peasy/Samples/blob/master/Orders.com.Web.Api/DependencyInjection.config) file.
 
@@ -152,27 +152,49 @@ In this scenario, the ASP.NET MVC client consumes [business services](https://gi
 
 The MVC project uses dynamic dependency injection to create business services and data proxies that will be injected into the MVC controllers.  To configure the MVC project to consume in-memory data proxies, open the [DependencyInjection.config](https://github.com/peasy/Samples/blob/master/Orders.com.Web.MVC/DependencyInjection.config) file.
 
-Notice that there are three configuration sections for data proxies; Entity Framework, HTTP, and In-Memory, respectively.  Ensure that the ```In Memory``` section is uncommented and the others are commented out.
+Notice that there are three configuration sections for data proxies; Entity Framework, HTTP, and In-Memory, respectively.  Ensure that the ```HTTP Data Proxies``` section is uncommented and the others are commented out.
 
 Also notice that there are two configuration sections for business services; MVC and Web API, respectively.  Ensure that the ```Business Services - Web API``` section is uncommented and the other is commented out.
 
-An important thing to note is that the configuration in the ```Business Services - Web API``` section uses two business services that can be referred to as pass-thru or client service classes.  Let's take a look at the config section:
+An important thing to note is that the ```Business Services - Web API``` section in the configuration file uses two business services that can be referred to as pass-thru or client service classes.  Let's take a look at the config section:
 
-![wpf http config](https://www.dropbox.com/s/mfxllpsyieuutri/wpf_http_config.png?dl=0&raw=1)
+![MVC-Config](https://www.dropbox.com/s/bwdslmakb9uic6j/MVC-DI-Config.png?dl=0)
 
-The classes highlighted in red represent pass-through service classes.  These classes inherit from other service classes and override command methods to bypass any command logic to simply marshal calls to the data proxy.  For more information about the necessity of pass through commands, see []().
+The classes highlighted in red represent pass-through service classes.  These classes inherit from other service classes and override command methods to bypass any command logic to simply marshal calls to the data proxy.  To learn more about the necessity of pass through commands, see []().
 
 The next step is to configure the Web API project.  The Web API project uses dynamic dependency injection to create business services and data proxies that will be injected into the API controllers.  To configure the Web API project to consume in-memory data proxies, open the [DependencyInjection.config](https://github.com/peasy/Samples/blob/master/Orders.com.Web.Api/DependencyInjection.config) file.
 
-Notice that there are two configuration sections for data proxies; one for Entity Framework and one for In-Memory, respectively.  Simply ensure that the Entity Framework section is commented out and the In Memory section is uncommented.
+Notice that there are two configuration sections for data proxies; one for Entity Framework and one for In-Memory, respectively.  Simply ensure that the ```Entity Framework``` section is commented out and the ```In Memory``` section is uncommented.
 
-To run the application, set the MVC and Web Api projects as the startup projects in the solution and run the application.
+To run the application, set the WPF and Web Api projects as the startup projects in the solution and run the application.
 
 #### ASP.NET MVC &#8594; Web API &#8594; SQL Server
 ![MVC &#8594; APS &#8594; SQL Server](https://www.dropbox.com/s/rv5rd4omoghluq9/MVC-API-SQL%20%281%29.png?dl=0&raw=1)
 
-#### WPF & ASP.NET MVC &#8594; Web API &#8594; SQL Server
-![WPF & MVC &#8594; API &#8594; SQL Server](https://www.dropbox.com/s/3mljqi2o9i1dv9c/WPF-MVC-API-SQL.png?dl=0&raw=1)
+In this scenario, the ASP.NET MVC client consumes [business services](https://github.com/peasy/Peasy.NET/wiki/ServiceBase) that are injected with [data proxies](https://github.com/peasy/Peasy.NET/wiki/Data-Proxy) that use HTTP (via HttpClient) to communicate with the Web API application.  In turn, the Web API application uses business services that are injected with data proxies that use Entity Framework 6.0 to communicate with a SQL Server database.
+
+The MVC project uses dynamic dependency injection to create business services and data proxies that will be injected into the MVC controllers.  To configure the MVC project to consume Entity Framework data proxies, open the [DependencyInjection.config](https://github.com/peasy/Samples/blob/master/Orders.com.Web.MVC/DependencyInjection.config) file.
+
+Notice that there are three configuration sections for data proxies; Entity Framework, HTTP, and In-Memory, respectively.  Ensure that the ```HTTP Data Proxies``` section is uncommented and the others are commented out.
+
+Also notice that there are two configuration sections for business services; MVC and Web API, respectively.  Ensure that the ```Business Services - Web API``` section is uncommented and the other is commented out.
+
+An important thing to note is that the ```Business Services - Web API``` section in the configuration file uses two business services that can be referred to as pass-thru or client service classes.  Let's take a look at the config section:
+
+![MVC-Config](https://www.dropbox.com/s/bwdslmakb9uic6j/MVC-DI-Config.png?dl=0)
+
+The classes highlighted in red represent pass-through service classes.  These classes inherit from other service classes and override command methods to bypass any command logic to simply marshal calls to the data proxy.  To learn more about the necessity of pass through commands, see []().
+
+The next step is to configure the Web API project.  The Web API project uses dynamic dependency injection to create business services and data proxies that will be injected into the API controllers.  To configure the Web API project to consume in-memory data proxies, open the [DependencyInjection.config](https://github.com/peasy/Samples/blob/master/Orders.com.Web.Api/DependencyInjection.config) file.
+
+Notice that there are two configuration sections for data proxies; one for Entity Framework and one for In-Memory, respectively.  Simply ensure that the Entity Framework section is uncommented and the In Memory section is commented out.
+
+Before running the application, be sure to [setup SQL Server](https://github.com/peasy/Samples#sql-server-setup) after changing the configuration.
+
+To run the application, set the WPF and Web Api projects as the startup projects in the solution and run the application.
+
+#### Multiple Clients &#8594; Web API &#8594; SQL Server
+![Multiple Clients &#8594; API &#8594; SQL Server](https://www.dropbox.com/s/2h90bdax1ilfvg0/all-clients.png?dl=0&raw=1)
 
 ### Using pass thru service service proxies
 
