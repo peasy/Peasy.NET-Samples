@@ -30,7 +30,7 @@ Because these clients consume a middle tier written with peasy, they can be conf
 * [ASP.NET MVC &#8594; SQL Server](https://github.com/peasy/Samples#aspnet-mvc--sql-server)
 * [ASP.NET MVC &#8594; Web API -> In Memory](https://github.com/peasy/Samples#aspnet-mvc--web-api--in-memory)
 * [ASP.NET MVC &#8594; Web API -> SQL Server](https://github.com/peasy/Samples#aspnet-mvc--web-api--sql-server)
-* [Multiple Clients &#8594; Web API -> (In Memory or SQL Server)](https://github.com/peasy/Samples#wpf--aspnet-mvc--web-api--sql-server)
+* [Multiple Clients &#8594; Web API -> (In Memory or SQL Server)](https://github.com/peasy/Samples#multiple-clients--web-api--sql-server)
 
 #### WPF &#8594; In Memory
 
@@ -202,8 +202,8 @@ In the case of the .NET clients, they consume the business services, often times
 
 This configuration can be accomplished by following these two configuration setup procedures:
 
-#####[WPF &#8594; Web API &#8594; SQL Server]()
-#####[ASP.NET MVC &#8594; Web API &#8594; SQL Server]()
+#####[WPF &#8594; Web API &#8594; SQL Server](https://github.com/peasy/Samples#wpf--web-api--sql-server)
+#####[ASP.NET MVC &#8594; Web API &#8594; SQL Server](https://github.com/peasy/Samples#aspnet-mvc--web-api--sql-server)
 
 ### Using pass thru service service proxies
 
