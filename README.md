@@ -8,7 +8,9 @@ The sample application is a ficticious order entry / inventory management system
 
 ![screenshot](https://www.dropbox.com/s/lw5y82r0yj4jrt3/screenshot.png?dl=0&raw=1)
 
-The easiest way to get up and running is to set either the WPF project or the ASP.NET MVC project as the startup project and run the application.  By default, these projects are configured to use in-memory implementations of the [data proxies](https://github.com/peasy/Peasy.NET/wiki/Data-Proxy).  
+The easiest way to get up and running is to set either the WPF project or the ASP.NET MVC project as the startup project and run the application.  By default, these projects are configured to use in-memory implementations of the [data proxies](https://github.com/peasy/Peasy.NET/wiki/Data-Proxy).
+
+However, there is a multitude of configuration possibilities.  The [configurations](https://github.com/peasy/Samples#configurations) section provides details on setting up many potential configurations.
 
 ### SQL Server Setup
 
@@ -89,7 +91,7 @@ The classes highlighted in red represent pass-through service classes.  These cl
 
 The next step is to configure the Web API project.  The Web API project uses dynamic dependency injection to create business services and data proxies that will be injected into the API controllers.  To configure the Web API project to consume in-memory data proxies, open the [DependencyInjection.config](https://github.com/peasy/Samples/blob/master/Orders.com.Web.Api/DependencyInjection.config) file.
 
-Notice that there are two configuration sections for data proxies; one for Entity Framework and one for In-Memory, respectively.  Simply ensure that the Entity Framework section is commented out and the In Memory section is uncommented.
+Notice that there are two configuration sections for data proxies; one for Entity Framework and one for In-Memory, respectively.  Simply ensure that the ```Entity Framework Data Proxies``` section is commented out and the ```In Memory Data Proxies``` section is uncommented.
 
 To run the application, set the WPF and Web Api projects as the startup projects in the solution and run the application.
 
@@ -115,7 +117,7 @@ The classes highlighted in red represent pass-through service classes.  These cl
 
 The next step is to configure the Web API project.  The Web API project uses dynamic dependency injection to create business services and data proxies that will be injected into the API controllers.  To configure the Web API project to consume Entity Framework data proxies, open the [DependencyInjection.config](https://github.com/peasy/Samples/blob/master/Orders.com.Web.Api/DependencyInjection.config) file.
 
-Notice that there are two configuration sections for data proxies; one for Entity Framework and one for In-Memory, respectively.  Simply ensure that the Entity Framework section is uncommented and the In Memory section is commented out.
+Notice that there are two configuration sections for data proxies; one for Entity Framework and one for In-Memory, respectively.  Simply ensure that the ```Entity Framework Data Proxies``` section is uncommented and the ```In Memory Data Proxies``` section is commented out.
 
 Before running the application, be sure to [setup SQL Server](https://github.com/peasy/Samples#sql-server-setup) after changing the configuration. 
 
@@ -128,7 +130,7 @@ In this scenario, the ASP.NET MVC client consumes [business services](https://gi
 
 The MVC project uses dynamic dependency injection to create business services and data proxies that will be injected into the MVC controllers.  To configure the MVC project to consume in-memory data proxies, open the [DependencyInjection.config](https://github.com/peasy/Samples/blob/master/Orders.com.Web.MVC/DependencyInjection.config) file.
 
-Notice that there are three configuration sections for data proxies; Entity Framework, HTTP, and In-Memory, respectively.  Simply ensure that the In Memory section is uncommented and the others are commented out.
+Notice that there are three configuration sections for data proxies; Entity Framework, HTTP, and In-Memory, respectively.  Simply ensure that the ```In Memory Data Proxies``` section is uncommented and the others are commented out.
 
 To run the application, ensure that the MVC project is set as the startup project.
 
@@ -139,7 +141,7 @@ In this scenario, the ASP.NET MVC client consumes [business services](https://gi
 
 The MVC project uses dynamic dependency injection to create business services and data proxies that will be injected into the MVC controllers.  To configure the MVC project to consume Entity Framework data proxies, open the [DependencyInjection.config](https://github.com/peasy/Samples/blob/master/Orders.com.Web.MVC/DependencyInjection.config) file.
 
-Notice that there are three configuration sections for data proxies; Entity Framework, HTTP, and In-Memory, respectively.  Simply ensure that the Entity Framework section is uncommented and the others are commented out.
+Notice that there are three configuration sections for data proxies; Entity Framework, HTTP, and In-Memory, respectively.  Simply ensure that the ```Entity Framework Data Proxies``` section is uncommented and the others are commented out.
 
 Before running the application, be sure to [setup SQL Server](https://github.com/peasy/Samples#sql-server-setup) after changing the configuration. 
 
@@ -154,7 +156,7 @@ The MVC project uses dynamic dependency injection to create business services an
 
 Notice that there are three configuration sections for data proxies; Entity Framework, HTTP, and In-Memory, respectively.  Ensure that the ```HTTP Data Proxies``` section is uncommented and the others are commented out.
 
-Also notice that there are two configuration sections for business services; MVC and Web API, respectively.  Ensure that the ```Business Services - Web API``` section is uncommented and the other is commented out.
+Also notice that there are two configuration sections for business services; MVC and Web API, respectively.  Ensure that the ```Business Services - Web API``` section is uncommented and the ```Business Services - MVC``` section is commented out.
 
 An important thing to note is that the ```Business Services - Web API``` section in the configuration file uses two business services that can be referred to as pass-thru or client service classes.  Let's take a look at the config section:
 
@@ -164,7 +166,7 @@ The classes highlighted in red represent pass-through service classes.  These cl
 
 The next step is to configure the Web API project.  The Web API project uses dynamic dependency injection to create business services and data proxies that will be injected into the API controllers.  To configure the Web API project to consume in-memory data proxies, open the [DependencyInjection.config](https://github.com/peasy/Samples/blob/master/Orders.com.Web.Api/DependencyInjection.config) file.
 
-Notice that there are two configuration sections for data proxies; one for Entity Framework and one for In-Memory, respectively.  Simply ensure that the ```Entity Framework``` section is commented out and the ```In Memory``` section is uncommented.
+Notice that there are two configuration sections for data proxies; one for Entity Framework and one for In-Memory, respectively.  Simply ensure that the ```Entity Framework Data Proxies``` section is commented out and the ```In Memory Data Proxies``` section is uncommented.
 
 To run the application, set the WPF and Web Api projects as the startup projects in the solution and run the application.
 
@@ -177,7 +179,7 @@ The MVC project uses dynamic dependency injection to create business services an
 
 Notice that there are three configuration sections for data proxies; Entity Framework, HTTP, and In-Memory, respectively.  Ensure that the ```HTTP Data Proxies``` section is uncommented and the others are commented out.
 
-Also notice that there are two configuration sections for business services; MVC and Web API, respectively.  Ensure that the ```Business Services - Web API``` section is uncommented and the other is commented out.
+Also notice that there are two configuration sections for business services; MVC and Web API, respectively.  Ensure that the ```Business Services - Web API``` section is uncommented and the ```Business Services - MVC``` section is commented out.
 
 An important thing to note is that the ```Business Services - Web API``` section in the configuration file uses two business services that can be referred to as pass-thru or client service classes.  Let's take a look at the config section:
 
@@ -187,7 +189,7 @@ The classes highlighted in red represent pass-through service classes.  These cl
 
 The next step is to configure the Web API project.  The Web API project uses dynamic dependency injection to create business services and data proxies that will be injected into the API controllers.  To configure the Web API project to consume in-memory data proxies, open the [DependencyInjection.config](https://github.com/peasy/Samples/blob/master/Orders.com.Web.Api/DependencyInjection.config) file.
 
-Notice that there are two configuration sections for data proxies; one for Entity Framework and one for In-Memory, respectively.  Simply ensure that the Entity Framework section is uncommented and the In Memory section is commented out.
+Notice that there are two configuration sections for data proxies; one for Entity Framework and one for In-Memory, respectively.  Simply ensure that the ```Entity Framework Data Proxies``` section is uncommented and the ```In Memory Data Proxies``` section is commented out.
 
 Before running the application, be sure to [setup SQL Server](https://github.com/peasy/Samples#sql-server-setup) after changing the configuration.
 
