@@ -16,7 +16,7 @@ The sample applications can be configured to interact with a SQL Server database
 
 1.) In package manager console, select ```Orders.com.DAL.EF``` in the Default project drop down list
 
-2.) Execute following command: update-database -verbose
+2.) Execute following command: ```update-database -verbose```
 
 ### Configurations
 
