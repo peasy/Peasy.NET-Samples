@@ -87,7 +87,7 @@ An important thing to note is that the configuration code in ```ConfigureHttpCli
 
 ![wpf http config](https://www.dropbox.com/s/mfxllpsyieuutri/wpf_http_config.png?dl=0&raw=1)
 
-The classes highlighted in red represent client service proxy classes.  These classes inherit from other service classes and override command methods to bypass any command logic to simply marshal calls to the data proxy.  To learn more about the necessity of client service proxies, see [using client service proxies](https://github.com/peasy/Samples/blob/master/README.md#using-client-service-proxies).
+The classes highlighted in red represent client service proxy classes.  These classes inherit from other [service](https://github.com/peasy/Peasy.NET/wiki/ServiceBase) classes and override [command](https://github.com/peasy/Peasy.NET/wiki/Command) methods to bypass any command logic to simply marshal calls to the data proxy.  To learn more about the necessity of client service proxies, see [using client service proxies](https://github.com/peasy/Samples/blob/master/README.md#using-client-service-proxies).
 
 The next step is to configure the Web API project.  The Web API project uses dynamic dependency injection to create business services and data proxies that will be injected into the API controllers.  To configure the Web API project to consume in-memory data proxies, open the [DependencyInjection.config](https://github.com/peasy/Samples/blob/master/Orders.com.Web.Api/DependencyInjection.config) file.
 
@@ -113,7 +113,7 @@ An important thing to note is that the configuration code in ```ConfigureHttpCli
 
 ![wpf http config](https://www.dropbox.com/s/mfxllpsyieuutri/wpf_http_config.png?dl=0&raw=1)
 
-The classes highlighted in red represent client service proxy classes.  These classes inherit from other service classes and override command methods to bypass any command logic to simply marshal calls to the data proxy.  To learn more about the necessity of client service proxies, see [using client service proxies](https://github.com/peasy/Samples/blob/master/README.md#using-client-service-proxies).
+The classes highlighted in red represent client service proxy classes.  These classes inherit from other [service](https://github.com/peasy/Peasy.NET/wiki/ServiceBase) classes and override [command](https://github.com/peasy/Peasy.NET/wiki/Command) methods to bypass any command logic to simply marshal calls to the data proxy.  To learn more about the necessity of client service proxies, see [using client service proxies](https://github.com/peasy/Samples/blob/master/README.md#using-client-service-proxies).
 
 The next step is to configure the Web API project.  The Web API project uses dynamic dependency injection to create business services and data proxies that will be injected into the API controllers.  To configure the Web API project to consume Entity Framework data proxies, open the [DependencyInjection.config](https://github.com/peasy/Samples/blob/master/Orders.com.Web.Api/DependencyInjection.config) file.
 
@@ -162,7 +162,7 @@ An important thing to note is that the ```Business Services - Web API``` section
 
 ![MVC-Config](https://www.dropbox.com/s/bwdslmakb9uic6j/MVC-DI-Config.png?dl=0&raw=1)
 
-The classes highlighted in red represent client service proxy classes.  These classes inherit from other service classes and override command methods to bypass any command logic to simply marshal calls to the data proxy.  To learn more about the necessity of client service proxies, see [using client service proxies](https://github.com/peasy/Samples/blob/master/README.md#using-client-service-proxies).
+The classes highlighted in red represent client service proxy classes.  These classes inherit from other [service](https://github.com/peasy/Peasy.NET/wiki/ServiceBase) classes and override [command](https://github.com/peasy/Peasy.NET/wiki/Command) methods to bypass any command logic to simply marshal calls to the data proxy.  To learn more about the necessity of client service proxies, see [using client service proxies](https://github.com/peasy/Samples/blob/master/README.md#using-client-service-proxies).
 
 The next step is to configure the Web API project.  The Web API project uses dynamic dependency injection to create business services and data proxies that will be injected into the API controllers.  To configure the Web API project to consume in-memory data proxies, open the [DependencyInjection.config](https://github.com/peasy/Samples/blob/master/Orders.com.Web.Api/DependencyInjection.config) file.
 
@@ -185,7 +185,7 @@ An important thing to note is that the ```Business Services - Web API``` section
 
 ![MVC-Config](https://www.dropbox.com/s/bwdslmakb9uic6j/MVC-DI-Config.png?dl=0&raw=1)
 
-The classes highlighted in red represent client service proxy classes.  These classes inherit from other service classes and override command methods to bypass any command logic to simply marshal calls to the data proxy.  To learn more about the necessity of client service proxies, see [using client service proxies](https://github.com/peasy/Samples/blob/master/README.md#using-client-service-proxies).
+The classes highlighted in red represent client service proxy classes.  These classes inherit from other [service](https://github.com/peasy/Peasy.NET/wiki/ServiceBase) classes and override [command](https://github.com/peasy/Peasy.NET/wiki/Command) methods to bypass any command logic to simply marshal calls to the data proxy.  To learn more about the necessity of client service proxies, see [using client service proxies](https://github.com/peasy/Samples/blob/master/README.md#using-client-service-proxies).
 
 The next step is to configure the Web API project.  The Web API project uses dynamic dependency injection to create business services and data proxies that will be injected into the API controllers.  To configure the Web API project to consume in-memory data proxies, open the [DependencyInjection.config](https://github.com/peasy/Samples/blob/master/Orders.com.Web.Api/DependencyInjection.config) file.
 
