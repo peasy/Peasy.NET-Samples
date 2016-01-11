@@ -83,11 +83,11 @@ void MainWindow_Loaded(object sender, RoutedEventArgs e)
 }
 ```
 
-An important thing to note is that the configuration code in ```ConfigureHttpClientUsage()``` uses two business services that can be referred to as pass-thru or client service classes.  Let's take a look at the code:
+An important thing to note is that the configuration code in ```ConfigureHttpClientUsage()``` uses two business services that can be referred to as client service proxy classes.  Let's take a look at the code:
 
 ![wpf http config](https://www.dropbox.com/s/mfxllpsyieuutri/wpf_http_config.png?dl=0&raw=1)
 
-The classes highlighted in red represent pass-through service classes.  These classes inherit from other service classes and override command methods to bypass any command logic to simply marshal calls to the data proxy.  For more information about the necessity of pass through commands, see []().
+The classes highlighted in red represent client service proxy classes.  These classes inherit from other service classes and override command methods to bypass any command logic to simply marshal calls to the data proxy.  To learn more about the necessity of client service proxies, see [using client service proxies](https://github.com/peasy/Samples/blob/master/README.md#using-client-service-proxies).
 
 The next step is to configure the Web API project.  The Web API project uses dynamic dependency injection to create business services and data proxies that will be injected into the API controllers.  To configure the Web API project to consume in-memory data proxies, open the [DependencyInjection.config](https://github.com/peasy/Samples/blob/master/Orders.com.Web.Api/DependencyInjection.config) file.
 
@@ -109,11 +109,11 @@ void MainWindow_Loaded(object sender, RoutedEventArgs e)
 }
 ```
 
-An important thing to note is that the configuration code in ```ConfigureHttpClientUsage()``` uses two business services that can be referred to as pass-thru or client service classes.  Let's take a look at the code:
+An important thing to note is that the configuration code in ```ConfigureHttpClientUsage()``` uses two business services that can be referred to as client service proxy classes.  Let's take a look at the code:
 
 ![wpf http config](https://www.dropbox.com/s/mfxllpsyieuutri/wpf_http_config.png?dl=0&raw=1)
 
-The classes highlighted in red represent pass-through service classes.  These classes inherit from other service classes and override command methods to bypass any command logic to simply marshal calls to the data proxy.  To learn more about the necessity of pass through commands, see []().
+The classes highlighted in red represent client service proxy classes.  These classes inherit from other service classes and override command methods to bypass any command logic to simply marshal calls to the data proxy.  To learn more about the necessity of client service proxies, see [using client service proxies](https://github.com/peasy/Samples/blob/master/README.md#using-client-service-proxies).
 
 The next step is to configure the Web API project.  The Web API project uses dynamic dependency injection to create business services and data proxies that will be injected into the API controllers.  To configure the Web API project to consume Entity Framework data proxies, open the [DependencyInjection.config](https://github.com/peasy/Samples/blob/master/Orders.com.Web.Api/DependencyInjection.config) file.
 
@@ -158,11 +158,11 @@ Notice that there are three configuration sections for data proxies; Entity Fram
 
 Also notice that there are two configuration sections for business services; MVC and Web API, respectively.  Ensure that the ```Business Services - Web API``` section is uncommented and the ```Business Services - MVC``` section is commented out.
 
-An important thing to note is that the ```Business Services - Web API``` section in the configuration file uses two business services that can be referred to as pass-thru or client service classes.  Let's take a look at the config section:
+An important thing to note is that the ```Business Services - Web API``` section in the configuration file uses two business services that can be referred to as client service proxy classes.  Let's take a look at the config section:
 
 ![MVC-Config](https://www.dropbox.com/s/bwdslmakb9uic6j/MVC-DI-Config.png?dl=0&raw=1)
 
-The classes highlighted in red represent pass-through service classes.  These classes inherit from other service classes and override command methods to bypass any command logic to simply marshal calls to the data proxy.  To learn more about the necessity of pass through commands, see []().
+The classes highlighted in red represent client service proxy classes.  These classes inherit from other service classes and override command methods to bypass any command logic to simply marshal calls to the data proxy.  To learn more about the necessity of client service proxies, see [using client service proxies](https://github.com/peasy/Samples/blob/master/README.md#using-client-service-proxies).
 
 The next step is to configure the Web API project.  The Web API project uses dynamic dependency injection to create business services and data proxies that will be injected into the API controllers.  To configure the Web API project to consume in-memory data proxies, open the [DependencyInjection.config](https://github.com/peasy/Samples/blob/master/Orders.com.Web.Api/DependencyInjection.config) file.
 
@@ -181,11 +181,11 @@ Notice that there are three configuration sections for data proxies; Entity Fram
 
 Also notice that there are two configuration sections for business services; MVC and Web API, respectively.  Ensure that the ```Business Services - Web API``` section is uncommented and the ```Business Services - MVC``` section is commented out.
 
-An important thing to note is that the ```Business Services - Web API``` section in the configuration file uses two business services that can be referred to as pass-thru or client service classes.  Let's take a look at the config section:
+An important thing to note is that the ```Business Services - Web API``` section in the configuration file uses two business services that can be referred to as client service proxy classes.  Let's take a look at the config section:
 
 ![MVC-Config](https://www.dropbox.com/s/bwdslmakb9uic6j/MVC-DI-Config.png?dl=0&raw=1)
 
-The classes highlighted in red represent pass-through service classes.  These classes inherit from other service classes and override command methods to bypass any command logic to simply marshal calls to the data proxy.  To learn more about the necessity of pass through commands, see []().
+The classes highlighted in red represent client service proxy classes.  These classes inherit from other service classes and override command methods to bypass any command logic to simply marshal calls to the data proxy.  To learn more about the necessity of client service proxies, see [using client service proxies](https://github.com/peasy/Samples/blob/master/README.md#using-client-service-proxies).
 
 The next step is to configure the Web API project.  The Web API project uses dynamic dependency injection to create business services and data proxies that will be injected into the API controllers.  To configure the Web API project to consume in-memory data proxies, open the [DependencyInjection.config](https://github.com/peasy/Samples/blob/master/Orders.com.Web.Api/DependencyInjection.config) file.
 
