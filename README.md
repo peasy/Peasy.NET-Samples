@@ -207,7 +207,7 @@ This configuration can be accomplished by following these two configuration setu
 #####[WPF &#8594; Web API &#8594; SQL Server](https://github.com/peasy/Samples#wpf--web-api--sql-server)
 #####[ASP.NET MVC &#8594; Web API &#8594; SQL Server](https://github.com/peasy/Samples#aspnet-mvc--web-api--sql-server)
 
-### Using pass thru service proxies
+### Using client service proxies
 
 Many of the configurations for the sample application involve the usage of the Web API project that results in a configuration of the following workflow: .NET Client &#8594; Business Service Command &#8594; HTTP Proxy &#8594; Web API Controller &#8594; Business Service Command &#8594; Database (or In-Memory) Proxy.
 
@@ -262,17 +262,17 @@ Let's take a look at a sequence diagram that entails a .NET client consuming the
 
 ![service-proxies](https://www.dropbox.com/s/47sbyr8kdj0w6il/server-sequence.png?dl=0&raw=1)
 
-In this scenario, the application is using an HTTP order item data proxy that will marshal the call to a receiving ```Ship``` method of the OrderItems Web Api controller.  Because the Ship method of the OrderItems controller is also configured to use the ShipCommand, this logic will be executed again, thus decrementing the inventory twice.
+In this scenario, the .NET client invokes the ```Execute``` method of the [ShipOrderItemCommand](https://github.com/peasy/Samples/blob/master/Orders.com.BLL/Commands/ShipOrderItemCommand.cs) returned by the ```ShipCommand``` method of [OrderItemService](https://github.com/peasy/Samples/blob/master/Orders.com.BLL/Services/OrderItemService.cs). 
+The ShipCommand.```Execute``` method then invokes the ```Ship``` method of the injected [OrderItemsHttpDataProxy](https://github.com/peasy/Samples/blob/master/Orders.com.DAL.Http/OrderItemsHttpServiceProxy.cs), which issues an HTTP PUT request to the receiving ```Ship``` method of the [OrderItems Web Api controller](https://github.com/peasy/Samples/blob/master/Orders.com.Web.Api/Controllers/OrderItemsController.cs).  
 
-To address this issue, the OrderItemClientService class was created that overrides the ```Ship``` method and simply marshals the call to the _orderItemDataProxy.Ship method, bypassing the logic of the ShipCommand on the client, and allowing the OrderItem Web Api Service to handle the logic.
+Because the ```Ship``` method of OrderItemsController is also configured to use the ShipOrderItemCommand, this logic will be executed again, thus decrementing the inventory twice (initially done on the client and then in on the server).
 
-Further notice that the ShipCommand logic executes the code atomically within a transaction.  Because it is notoriously difficult to orchestrate transactions that occur via HTTP service calls, it is best to bypass the logic on the client and allow the server to execute the code atomically against a data store.
+To address this issue, the [OrderItemClientService](https://github.com/peasy/Samples/blob/master/Orders.com.BLL/Services/OrderItemClientService.cs) class was created.  This class extends [OrderItemService](https://github.com/peasy/Samples/blob/master/Orders.com.BLL/Services/OrderItemService.cs) and overrides the ```ShipCommand``` method to bypass the logic of the OrderItemShipCommand and directly marshal calls to the OrderItemsHttpDataProxy.Ship method, delegating the responsiblility of executing the OrderItemShipCommand logic on the server (Web API Controller).
 
-All of the configuration sections involving the use of the Web API application noted that the client applications (WPF or MVC) consumed special business services, which were [OrderItemClientService]() and [ProductClientService](), respectively.  These particular services expose a few command methods that orchestrate more complex business logic that entail updating multiple resources.
+Here is a sequence diagram illustrating a new configuration using the client version in the .NET client:
 
+![client-proxies](https://www.dropbox.com/s/cq6jiqrvrs1ux46/client-sequence.png?dl=0&raw=1)
 
+In this configuration, the client shares business logic with the server, excepting the shipping functionality which is now handled exclusively on the server.
 
-This is due to the fact that command methods in the business services use logic to orchestrate logic among different services within transactions, or to eliminate the potential for work to be executed twice.
-
-
-With these issues in mind, it's much easier to create a pass thru service proxy class to handle issues such as these.
+One final note is that the shipping logic in the OrderItemShipCommand executes atomically within the context of a transaction.  As stated previously, it is notoriously difficult to orchestrate transactions against out-of-band HTTP invocations.  Creating a client service proxy allows us to delegate that responsibility to the server, where it can orchestrate these transactions directly against the configured database.
