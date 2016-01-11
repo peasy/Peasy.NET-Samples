@@ -209,15 +209,15 @@ This configuration can be accomplished by following these two configuration setu
 
 ### Using client service proxies
 
-Many of the configurations for the sample application involve the usage of the Web API project that results in a configuration of the following workflow: .NET Client &#8594; Business Service Command &#8594; HTTP Proxy &#8594; Web API Controller &#8594; Business Service Command &#8594; Database (or In-Memory) Proxy.
+Many of the configurations for the sample application involve the use of the Web API project resulting in a configuration of the following workflow: **.NET Client &#8594; Business Service Command &#8594; HTTP Proxy &#8594; Web API Controller &#8594; Business Service Command &#8594; Database (or In-Memory) Proxy**.
 
-The great thing about this configuration is that the .NET clients share the same business logic as the Web API application.  Not only does this ensure that both applications consume the same business logic, but it ensures that non-.NET clients are also subjected to the business logic, workflow, and rules.
+The great thing about this configuration is that the .NET clients share the same business logic as the Web API application.  Not only does this ensure that both applications consume the same business logic, but it ensures that non-.NET clients are also subjected to the business logic, workflows, and business/validation rules.
 
 For the majority of Insert, Update, and Delete service command methods, these types of configurations work great.  This is especially true when these commands simply interact with a single data proxy upon successful validation of business rules.  Most of the service commands in the sample business layer fall into this category.  
 
-However, things can get a bit complicated when dealing with more complex commands, especially those that are responsible for orchestrating workflows or business logic that entails updating multiple resources.
+However, things can become complicated when dealing with more complex commands, especially those responsible for orchestrating workflows or business logic that updates multiple resources.
 
-In addition, sometimes workflows such as these need to be executed atomically within the context of a transaction.  What may not be immediately obvious is that the .NET client that consumes a service command that has been configured to consume HTTP data proxies will have a diffult time orchestrating a rollback strategy in the event that one of the updates against one of the data proxies fail.  
+Further, often times workflows such as these need to be executed atomically within the context of a transaction.  What may not be immediately obvious is that the .NET client that consumes a service command configured to use HTTP data proxies will have a difficult time orchestrating a rollback strategy in the event that one of the updates against a data proxy fails.  
 
 While you could certainly inject a transaction strategy into a service command that handles transactional support against multiple out-of-band HTTP invocations, it's nothing short of trivial.
 
