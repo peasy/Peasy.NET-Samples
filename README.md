@@ -207,11 +207,21 @@ This configuration can be accomplished by following these two configuration setu
 #####[WPF &#8594; Web API &#8594; SQL Server](https://github.com/peasy/Samples#wpf--web-api--sql-server)
 #####[ASP.NET MVC &#8594; Web API &#8594; SQL Server](https://github.com/peasy/Samples#aspnet-mvc--web-api--sql-server)
 
-### Using pass thru service service proxies
+### Using pass thru service proxies
 
-This is due to the fact that command methods in the business services use logic to orchestrate logic among different services within transactions, or to eliminate the potential for work to be executed twice.
+Many of the configurations for the sample application involve the usage of the Web API project that results in a configuration of the following workflow: .NET Client &#8594; Business Service Command &#8594; HTTP Proxy &#8594; Web API Controller &#8594; Business Service Command &#8594; Database (or In-Memory) Proxy.
 
-To illustrate this, let's take a look at the following method from the OrderItemService.ShipCommand method:
+The great thing about this configuration is that the .NET clients share the same business logic as the Web API application.  Not only does this ensure that both applications consume the same business logic, but it ensures that non-.NET clients are also subjected to the business logic, workflow, and rules.
+
+For the majority of Insert, Update, and Delete service command methods, these types of configurations work great.  This is especially true when these commands simply interact with a single data proxy upon successful validation of business rules.  Most of the service commands in the sample business layer fall into this category.  
+
+However, things can get a bit complicated when dealing with more complex commands, especially those that are responsible for orchestrating workflows or business logic that entails updating multiple resources.
+
+In addition, sometimes workflows such as these need to be executed atomically within the context of a transaction.  What may not be immediately obvious is that the .NET client that consumes a service command that has been configured to consume HTTP data proxies will have a diffult time orchestrating a rollback strategy in the event that one of the updates against one of the data proxies fail.  
+
+While you could certainly inject a transaction strategy into a service command that handles transactional support against multiple out-of-band HTTP invocations, it's nothing short of trivial.
+
+To help illustrate these issues, let's observe the ```ShipCommand``` method of  [OrderItemService](https://github.com/peasy/Samples/blob/master/Orders.com.BLL/Services/OrderItemService.cs), which is responsible for updating the status of an order item and reducing the inventory associated with this item.
 
 ```c#
 public virtual ICommand<OrderItem> ShipCommand(long orderItemID)
@@ -221,7 +231,7 @@ public virtual ICommand<OrderItem> ShipCommand(long orderItemID)
 }
 ```
 
-The ```ShipCommand``` method simply returns an instance of the ShipOrderItemCommand, and will invoke the following code when Execute() is invoked (remember that Command.Execute or Command.ExecuteAsync will invoke OnExecute or OnExecuteAsync, respectively):
+```ShipCommand``` simply returns an instance of the [ShipOrderItemCommand](https://github.com/peasy/Samples/blob/master/Orders.com.BLL/Commands/ShipOrderItemCommand.cs), and will invoke the following code when ```Execute()``` is invoked (ShipOrderItemCommand.Execute() and ShipOrderItemCommand.ExecuteAsync() will invoke ```OnExecute``` or ```OnExecuteAsync```, respectively):
 
 ```c#
 protected override OrderItem OnExecute()
@@ -246,8 +256,23 @@ protected override OrderItem OnExecute()
 } 
 ```
 
-This method is responsible for decrementing inventory followed by updating the status of the current order item to 'shipped'.  In this scenario, the application is using an HTTP order item data proxy that will marshal the call to a receiving ```Ship``` method of the OrderItems Web Api controller.  Because the Ship method of the OrderItems controller is also configured to use the ShipCommand, this logic will be executed again, thus decrementing the inventory twice.
+This method is responsible for decrementing inventory followed by updating the status of the current order item to 'shipped' within an atomic transaction.
+
+Let's take a look at a sequence diagram that entails a .NET client consuming the OrderItemService injected with HTTP data proxies, with the receiving Web API application consuming the OrderItemService injected with database (EF6) data proxies:
+
+![service-proxies](https://www.dropbox.com/s/47sbyr8kdj0w6il/server-sequence.png?dl=0&raw=1)
+
+In this scenario, the application is using an HTTP order item data proxy that will marshal the call to a receiving ```Ship``` method of the OrderItems Web Api controller.  Because the Ship method of the OrderItems controller is also configured to use the ShipCommand, this logic will be executed again, thus decrementing the inventory twice.
 
 To address this issue, the OrderItemClientService class was created that overrides the ```Ship``` method and simply marshals the call to the _orderItemDataProxy.Ship method, bypassing the logic of the ShipCommand on the client, and allowing the OrderItem Web Api Service to handle the logic.
 
 Further notice that the ShipCommand logic executes the code atomically within a transaction.  Because it is notoriously difficult to orchestrate transactions that occur via HTTP service calls, it is best to bypass the logic on the client and allow the server to execute the code atomically against a data store.
+
+All of the configuration sections involving the use of the Web API application noted that the client applications (WPF or MVC) consumed special business services, which were [OrderItemClientService]() and [ProductClientService](), respectively.  These particular services expose a few command methods that orchestrate more complex business logic that entail updating multiple resources.
+
+
+
+This is due to the fact that command methods in the business services use logic to orchestrate logic among different services within transactions, or to eliminate the potential for work to be executed twice.
+
+
+With these issues in mind, it's much easier to create a pass thru service proxy class to handle issues such as these.
