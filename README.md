@@ -275,4 +275,6 @@ Here is a sequence diagram illustrating a new configuration using the client ver
 
 In this configuration, the client shares business logic with the server, excepting the shipping functionality which is now handled exclusively on the server.
 
-One final note is that the shipping logic in the OrderItemShipCommand executes atomically within the context of a transaction.  As stated previously, it is notoriously difficult to orchestrate transactions against out-of-band HTTP invocations.  Creating a client service proxy allows us to delegate that responsibility to the server, where it can orchestrate these transactions directly against the configured database within a transaction context (DTC, etc.).
+Something else to mention is that the shipping logic in the OrderItemShipCommand executes atomically within the context of a transaction.  As stated previously, it is notoriously difficult to orchestrate transactions against out-of-band HTTP invocations.  Creating a client service proxy allows us to delegate that responsibility to the server, where it can orchestrate these transactions directly against the configured database within a transaction context (DTC, etc.).
+
+One final note is that sometimes business services contain alot of business rules that interact with a database.  In this scenario, it might pay off to bypass business logic in the .NET client and delegate it to the server (Web Api application) to reduce database chattiness.  Creating client service proxies can help faciliate this as well.
