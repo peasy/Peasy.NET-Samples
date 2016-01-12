@@ -2,7 +2,7 @@
 
 # A sample application
 
-A full implementation of a middle tier built with peasy and sample consumer clients (WPF, Web API, and ASP.NET MVC) can be found here.  You can clone the repo or download the entire solution as a [zip](https://github.com/peasy/samples/archive/master.zip).
+A full implementation of a middle tier built using the [peasy framework](https://github.com/peasy/Peasy.NET) and sample consumer clients (WPF, Web API, and ASP.NET MVC) can be found here.  You can clone the repo or download the entire solution as a [zip](https://github.com/peasy/samples/archive/master.zip).
 
 The sample application is a ficticious order entry / inventory management system, and provides both WPF and ASP.NET MVC UI clients.  All efforts were made to keep these applications as simple as possible to keep the focus on how a middle tier is written with peasy and consumed by multiple clients.
 
