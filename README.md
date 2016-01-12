@@ -263,7 +263,7 @@ Let's take a look at a sequence diagram that entails a .NET client consuming the
 ![service-proxies](https://www.dropbox.com/s/47sbyr8kdj0w6il/server-sequence.png?dl=0&raw=1)
 
 In this scenario, the .NET client invokes the ```Execute``` method of the [ShipOrderItemCommand](https://github.com/peasy/Samples/blob/master/Orders.com.BLL/Commands/ShipOrderItemCommand.cs) returned by the ```ShipCommand``` method of [OrderItemService](https://github.com/peasy/Samples/blob/master/Orders.com.BLL/Services/OrderItemService.cs). 
-The ShipCommand.```Execute``` method then invokes the ```Ship``` method of the injected [OrderItemsHttpDataProxy](https://github.com/peasy/Samples/blob/master/Orders.com.DAL.Http/OrderItemsHttpServiceProxy.cs), which issues an HTTP PUT request to the receiving ```Ship``` method of the [OrderItems Web Api controller](https://github.com/peasy/Samples/blob/master/Orders.com.Web.Api/Controllers/OrderItemsController.cs).  
+The ShipCommand.```Execute``` method then invokes the ```Ship``` method of the injected [OrderItemsHttpDataProxy](https://github.com/peasy/Samples/blob/master/Orders.com.DAL.Http/OrderItemsHttpServiceProxy.cs), which issues an HTTP PUT request to the receiving ```Ship``` method of the [OrderItemsController (Web Api)](https://github.com/peasy/Samples/blob/master/Orders.com.Web.Api/Controllers/OrderItemsController.cs).  
 
 Because the ```Ship``` method of OrderItemsController is also configured to use the ShipOrderItemCommand, this logic will be executed again, thus decrementing the inventory twice (initially done on the client and then in on the server).
 
