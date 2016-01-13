@@ -12,6 +12,8 @@ The easiest way to get up and running is to set either the WPF project or the AS
 
 However, there is a multitude of configuration possibilities.  The [configurations](https://github.com/peasy/Samples#configurations) section provides details on setting up many potential configurations.
 
+You can view an application walkthru of the WPF Application [here](https://youtu.be/EdBKA6m_HKY).
+
 ### SQL Server Setup
 
 The sample applications can be configured to interact with a SQL Server database.  Here are the steps to setup a SQL Server database for use by the sample applications:
