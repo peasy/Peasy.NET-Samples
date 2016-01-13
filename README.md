@@ -12,8 +12,6 @@ The easiest way to get up and running is to set either the WPF project or the AS
 
 However, there is a multitude of configuration possibilities.  The [configurations](https://github.com/peasy/Samples#configurations) section provides details on setting up many potential configurations.
 
-You can view an application walkthru of the WPF Application [here](https://youtu.be/EdBKA6m_HKY).
-
 ### SQL Server Setup
 
 The sample applications can be configured to interact with a SQL Server database.  Here are the steps to setup a SQL Server database for use by the sample applications:
@@ -24,7 +22,7 @@ The sample applications can be configured to interact with a SQL Server database
 
 ### Configurations
 
-Because these clients consume a middle tier written with peasy, they can be configured in different ways to suit your needs.  Below are multiple available configurations that serve to showcase how you might deploy applications consuming your middle tier written with peasy.
+Because these clients consume a middle tier written with peasy, they can be configured in different ways to suit your needs.  Below are multiple available configurations that serve to showcase how you might run and/or deploy applications consuming your middle tier written with peasy.
 
 * [WPF &#8594; In Memory](https://github.com/peasy/Samples/wiki/Configuring-WPF-%E2%86%92--In-Memory)
 * [WPF &#8594; SQL Server](https://github.com/peasy/Samples/wiki/Configuring-WPF-%E2%86%92-SQL-Server)
@@ -35,3 +33,9 @@ Because these clients consume a middle tier written with peasy, they can be conf
 * [ASP.NET MVC &#8594; Web API &#8594; In Memory](https://github.com/peasy/Samples/wiki/Configuring-ASP.NET-MVC-%E2%86%92-Web-API-%E2%86%92-In-Memory)
 * [ASP.NET MVC &#8594; Web API &#8594; SQL Server](https://github.com/peasy/Samples/wiki/Configuring-ASP.NET-MVC-%E2%86%92-Web-API-%E2%86%92-SQL-Server)
 * [Multiple Clients &#8594; Web API &#8594; (In Memory or SQL Server)](https://github.com/peasy/Samples/wiki/Configuring-Multiple-Clients-%E2%86%92-Web-API-%E2%86%92-(In-Memory-or-SQL-Server))
+
+### Videos
+
+You can view an application walkthru of the WPF Application [here](https://youtu.be/EdBKA6m_HKY).
+
+### [Solution and Project Structure](https://github.com/peasy/Samples/wiki/Solution-and-project-structure)
