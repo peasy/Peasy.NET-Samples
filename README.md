@@ -36,7 +36,8 @@ Because these clients consume a middle tier written with peasy, they can be conf
 
 ### Videos
 
-You can view an application walkthru of the WPF Application [here](https://youtu.be/EdBKA6m_HKY).
+An application walkthru of the WPF Application can be viewed [here](https://youtu.be/EdBKA6m_HKY).
+An application walkthru of the WPF Application can be viewed [here](https://youtu.be/8axAQ-s2rEQ).
 
 ### Solution and Project Structure
 
