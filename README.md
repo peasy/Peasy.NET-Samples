@@ -38,4 +38,6 @@ Because these clients consume a middle tier written with peasy, they can be conf
 
 You can view an application walkthru of the WPF Application [here](https://youtu.be/EdBKA6m_HKY).
 
-### [Solution and Project Structure](https://github.com/peasy/Samples/wiki/Solution-and-project-structure)
+### Solution and Project Structure
+
+An overview of the solution and all of the projects can be viewed [here](https://github.com/peasy/Samples/wiki/Solution-and-project-structure).
