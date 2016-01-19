@@ -20,6 +20,8 @@ The sample applications can be configured to interact with a SQL Server database
 
 2.) Execute the following command: ```update-database -verbose```
 
+![sql-setup](https://www.dropbox.com/s/g7x7oss660iz1ms/sql-setup.png?dl=0&raw=1)
+
 ### Configurations
 
 Because these clients consume a middle tier written with peasy, they can be configured in different ways to suit your needs.  Below are multiple available configurations that serve to showcase how you might run and/or deploy applications consuming your middle tier written with peasy.
