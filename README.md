@@ -45,3 +45,7 @@ An application walkthru of the ASP.NET MVC Application can be viewed [here](http
 ### Solution and Project Structure
 
 An overview of the solution and all of the projects can be viewed [here](https://github.com/peasy/Samples/wiki/Solution-and-project-structure).
+
+### Like what you see?
+
+Please consider showing your support by starring the project.
