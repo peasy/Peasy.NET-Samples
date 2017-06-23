@@ -7,6 +7,8 @@ namespace Orders.com.DAL.Http
 {
     public class OrderItemsHttpServiceProxy : OrdersDotComHttpProxyBase<OrderItem, long>, IOrderItemDataProxy
     {
+        public OrderItemsHttpServiceProxy(string baseAddress) :base(baseAddress) { }
+
         protected override string RequestUri
         {
             get { return $"{BaseAddress}/orderitems"; }

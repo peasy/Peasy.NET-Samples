@@ -1,5 +1,4 @@
-﻿using Peasy.Core;
-using System.Linq;
+﻿using System.Linq;
 using Peasy;
 using Peasy.DataProxy.InMemory;
 using System.Collections.Generic;

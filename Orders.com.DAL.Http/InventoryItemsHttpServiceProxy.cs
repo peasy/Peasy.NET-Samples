@@ -6,6 +6,8 @@ namespace Orders.com.DAL.Http
 {
     public class InventoryItemsHttpServiceProxy : OrdersDotComHttpProxyBase<InventoryItem, long>, IInventoryItemDataProxy
     {
+        public InventoryItemsHttpServiceProxy(string baseAddress) :base(baseAddress) { }
+
         protected override string RequestUri
         {
             get { return $"{BaseAddress}/inventoryitems"; }

@@ -1,6 +1,4 @@
 ﻿using Peasy;
-using Peasy.Core;
-using Peasy.Core.Extensions;
 using Peasy.Extensions;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

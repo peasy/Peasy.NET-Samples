@@ -11,7 +11,6 @@ namespace Orders.com.Web.Api
     using System.Configuration;
     using Configuration;
     using BLL;
-    using DAL.InMemory;
     using BLL.DataProxy;
     using Peasy;
 

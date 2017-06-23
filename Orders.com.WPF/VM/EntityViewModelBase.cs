@@ -1,4 +1,4 @@
-﻿using Peasy.Core;
+﻿using Peasy;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;

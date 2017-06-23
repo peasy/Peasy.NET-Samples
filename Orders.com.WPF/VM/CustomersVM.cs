@@ -1,4 +1,5 @@
-﻿using Peasy.Core.Extensions;
+﻿using Peasy;
+using Peasy.Extensions;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -12,10 +13,10 @@ namespace Orders.com.WPF.VM
     {
         private CustomerService _customersService;
         private ObservableCollection<CustomerVM> _customers = new ObservableCollection<CustomerVM>();
-        private ICommand _addCustomerCommand;
-        private ICommand _saveCustomersCommand;
-        private ICommand _loadCustomersCommand;
-        private ICommand _deleteSelectedCommand;
+        private System.Windows.Input.ICommand _addCustomerCommand;
+        private System.Windows.Input.ICommand _saveCustomersCommand;
+        private System.Windows.Input.ICommand _loadCustomersCommand;
+        private System.Windows.Input.ICommand _deleteSelectedCommand;
 
         public CustomersVM(CustomerService customersService)
         {
@@ -28,22 +29,22 @@ namespace Orders.com.WPF.VM
 
         public CustomerVM SelectedCustomer { get; set; }
 
-        public ICommand AddCustomerCommand
+        public System.Windows.Input.ICommand AddCustomerCommand
         {
             get { return _addCustomerCommand; }
         }
 
-        public ICommand SaveCustomersCommand
+        public System.Windows.Input.ICommand SaveCustomersCommand
         {
             get { return _saveCustomersCommand; }
         }
 
-        public ICommand LoadCustomersCommand
+        public System.Windows.Input.ICommand LoadCustomersCommand
         {
             get { return _loadCustomersCommand; }
         }
 
-        public ICommand DeleteSelectedCommand
+        public System.Windows.Input.ICommand DeleteSelectedCommand
         {
             get { return _deleteSelectedCommand; }
         }

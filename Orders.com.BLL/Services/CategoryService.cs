@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using Peasy.Core;
 using Orders.com.BLL.Rules;
 using System.Threading.Tasks;
 using Orders.com.BLL.Domain;
 using Orders.com.BLL.DataProxy;
+using Peasy;
 
 namespace Orders.com.BLL.Services
 {

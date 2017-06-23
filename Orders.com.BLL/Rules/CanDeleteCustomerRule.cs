@@ -1,5 +1,5 @@
 ﻿using Orders.com.BLL.Services;
-using Peasy.Core;
+using Peasy;
 using System.Linq;
 using System.Threading.Tasks;
 

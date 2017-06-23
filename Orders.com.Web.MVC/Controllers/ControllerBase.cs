@@ -1,7 +1,7 @@
 ﻿using Orders.com.BLL.Domain;
 using Orders.com.Web.MVC.ViewModels;
-using Peasy.Core;
-using Peasy.Core.Extensions;
+using Peasy;
+using Peasy.Extensions;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;

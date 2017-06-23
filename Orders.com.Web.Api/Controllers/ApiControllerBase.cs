@@ -6,7 +6,6 @@ using System.Web.Http.Routing;
 using System.Diagnostics.Contracts;
 using System.Collections.Generic;
 using Peasy;
-using Peasy.Core;
 using Peasy.Exception;
 
 namespace Orders.com.Web.Api

@@ -1,4 +1,4 @@
-﻿using Peasy.Core;
+﻿using Peasy;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
@@ -10,7 +10,6 @@ namespace Orders.com.BLL.Domain
     {
         // TODO: Include Newtonsoft.json??
         //[JsonIgnore, IgnoreDataMember]
-        [IgnoreDataMember]
         public abstract long ID { get; set; }
 
         public string Self { get; set; }

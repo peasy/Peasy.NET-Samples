@@ -1,0 +1,12 @@
+﻿{
+  "supports": {},
+  "dependencies": {
+    "AutoMapper": "6.1.0",
+    "Microsoft.NETCore.Portable.Compatibility": "1.0.1",
+    "NETStandard.Library": "1.6.0",
+    "Peasy": "2.0.2"
+  },
+  "frameworks": {
+    "netstandard1.1": {}
+  }
+}

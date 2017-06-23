@@ -4,7 +4,6 @@ using Orders.com.BLL.Commands;
 using Orders.com.DAL.InMemory;
 using Peasy;
 using Peasy.Extensions;
-using Peasy.Core;
 using Shouldly;
 using System;
 using System.Collections.Generic;

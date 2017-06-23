@@ -1,5 +1,5 @@
 ﻿using Orders.com.BLL.Domain;
-using Peasy.Core;
+using Peasy;
 
 namespace Orders.com.BLL.Services
 {

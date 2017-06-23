@@ -1,4 +1,5 @@
-﻿using Peasy.Core.Extensions;
+﻿using Peasy;
+using Peasy.Extensions;
 using Orders.com.BLL.Extensions;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,12 +16,12 @@ namespace Orders.com.WPF.VM
         private OrderItemService _orderItemService;
         private OrderService _orderService;
         private ObservableCollection<OrderItemVM> _orderItems;
-        private ICommand _saveOrderCommand;
-        private ICommand _submitOrderCommand;
-        private ICommand _shipOrderCommand;
-        private ICommand _addOrderItemCommand;
-        private ICommand _deleteSelectedItemCommand;
-        private ICommand _refreshCommand;
+        private System.Windows.Input.ICommand _saveOrderCommand;
+        private System.Windows.Input.ICommand _submitOrderCommand;
+        private System.Windows.Input.ICommand _shipOrderCommand;
+        private System.Windows.Input.ICommand _addOrderItemCommand;
+        private System.Windows.Input.ICommand _deleteSelectedItemCommand;
+        private System.Windows.Input.ICommand _refreshCommand;
         private EventAggregator _eventAggregator;
         private MainWindowVM _mainVM;
         private InventoryItemService _inventoryService;
@@ -99,32 +100,32 @@ namespace Orders.com.WPF.VM
             get { return _orderItems; }
         }
 
-        public ICommand AddOrderItemCommand
+        public System.Windows.Input.ICommand AddOrderItemCommand
         {
             get { return _addOrderItemCommand; }
         }
 
-        public ICommand SaveOrderCommand
+        public System.Windows.Input.ICommand SaveOrderCommand
         {
             get { return _saveOrderCommand; }
         }
 
-        public ICommand SubmitOrderCommand
+        public System.Windows.Input.ICommand SubmitOrderCommand
         {
             get { return _submitOrderCommand; }
         }
 
-        public ICommand ShipOrderCommand
+        public System.Windows.Input.ICommand ShipOrderCommand
         {
             get { return _shipOrderCommand; }
         }
 
-        public ICommand DeleteSelectedItemCommand
+        public System.Windows.Input.ICommand DeleteSelectedItemCommand
         {
             get { return _deleteSelectedItemCommand; }
         }
 
-        public ICommand RefreshCommand
+        public System.Windows.Input.ICommand RefreshCommand
         {
             get { return _refreshCommand; }
         }

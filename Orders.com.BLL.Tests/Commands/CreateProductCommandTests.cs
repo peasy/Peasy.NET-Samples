@@ -2,12 +2,12 @@
 using Moq;
 using Orders.com.BLL.Commands;
 using Orders.com.DAL.InMemory;
-using Peasy.Core;
 using Shouldly;
 using System.Linq;
 using Orders.com.BLL.Domain;
 using Orders.com.BLL.Services;
 using Orders.com.BLL.DataProxy;
+using Peasy;
 
 namespace Orders.com.BLL.Tests.Commands
 {

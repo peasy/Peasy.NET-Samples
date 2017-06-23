@@ -4,7 +4,7 @@ using Orders.com.BLL.Domain;
 using Orders.com.BLL.Services;
 using Orders.com.Web.MVC.ViewModels;
 using System.Collections.Generic;
-using Peasy.Core.Extensions;
+using Peasy.Extensions;
 using Orders.com.BLL.Extensions;
 
 namespace Orders.com.Web.MVC.Controllers

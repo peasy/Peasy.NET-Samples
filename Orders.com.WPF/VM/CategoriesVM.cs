@@ -1,4 +1,4 @@
-﻿using Peasy.Core.Extensions;
+﻿using Peasy.Extensions;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;

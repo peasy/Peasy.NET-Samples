@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Peasy.Core;
 using Orders.com.BLL.Domain;
 using Orders.com.BLL.QueryData;
+using Peasy;
 
 namespace Orders.com.BLL.Services
 {

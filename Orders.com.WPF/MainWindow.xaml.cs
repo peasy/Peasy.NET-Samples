@@ -2,6 +2,8 @@
 using Orders.com.DAL.Http;
 using Orders.com.DAL.InMemory;
 using Orders.com.WPF.VM;
+using System;
+using System.Configuration;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -24,17 +26,22 @@ namespace Orders.com.WPF
 
         void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            ConfigureInMemoryUsage();
+            //ConfigureInMemoryUsage();
+            ConfigureHttpClientUsage();
         }
 
         private void ConfigureHttpClientUsage()
         {
-            var productsDataProxy = new ProductsHttpServiceProxy();
-            var inventoryDataProxy = new InventoryItemsHttpServiceProxy();
-            var customerDataProxy = new CustomersHttpServiceProxy();
-            var orderItemDataProxy = new OrderItemsHttpServiceProxy();
-            var orderRepository = new OrdersHttpServiceProxy();
-            var categoriesDataProxy = new CategoriesHttpServiceProxy();
+            string hostSettingName = "apiHostNameAddress";
+            var baseAddress = ConfigurationManager.AppSettings[hostSettingName];
+            if (baseAddress == null) throw new Exception($"The setting '{hostSettingName}' in the AppSettings portion of the configuration file was not found.");
+
+            var productsDataProxy = new ProductsHttpServiceProxy(baseAddress);
+            var inventoryDataProxy = new InventoryItemsHttpServiceProxy(baseAddress);
+            var customerDataProxy = new CustomersHttpServiceProxy(baseAddress);
+            var orderItemDataProxy = new OrderItemsHttpServiceProxy(baseAddress);
+            var orderRepository = new OrdersHttpServiceProxy(baseAddress);
+            var categoriesDataProxy = new CategoriesHttpServiceProxy(baseAddress);
 
             _inventoryService = new InventoryItemService(inventoryDataProxy);
             _orderItemsService = new OrderItemClientService(orderItemDataProxy, productsDataProxy, inventoryDataProxy, new DTCTransactionContext());
