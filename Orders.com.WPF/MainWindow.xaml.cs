@@ -28,6 +28,7 @@ namespace Orders.com.WPF
         {
             //ConfigureInMemoryUsage();
             ConfigureHttpClientUsage();
+            //ConfigureEFUsage();
         }
 
         private void ConfigureHttpClientUsage()

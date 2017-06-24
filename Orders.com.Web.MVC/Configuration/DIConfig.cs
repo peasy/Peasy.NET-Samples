@@ -24,6 +24,13 @@ namespace Orders.com.Web.MVC.Configuration
             get { return (DIDefaultPropConfigList)base["defaultProperties"]; }
             set { base["defaultProperties"] = value; }
         }
+        
+        [ConfigurationProperty("constructorArguments")]
+        public DIConstructorArgConfigList ConstructorArguments
+        {
+            get { return (DIConstructorArgConfigList)base["constructorArguments"]; }
+            set { base["constructorArguments"] = value; }
+        }
 
         [ConfigurationProperty("asSingleton")]
         public bool AsSingleton

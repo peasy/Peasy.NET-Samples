@@ -73,6 +73,8 @@ namespace Orders.com.Web.MVC.App_Start
                     if (binding.AsSingleton) ninjectBinding.InSingletonScope();
                     foreach (var defaultProp in binding.DefaultProperties)
                         ninjectBinding.WithPropertyValue(defaultProp.PropertyName, Cast(defaultProp.Value, defaultProp.Type));
+                    foreach (var constructorArg in binding.ConstructorArguments)
+                        ninjectBinding.WithConstructorArgument(constructorArg.ArgumentName, constructorArg.Value);
                 }
                 catch
                 {

@@ -221,7 +221,9 @@
     <Compile Include="Configuration\DIConfig.cs" />
     <Compile Include="Configuration\DIConfigList.cs" />
     <Compile Include="Configuration\DIConfigSection.cs" />
+    <Compile Include="Configuration\DIConstructorArgConfig.cs" />
     <Compile Include="Configuration\DIDefaultPropConfig.cs" />
+    <Compile Include="Configuration\DIConstructorArgConfigList.cs" />
     <Compile Include="Configuration\DIDefaultPropConfigList.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
