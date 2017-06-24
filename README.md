@@ -8,7 +8,7 @@ The sample application is a ficticious order entry / inventory management system
 
 ![screenshot](https://www.dropbox.com/s/lw5y82r0yj4jrt3/screenshot.png?dl=0&raw=1)
 
-The easiest way to get up and running is to set either the WPF project or the ASP.NET MVC project as the startup project and run the application.  By default, these projects are configured to use in-memory implementations of the [data proxies](https://github.com/peasy/Peasy.NET/wiki/Data-Proxy).
+The easiest way to get up and running is to set the WPF, ASP.NET MVC, and Web API projects as the startup projects and run the application.  By default, the WPF and MVC projects are configured to use http implementations of the [data proxies](https://github.com/peasy/Peasy.NET/wiki/Data-Proxy) that communicate with the Web API project.  In turn, the Web API project is configured to use in-memory implementations of the data proxies.
 
 However, there is a multitude of configuration possibilities.  The [configurations](https://github.com/peasy/Samples#configurations) section provides details on setting up many potential configurations.
 
