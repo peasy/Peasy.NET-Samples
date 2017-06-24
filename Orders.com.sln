@@ -19,6 +19,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orders.com.Web.MVC", "Order
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orders.com.WPF", "Orders.com.WPF\Orders.com.WPF.csproj", "{1FF92FD3-C3CD-48E7-93A1-624DEA8DC680}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{9816359D-4922-4BBD-A92A-8FD87CCB2798}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{833D5F05-77FB-4606-881C-F4969A7FDFED}"
+	ProjectSection(SolutionItems) = preProject
+		Orders.com.Web.MVC.Core\global.json = Orders.com.Web.MVC.Core\global.json
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Orders.com.Web.MVC.Core", "Orders.com.Web.MVC.Core\src\Orders.com.Web.MVC.Core\Orders.com.Web.MVC.Core.xproj", "{AE7CC84F-538D-45F9-B618-910AF155E2B5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,8 +66,15 @@ Global
 		{1FF92FD3-C3CD-48E7-93A1-624DEA8DC680}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1FF92FD3-C3CD-48E7-93A1-624DEA8DC680}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1FF92FD3-C3CD-48E7-93A1-624DEA8DC680}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE7CC84F-538D-45F9-B618-910AF155E2B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE7CC84F-538D-45F9-B618-910AF155E2B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE7CC84F-538D-45F9-B618-910AF155E2B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE7CC84F-538D-45F9-B618-910AF155E2B5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AE7CC84F-538D-45F9-B618-910AF155E2B5} = {9816359D-4922-4BBD-A92A-8FD87CCB2798}
 	EndGlobalSection
 EndGlobal
