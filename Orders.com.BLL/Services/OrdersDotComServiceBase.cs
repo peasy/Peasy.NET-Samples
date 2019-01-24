@@ -19,7 +19,7 @@ namespace Orders.com.BLL.Services
             if (!validationErrors.Any())
             {
                 var businessRuleErrors = GetBusinessRulesForInsert(entity, context).GetValidationResults();
-                validationErrors.Concat(businessRuleErrors);
+                validationErrors = validationErrors.Concat(businessRuleErrors);
             }
             return validationErrors;
         }
@@ -30,7 +30,7 @@ namespace Orders.com.BLL.Services
             if (!validationErrors.Any())
             {
                 var businessRuleErrors = await GetBusinessRulesForInsertAsync(entity, context);
-                validationErrors.Concat(await businessRuleErrors.GetValidationResultsAsync());
+                validationErrors = validationErrors.Concat(await businessRuleErrors.GetValidationResultsAsync());
             }
             return validationErrors;
         }
@@ -41,7 +41,7 @@ namespace Orders.com.BLL.Services
             if (!validationErrors.Any())
             {
                 var businessRuleErrors = GetBusinessRulesForUpdate(entity, context).GetValidationResults();
-                validationErrors.Concat(businessRuleErrors);
+                validationErrors = validationErrors.Concat(businessRuleErrors);
             }
             return validationErrors;
         }
@@ -52,7 +52,7 @@ namespace Orders.com.BLL.Services
             if (!validationErrors.Any())
             {
                 var businessRuleErrors = await GetBusinessRulesForUpdateAsync(entity, context);
-                validationErrors.Concat(await businessRuleErrors.GetValidationResultsAsync());
+                validationErrors = validationErrors.Concat(await businessRuleErrors.GetValidationResultsAsync());
             }
             return validationErrors;
         }
